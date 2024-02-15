@@ -1,0 +1,82 @@
+*MaCoLib.txt*       My Manager for Color Library and some more stuff
+
+		Creation Date :2024-02-15 23:11:52
+		Last Modified : 2024-02-16 00:04:38
+		Email Address : cbushdor@laposte.net
+		Version : 0.0.0.32
+
+==============================================================================
+                                                      *MaCoLib* *help_MaCoLib*
+
+Intro                                                     |help_MaCoLib_intro|
+Examples                                               |help_MaCoLib_Examples|
+Notes																		                  |help_MaCoLib_notes|
+Licence                                                 |help_MaCoLib_licence|
+Helps                                                     |help_MaCoLib_extra|
+
+==============================================================================
+Intro                                                     *help_MaCoLib_intro*
+
+Sometimes it is had to read.
+
+==============================================================================
+Examples                                                *help_MaCoLib_Example*
+>>
+	" We put on line all variables from here
+	execute "source  "..expand('<sfile>:p:h').."/../../MaCoLib/pluggin/MaCoLib.vim"
+
+  let MyArray = [
+	     [
+			   "Hello one ",
+				 ':hi MyColor  term=bold ctermfg=Blue guifg=#80a0ff gui=bold'
+			 ],
+	     [
+			   "Hello two ",
+				 ':hi MyColor  term=bold ctermfg=Cyan guifg=#80a0ff gui=bold'
+			 ]
+	]
+  call AddToPrintColorString(MyArray,
+	              "Howdy my test are here ",
+								':hi MyColor  term=bold ctermfg=Red guifg=#80a0ff gui=bold')
+  call PrintsColoredString(MyArray)
+  echo ""
+  call ClearStringColor(MyArray)
+  echo ""
+  call PrintsColoredString(MyArray)
+  echo ""
+  call AddHeadStringColor(MyArray,
+	       [
+				  "1 New Howdy my test are here ",
+					':hi MyColor  term=bold ctermfg=Red guifg=#80a0ff gui=bold'
+				 ]
+				)
+  call PrintsColoredString(MyArray)
+  echo ""
+  echo ""
+  call AddStackStringColor(MyArray,["23 New Howdy my test are here ",':hi MyColor  term=bold ctermfg=Green guifg=#80a0ff gui=bold'])
+  call PrintsColoredString(MyArray)
+  echo ""
+  echo ""
+  echohl WarningMsg
+  let a = input(" 2 new tests:")
+  echohl None
+<<
+
+==============================================================================
+Notes                                                     *help_MaCoLib_notes*
+	Plugin under construction. It is unstable.
+
+==============================================================================
+License : 																							*help_MaCoLib_licence*
+
+	Permission is granted to copy, distribute, and/or modify this document 
+	under the terms of the Creative Commons Attribution-NonCommercial 3.0
+	Unported License, which is available at 
+	http://creativecommons.org/licenses/by-nc/3.0/.
+
+
+==============================================================================
+HELP																											*help_MaCoLib_extra*
+	:help highlight or :help hi
+
+vim:tw=78:ts=8:noet:ft=help:norl:
