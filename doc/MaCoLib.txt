@@ -1,13 +1,14 @@
 *MaCoLib.txt*       my MAnager for COlor LIBrary and some more stuff
 
 		Creation Date :2024-02-15 23:11:52
-		Last Modified : 2024-02-16 02:32:14
+		Last Modified : 2024-02-16 23:34:52
 		Email Address : cbushdor@laposte.net
-		Version : 0.0.0.78
+		Version : 0.0.0.81
 
 ==============================================================================
 CONTENTS                                                *MaCoLib* *help_MaCoLib*
 
+How to Install Plugin                             |MyHeadersFill_file_Install|
 Intro                                                     |help_MaCoLib_intro|
 Functions                                                  |help_MaCoLib_func|
 Examples                                               |help_MaCoLib_Examples|
@@ -15,6 +16,39 @@ Warning						          |help_MaCoLib_notes|
 Helps                                                     |help_MaCoLib_extra|
 Credits                                                 |help_MaCoLib_credits|
 Licence                                                 |help_MaCoLib_licence|
+
+==============================================================================
+How to Install Plugin                             *MyHeadersFill_file_Install*
+
+Technical requirements
+
+    * Vim (text editor): Version 9.0.1050.
+    * System macOS: Version 13.2.1 (22D68).
+    * System Fedora: Version 38beta (Should work on other linux distros too).
+    * Scripts: Markdown, Vim Script, shell sh.
+    * Vim plugin: Vim-plug.
+
+    Note
+      Should be ok as long as Vim Script is supported by the editor (since
+      version 8.0).
+
+
+How to start
+  We admit that Vim-plugin is already installed. If not so, go to
+  https://github.com/junegunn/vim-plug and follow instructions.
+
+  We configure ~/.vimrc below (~ means home directory):
+
+>
+     call plug#begin('~/.vim/plugged')
+     Plug 'cbushdor/MaCoLib'
+     call plug#end()
+<
+
+  and plugin will be installed in ~/.vim/plugged if everything is well
+  configured.  Then type :wq to save and, :source ~/.vimrc to relaunch.
+  Then, type :PlugInstall and, look if plugin is installing itself.
+  A prompt will ask not to forget to set in ˜/.vimrc the variable:
 
 ==============================================================================
 INTRO                                                       *help_MaCoLib_intro*
