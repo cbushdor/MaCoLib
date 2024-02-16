@@ -2,15 +2,14 @@
 * Created By : sdo
 * File Name : README.md
 * Creation Date : 2024-02-15 00:55:50
-* Last Modified : 2024-02-17 00:09:53
+* Last Modified : 2024-02-17 00:13:02
 * Email Address : cbushdor@laposte.net
-* Version : 0.0.0.14
+* Version : 0.0.0.16
 * License : 
 * 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 * 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
 * Purpose :
 ------------------------------------------------------ -->
-
 
 [![License: CC BY-NC 3.0](https://img.shields.io/badge/License-CC_BY--NC_3.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/3.0/)
 
@@ -52,3 +51,10 @@ and plugin will be installed in *~/.vim/plugged* if everything is well configure
 # WATCHOUT
 
 - This plugin and documentation is still under construction. Use at YOUR OWN RISK!
+
+# License
+
+Attribution-NonCommercial 3.0 Unported (CC BY-NC 3.0)
+* 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
+ 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
+
