@@ -1,28 +1,28 @@
-*MaCoLib.txt*       My Manager for Color Library and some more stuff
+*MaCoLib.txt*       my MAnager for COlor LIBrary and some more stuff
 
 		Creation Date :2024-02-15 23:11:52
-		Last Modified : 2024-02-16 02:16:29
+		Last Modified : 2024-02-16 02:32:14
 		Email Address : cbushdor@laposte.net
-		Version : 0.0.0.66
+		Version : 0.0.0.78
 
 ==============================================================================
-                                                          *MaCoLib* *help_MaCoLib*
+CONTENTS                                                *MaCoLib* *help_MaCoLib*
 
 Intro                                                     |help_MaCoLib_intro|
 Functions                                                  |help_MaCoLib_func|
 Examples                                               |help_MaCoLib_Examples|
-Notes																		                  |help_MaCoLib_notes|
-Licence                                                 |help_MaCoLib_licence|
+Warning						          |help_MaCoLib_notes|
 Helps                                                     |help_MaCoLib_extra|
 Credits                                                 |help_MaCoLib_credits|
+Licence                                                 |help_MaCoLib_licence|
 
 ==============================================================================
-Intro                                                       *help_MaCoLib_intro*
+INTRO                                                       *help_MaCoLib_intro*
 
 Sometimes it is had to read.
 
 ==============================================================================
-Functions                                               *help_MaCoLib_Functions*
+FUNCTIONS                                               *help_MaCoLib_Functions*
 
 function! MyDefine(var) 
 	This is used to define predifined global variable if it does not exist
@@ -75,15 +75,15 @@ function! AddStackStringColor(s,tuple)
 	returns the new list
 
 ==============================================================================
-Examples                                                  *help_MaCoLib_Example*
+EXAMPLES                                                  *help_MaCoLib_Example*
 >
-	" We put on line all variables from here
-	execute "source  "..expand('<sfile>:p:h').."/../../MaCoLib/pluggin/MaCoLib.vim"
+    " We put on line all variables from here
+execute "source  "..expand('<sfile>:p:h').."/../../MaCoLib/pluggin/MaCoLib.vim"
 
   let MyArray = [
 	     [
-			   "Hello one ",
-				 ':hi MyColor  term=bold ctermfg=Blue guifg=#80a0ff gui=bold'
+		   "Hello one ",
+		 ':hi MyColor  term=bold ctermfg=Blue guifg=#80a0ff gui=bold'
 			 ],
 	     [
 			   "Hello two ",
@@ -118,11 +118,21 @@ Examples                                                  *help_MaCoLib_Example*
 <<
 
 ==============================================================================
-Notes                                                     *help_MaCoLib_notes*
+WARNING                                                       *help_MaCoLib_notes*
 	Plugin under construction. It is unstable.
 
 ==============================================================================
-License : 						*help_MaCoLib_licence*
+HELP						   	    *help_MaCoLib_extra*
+	:help highlight or :help hi
+
+==============================================================================
+CREDITS                                                   *help_MaCoLib_credits*
+
+	https://www.vim.org/
+	https://vimdoc.sourceforge.net/htmldoc/usr_41.html
+
+==============================================================================
+LICENSE 						  *help_MaCoLib_licence*
 
 	Permission is granted to copy, distribute, and/or modify this document 
 	under the terms of the Creative Commons Attribution-NonCommercial 3.0
@@ -130,10 +140,4 @@ License : 						*help_MaCoLib_licence*
 	http://creativecommons.org/licenses/by-nc/3.0/.
 
 
-==============================================================================
-HELP						   	    *help_MaCoLib_extra*
-	:help highlight or :help hi
-
-==============================================================================
-CREDITS                                                    *help_MaCoLib_credits*
 vim:tw=78:ts=8:noet:ft=help:norl:
