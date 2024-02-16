@@ -1,14 +1,14 @@
 *MaCoLib.txt*       my MAnager for COlor LIBrary and some more stuff
 
 		Creation Date :2024-02-15 23:11:52
-		Last Modified : 2024-02-16 23:34:52
+		Last Modified : 2024-02-16 23:41:23
 		Email Address : cbushdor@laposte.net
-		Version : 0.0.0.81
+		Version : 0.0.0.84
 
 ==============================================================================
 CONTENTS                                                *MaCoLib* *help_MaCoLib*
 
-How to Install Plugin                             |MyHeadersFill_file_Install|
+How to Install Plugin                                   |help_MaCoLib_install|
 Intro                                                     |help_MaCoLib_intro|
 Functions                                                  |help_MaCoLib_func|
 Examples                                               |help_MaCoLib_Examples|
@@ -18,7 +18,7 @@ Credits                                                 |help_MaCoLib_credits|
 Licence                                                 |help_MaCoLib_licence|
 
 ==============================================================================
-How to Install Plugin                             *MyHeadersFill_file_Install*
+How to Install Plugin                                     *help_MaCoLib_install*
 
 Technical requirements
 
