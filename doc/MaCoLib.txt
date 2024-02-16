@@ -1,9 +1,8 @@
 *MaCoLib.txt*       my MAnager for COlor LIBrary and some more stuff
 
 		Creation Date :2024-02-15 23:11:52
-		Last Modified : 2024-02-16 23:41:23
-		Email Address : cbushdor@laposte.net
-		Version : 0.0.0.84
+		Last Modified : 2024-02-16 23:45:48
+		Version : 0.0.0.90
 
 ==============================================================================
 CONTENTS                                                *MaCoLib* *help_MaCoLib*
@@ -163,7 +162,6 @@ HELP						   	    *help_MaCoLib_extra*
 CREDITS                                                   *help_MaCoLib_credits*
 
 	https://www.vim.org/
-	https://vimdoc.sourceforge.net/htmldoc/usr_41.html
 
 ==============================================================================
 LICENSE 						  *help_MaCoLib_licence*
@@ -173,5 +171,7 @@ LICENSE 						  *help_MaCoLib_licence*
 	Unported License, which is available at 
 	http://creativecommons.org/licenses/by-nc/3.0/.
 
+
+Address : cbushdor at laposte dot net
 
 vim:tw=78:ts=8:noet:ft=help:norl:
