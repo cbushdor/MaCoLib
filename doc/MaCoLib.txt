@@ -1,9 +1,9 @@
 *MaCoLib.txt*       My Manager for Color Library and some more stuff
 
 		Creation Date :2024-02-15 23:11:52
-		Last Modified : 2024-02-16 02:10:14
+		Last Modified : 2024-02-16 02:16:29
 		Email Address : cbushdor@laposte.net
-		Version : 0.0.0.62
+		Version : 0.0.0.66
 
 ==============================================================================
                                                           *MaCoLib* *help_MaCoLib*
@@ -14,6 +14,7 @@ Examples                                               |help_MaCoLib_Examples|
 Notes																		                  |help_MaCoLib_notes|
 Licence                                                 |help_MaCoLib_licence|
 Helps                                                     |help_MaCoLib_extra|
+Credits                                                 |help_MaCoLib_credits|
 
 ==============================================================================
 Intro                                                       *help_MaCoLib_intro*
@@ -121,7 +122,7 @@ Notes                                                     *help_MaCoLib_notes*
 	Plugin under construction. It is unstable.
 
 ==============================================================================
-License : 																							*help_MaCoLib_licence*
+License : 						*help_MaCoLib_licence*
 
 	Permission is granted to copy, distribute, and/or modify this document 
 	under the terms of the Creative Commons Attribution-NonCommercial 3.0
@@ -130,7 +131,9 @@ License : 																							*help_MaCoLib_licence*
 
 
 ==============================================================================
-HELP																											*help_MaCoLib_extra*
+HELP						   	    *help_MaCoLib_extra*
 	:help highlight or :help hi
 
+==============================================================================
+CREDITS                                                    *help_MaCoLib_credits*
 vim:tw=78:ts=8:noet:ft=help:norl:
