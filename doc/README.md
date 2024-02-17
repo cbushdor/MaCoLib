@@ -2,9 +2,9 @@
 * Created By : sdo
 * File Name : README.md
 * Creation Date : 2024-02-15 00:55:50
-* Last Modified : 2024-02-17 01:56:53
+* Last Modified : 2024-02-17 01:59:16
 * Email Address : cbushdor@laposte.net
-* Version : 0.0.0.19
+* Version : 0.0.0.21
 * License : 
 * 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 * 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -50,7 +50,7 @@ and plugin will be installed in *~/.vim/plugged* if everything is well configure
 
 # How to use it
 
-Go to our [Wiki](https://github.com/cbushdor/MaCoLib/wiki).
+[Wiki](https://github.com/cbushdor/MaCoLib/wiki).
 
 # Watchout
 
