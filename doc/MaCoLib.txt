@@ -9,8 +9,9 @@ CONTENTS                                                *MaCoLib* *help_MaCoLib*
 
 How to Install Plugin                                   |help_MaCoLib_install|
 Intro                                                     |help_MaCoLib_intro|
-Functions                                                  |help_MaCoLib_func|
-Examples                                               |help_MaCoLib_Examples|
+Variables                                             |help_MaCoLib_Variables|
+Functions                                             |help_MaCoLib_Functions|
+Example                                                 |help_MaCoLib_Example|
 Warning						          |help_MaCoLib_notes|
 Helps                                                     |help_MaCoLib_extra|
 Credits                                                 |help_MaCoLib_credits|
@@ -45,9 +46,9 @@ How to start
 <
 
   and plugin will be installed in ~/.vim/plugged if everything is well
-  configured.  Then type :wq to save and, :source ~/.vimrc to relaunch.
-  Then, type :PlugInstall and, look if plugin is installing itself.
-  A prompt will ask not to forget to set in ˜/.vimrc the variable:
+  configured.  Then type ':wq' to save and, quit. Edit ~/.vimrc to 
+  relaunch. Then, type ':PlugInstall' and, look if plugin is installing 
+  itself. A prompt will ask not to forget to set in ˜/.vimrc the variable:
 
 ==============================================================================
 INTRO                                                       *help_MaCoLib_intro*
@@ -55,103 +56,139 @@ INTRO                                                       *help_MaCoLib_intro*
 Sometimes it is had to read.
 
 ==============================================================================
+VARIABLES                                               *help_MaCoLib_Variables*
+
+g:current_path	 	We get current path.
+g:local_path_homedir	Path to vimrc that contains files.
+g:module_name		We get module name from homedir path.
+
+==============================================================================
 FUNCTIONS                                               *help_MaCoLib_Functions*
 
-function! MyDefine(var) 
-	This is used to define predifined global variable if it does not exist
+GetsVarString(var)	Creates the string for global 'var' value.
+			Not set already in memory.
 
-function! LoadSource(file)
+IsVarDefined(var)	This is used to check if 'var' a global variable does 
+			exist. 
+
+CreatesGlobalVar(var)	If it does not exist, it creates a variable prefixed 
+			of 'g:' for global, followed by current file name, 
+			followed by underscore, followed by var value then 
+			it returns the string created, otherwise 'g:false'.
+
+
+LoadSource(file)
 	Loads source
 
-function! GetsCurrentFileName()
+GetsCurrentFileName()
 	Gets current file nale
 
-function! CreatesEnvVar(en)
+CreatesEnvVar(en)
 	We create a envarionment variable string
 
-function! LoadGlobVar(...)
+LoadGlobVar(...)
 	Load global extension that start with suf(ix)
 
-function Rand()
+Rand()
 	Calculates random number
 
-function! MyExec(p)
+MyExec(p)
 	Executes shell script input entered should be returned!
 	p as  ':!read momo;echo $momo'
 
-function! MyExecOut(p)
+MyExecOut(p)
 	Executes shell script no input expected so no result returned!
 	p as  ':!read momo;echo $momo'
 
-function GetsPid()
+GetsPid()
 	Gets PID
 
-function! PrintsColoredString(arr)
+PrintsColoredString(arr)
 	Prints colored string. Needs array as parameter.
 	let MyArray = [['string1','highlightString1'], 
 		       ['string2','highlighString2'] ]
 
-function! AddToPrintColorString(a,s,c)
+AddToPrintColorString(a,s,c)
 	Add new info to print in the string
 	array, new string, color
 
-function! ClearStringColor(a)
+ClearStringColor(a)
 	We erase the string
 	a is the is external Array declared!
 
-function! AddStackStringColor(s,tuple)
+AddStackStringColor(s,tuple)
 	AddStackStringColor is to add tuple to s at the end
 	returns the new list
 
-* function! AddHeadStringColor(s,tuple)
+AddHeadStringColor(s,tuple)
 	AddHeadStringColor is to add tuple to s at the beging
 	returns the new list
 
 ==============================================================================
-EXAMPLES                                                  *help_MaCoLib_Example*
->
-    " We put on line all variables from here
-execute "source  "..expand('<sfile>:p:h').."/../../MaCoLib/pluggin/MaCoLib.vim"
+EXAMPLE                                                   *help_MaCoLib_Example*
+In $MYVIMRC you should have something like this.
 
-  let MyArray = [
-	     [
-		   "Hello one ",
-		 ':hi MyColor  term=bold ctermfg=Blue guifg=#80a0ff gui=bold'
-			 ],
-	     [
-			   "Hello two ",
-				 ':hi MyColor  term=bold ctermfg=Cyan guifg=#80a0ff gui=bold'
-			 ]
-	]
-  call AddToPrintColorString(MyArray,
-	              "Howdy my test are here ",
-								':hi MyColor  term=bold ctermfg=Red guifg=#80a0ff gui=bold')
-  call PrintsColoredString(MyArray)
-  echo ""
-  call ClearStringColor(MyArray)
-  echo ""
-  call PrintsColoredString(MyArray)
-  echo ""
-  call AddHeadStringColor(MyArray,
-	       [
-				  "1 New Howdy my test are here ",
-					':hi MyColor  term=bold ctermfg=Red guifg=#80a0ff gui=bold'
-				 ]
-				)
-  call PrintsColoredString(MyArray)
-  echo ""
-  echo ""
-  call AddStackStringColor(MyArray,["23 New Howdy my test are here ",':hi MyColor  term=bold ctermfg=Green guifg=#80a0ff gui=bold'])
-  call PrintsColoredString(MyArray)
-  echo ""
-  echo ""
-  echohl WarningMsg
-  let a = input(" 2 new tests:")
-  echohl None
-<<
+>
+  call plug#begin('~/.vim/plugged')
+
+    " ------------------------------------------------------------------------
+    " We put on line our library that MAnage the COlor LIBrary and other stuff
+    Plug 'cbushdor/MaCoLib'
+
+
+    " Add this line for tests purpose
+    " The following line will let vim know that you have a plugin locally
+    " follow next instructions to create it locally!
+    Plug 'cbushdor/MyNewPlugin'
+    " ------------------------------------------------------------------------
+
+  call plug#end()
+<
+
+Create '~/.vim/plugged/MyNewPlugin/plugin/' directories:
+
+>
+  cd ~/.vim/plugged/
+  mkdir -p MyNewPlugin/plugin/
+  cd MyNewPlugin/plugin/
+<
+
+Create 'MyNewVimPlugin.vim' file in ~/.vim/plugged/MyNewPlugin/plugin/:
+
+>
+  " We call function MyStartErrorMyHeadersFill_file() when BufNewFile.
+  autocmd BufNewFile * execute ":call MyStartErrorMyHeadersFill_file()"
+
+  function! MyStartErrorMyHeadersFill_file(...)
+    let MyArray = [
+        \ [
+        \   "Hello one ",
+        \   ':hi MyColor  term=bold ctermfg=Blue guifg=#80a0ff gui=bold'
+        \ ] ,
+        \ [
+        \   "Hello two ",
+        \   ':hi MyColor  term=bold ctermfg=Cyan guifg=#80a0ff gui=bold'
+        \ ]
+        \]
+
+    call AddToPrintColorString(MyArray,
+    \     "Hello three",
+    \     ':hi MyColor  term=bold ctermfg=Red guifg=#80a0ff gui=bold')
+    call PrintsColoredString(MyArray)
+  endfunction
+<
+
+If you open a file in ~/Downloads s.a:
+
+>
+	cd ~/Downloads
+	vi file.txt
+<
+
+you should have something on the screen!
 
 ==============================================================================
-WARNING                                                       *help_MaCoLib_notes*
+WARNING                                                     *help_MaCoLib_notes*
 	Plugin under construction. It is unstable.
 
 ==============================================================================

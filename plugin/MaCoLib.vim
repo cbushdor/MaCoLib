@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-02-19 01:20:49
+" Last Modified : 2024-02-19 23:43:23
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.229
+" Version : 0.0.0.265
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -21,27 +21,38 @@ if !has("g:false")
   let g:false = 0
 endif
 
-if !exists("g:MaCoLib")
-  let g:MaCoLib=g:true
-else
-  finish
-endif
+" Check bellow MyDefine("MaCoLib") for sanitary fence
 
 let g:current_path=expand('<sfile>:p:h') " We get current path
 let g:local_path_homedir = substitute(g:current_path,'\v(\/[^\/]+){1}$','',"")..'/' " path to vimrc that contains files
 let dirs=split(g:local_path_homedir,'/') " Split by separator g:local_path_homedir
 let g:module_name=substitute(dirs[len(dirs)-1],'-','',"") " we get module name from homedir path
 
-" This is used to define predifined global variable if it does not exist
-function! MyDefine(var)
-  if !exists("g:".g:module_name."_".a:var)
-    exe "let g:".g:module_name."_".a:var ."=1"
-    return g:true
-  endif
-  return g:false
+function! GetsVarString(var)
+  return "g:".g:module_name."_".a:var
 endfunction
 
-if !MyDefine("loaded_ConfFile")
+function! IsVarDefined(var)
+  if !exists(GetsVarString(a:var))
+    return g:false
+  endif
+  return g:true
+endfunction
+
+function! CreatesGlobalVar(var)
+  if !IsVarDefined(a:var)
+    exe "let ".GetsVarString(a:var)."=1"
+    " Variable created
+    return GetsVarString(a:var)
+  endif
+  " Not created
+  return g:false 
+endfunction
+
+" Sanitary fence
+if !IsVarDefined("MaCoLib")
+  let v=CreatesGlobalVar("MaCoLib")
+else
   finish
 endif
 
@@ -77,7 +88,7 @@ function! LoadGlobVar(...)
 endfunction
 
 " Calculates random number
-function Rand()
+function! Rand()
   return str2nr(matchstr(reltimestr(reltime()), '\v\.@<=\d+')[1:])
 endfunction
 
@@ -105,7 +116,7 @@ function! MyExecOut(p)
 endfunction
 
 " Gets PID 
-function GetsPid()
+function! GetsPid()
   let l:term = MyExec(':!export MYPID=$(echo $$);echo ${MYPID}')
   return l:term
 endfunction
