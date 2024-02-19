@@ -2,15 +2,16 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-02-15 19:13:54
+" Last Modified : 2024-02-19 01:20:49
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.219
+" Version : 0.0.0.229
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
 " Purpose :
 " 	MAnage COlor LIBrary and other stuffs...
 " ------------------------------------------------------
+
 
 if !has("g:true")
   let g:true = 1
@@ -20,7 +21,11 @@ if !has("g:false")
   let g:false = 0
 endif
 
-let g:MaCoLib=g:true
+if !exists("g:MaCoLib")
+  let g:MaCoLib=g:true
+else
+  finish
+endif
 
 let g:current_path=expand('<sfile>:p:h') " We get current path
 let g:local_path_homedir = substitute(g:current_path,'\v(\/[^\/]+){1}$','',"")..'/' " path to vimrc that contains files
@@ -36,7 +41,6 @@ function! MyDefine(var)
   return g:false
 endfunction
 
-" if exists('g:MyDefaultValues4Vim_loaded_ConfFile_MyDefaultValues4Vim')
 if !MyDefine("loaded_ConfFile")
   finish
 endif
