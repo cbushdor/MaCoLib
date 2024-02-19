@@ -53,7 +53,7 @@ How to start
 ==============================================================================
 INTRO                                                       *help_MaCoLib_intro*
 
-Sometimes it is had to read.
+Sometimes it is hard to read and, to UNDERSTAND!
 
 ==============================================================================
 VARIABLES                                               *help_MaCoLib_Variables*
