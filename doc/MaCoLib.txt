@@ -1,8 +1,8 @@
 *MaCoLib.txt*       my MAnager for COlor LIBrary and some more stuff
 
 		Creation Date :2024-02-15 23:11:52
-		Last Modified : 2024-02-17 02:08:34
-		Version : 0.0.0.92
+		Last Modified : 2024-02-22 02:50:41
+		Version : 0.0.0.102
 
 ==============================================================================
 CONTENTS                                                *MaCoLib* *help_MaCoLib*
@@ -61,21 +61,26 @@ VARIABLES                                               *help_MaCoLib_Variables*
 g:current_path	 	We get current path.
 g:local_path_homedir	Path to vimrc that contains files.
 g:module_name		We get module name from homedir path.
+g:file_ext_ref 		This file ref for extension comp
+g:local_path_vimrc	Path to vimrc that contains files
+g:local_path_mylibrary 	Path to mylibrary that contains files
+g:pathConf 		File that contains local configuration
 
 ==============================================================================
 FUNCTIONS                                               *help_MaCoLib_Functions*
 
-GetsVarString(var)	Creates the string for global 'var' value.
-			Not set already in memory.
+GetsVarString(var)	Creates the string for the global variable name value.
+			The 'var' is given and we return variable name 
+			prefixed of 'g:' as a string. Nothing set in memory
+			yet.
 
-IsVarDefined(var)	This is used to check if 'var' a global variable does 
-			exist. 
+IsVarDefined(var)	This is used to check if 'var' the variable name does 
+			exist in memory and, returns g:true. 
 
-CreatesGlobalVar(var)	If it does not exist, it creates a variable prefixed 
-			of 'g:' for global, followed by current file name, 
-			followed by underscore, followed by var value then 
-			it returns the string created, otherwise 'g:false'.
-
+CreatesGlobalVar(var)	We set a global variable in memory with var.
+			The 'var' parameter is the variable name to set in
+			memory. HEnce, g:true is returned if no error met
+			otherwise g:false.
 
 LoadSource(file)
 	Loads source

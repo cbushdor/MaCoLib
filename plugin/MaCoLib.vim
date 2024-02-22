@@ -2,14 +2,15 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-02-20 00:58:41
+" Last Modified : 2024-02-22 02:49:04
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.267
+" Version : 0.0.0.363
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
 " Purpose :
 " 	MAnage COlor LIBrary and other stuffs...
+" 	DEbug: breakadd file 15 ~/.vim/plugged/MyNewPlugin/plugin/MyNewPlugin.vim
 " ------------------------------------------------------
 
 
@@ -22,44 +23,70 @@ if !has("g:false")
 endif
 
 " Check bellow MyDefine("MaCoLib") for sanitary fence
-
-let g:current_path=expand('<sfile>:p:h') " We get current path
+echo "path to open file: "..expand("<script>")
+" We get current path
+let g:current_path=expand('<sfile>:p:h')
+echo "g:current_path: "..g:current_path
 let g:local_path_homedir = substitute(g:current_path,'\v(\/[^\/]+){1}$','',"")..'/' " path to vimrc that contains files
+echo "g:local_path_homedir: "..g:local_path_homedir
 let dirs=split(g:local_path_homedir,'/') " Split by separator g:local_path_homedir
 let g:module_name=substitute(dirs[len(dirs)-1],'-','',"") " we get module name from homedir path
+echo "g:module_name: "..g:module_name
+
+function! GetsFileNameFromPath(pfn)
+  " We split path
+  let dirs=split(a:pfn,'/')
+  " We get file name from homedir path
+  return substitute(dirs[len(dirs)-1],'-','',"") 
+endfunction
+
+function! GetsScript(sf)
+  return ">>>>"..expand("<script>").."<<<<<<<<<|"..a:sf.."|****"
+endfunction
 
 function! GetsVarString(var)
-  return "g:".g:module_name."_".a:var
+  return "g:"..a:var
 endfunction
 
 function! IsVarDefined(var)
-  if !exists(GetsVarString(a:var))
+  if !exists(a:var)
     return g:false
   endif
   return g:true
 endfunction
 
 function! CreatesGlobalVar(var)
-  if !IsVarDefined(a:var)
-    exe "let ".GetsVarString(a:var)."=1"
+  try
     " Variable created
-    return GetsVarString(a:var)
-  endif
-  " Not created
-  return g:false 
+    exe "let "..a:var.."=1"
+    " Variable created return
+    return g:true
+  catch
+    return g:false
+  endtry
+endfunction
+
+function! GetsFileWithNoExtension(fi)
+  return substitute(a:fi,'\.[^\.]*$',"","g")
 endfunction
 
 " Sanitary fence
-if !IsVarDefined("MaCoLib")
-  let v=CreatesGlobalVar("MaCoLib")
+if !IsVarDefined(GetsFileWithNoExtension(expand("%")))
+  echo "oooooooooooooooooo>"..GetsFileWithNoExtension(expand("%"))
+  let v=CreatesGlobalVar(GetsFileWithNoExtension(expand("%")))
+  echo "v: "..v
 else
   finish
 endif
 
-let g:file_ext_ref = "."..expand("%:e") " this file ref for extension comp
-let g:local_path_vimrc = g:local_path_homedir.."vimrc/" " path to vimrc that contains files
-let g:local_path_mylibrary =  g:local_path_homedir.."mylibrary/" " path to mylibrary that contains files
-let g:pathConf = 'MYVIMRC' " File that contains local configuration
+" let g:file_ext_ref = "."..expand("%:e") " this file ref for extension comp
+" echo "g:file_ext_ref: "..g:file_ext_ref
+" let g:local_path_vimrc = g:local_path_homedir.."vimrc/" " path to vimrc that contains files
+" echo "g:local_path_vimrc: "..g:local_path_vimrc
+" let g:local_path_mylibrary =  g:local_path_homedir.."MaCoLib/" " path to MaCoLib that contains files
+" echo "g:local_path_mylibrary:"..g:local_path_mylibrary
+" let g:pathConf = 'MYVIMRC' " File that contains local configuration
+" echo "g:pathConf: "..g:pathConf
 
 " Loads source
 function! LoadSource(file)
