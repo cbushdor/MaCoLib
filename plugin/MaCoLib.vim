@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-02-22 02:49:04
+" Last Modified : 2024-02-29 00:18:06
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.363
+" Version : 0.0.0.364
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -23,15 +23,15 @@ if !has("g:false")
 endif
 
 " Check bellow MyDefine("MaCoLib") for sanitary fence
-echo "path to open file: "..expand("<script>")
+" echo "path to open file: "..expand("<script>")
 " We get current path
 let g:current_path=expand('<sfile>:p:h')
-echo "g:current_path: "..g:current_path
+" echo "g:current_path: "..g:current_path
 let g:local_path_homedir = substitute(g:current_path,'\v(\/[^\/]+){1}$','',"")..'/' " path to vimrc that contains files
-echo "g:local_path_homedir: "..g:local_path_homedir
+" echo "g:local_path_homedir: "..g:local_path_homedir
 let dirs=split(g:local_path_homedir,'/') " Split by separator g:local_path_homedir
 let g:module_name=substitute(dirs[len(dirs)-1],'-','',"") " we get module name from homedir path
-echo "g:module_name: "..g:module_name
+" echo "g:module_name: "..g:module_name
 
 function! GetsFileNameFromPath(pfn)
   " We split path
@@ -72,9 +72,9 @@ endfunction
 
 " Sanitary fence
 if !IsVarDefined(GetsFileWithNoExtension(expand("%")))
-  echo "oooooooooooooooooo>"..GetsFileWithNoExtension(expand("%"))
+  " echo "oooooooooooooooooo>"..GetsFileWithNoExtension(expand("%"))
   let v=CreatesGlobalVar(GetsFileWithNoExtension(expand("%")))
-  echo "v: "..v
+  " echo "v: "..v
 else
   finish
 endif
