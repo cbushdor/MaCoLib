@@ -1,8 +1,8 @@
 *MaCoLib.txt*       my MAnager for COlor LIBrary and some more stuff
 
 		Creation Date :2024-02-15 23:11:52
-		Last Modified : 2024-02-22 02:50:41
-		Version : 0.0.0.102
+		Last Modified : 2024-02-29 23:10:30
+		Version : 0.0.0.119
 
 ==============================================================================
 CONTENTS                                                *MaCoLib* *help_MaCoLib*
@@ -48,7 +48,8 @@ How to start
   and plugin will be installed in ~/.vim/plugged if everything is well
   configured.  Then type ':wq' to save and, quit. Edit ~/.vimrc to 
   relaunch. Then, type ':PlugInstall' and, look if plugin is installing 
-  itself. A prompt will ask not to forget to set in ˜/.vimrc the variable:
+  itself. A prompt will ask not to forget to set 'g:myEmail' in $MYVIMRC if
+  not found.
 
 ==============================================================================
 INTRO                                                       *help_MaCoLib_intro*
@@ -69,6 +70,10 @@ g:pathConf 		File that contains local configuration
 ==============================================================================
 FUNCTIONS                                               *help_MaCoLib_Functions*
 
+GetsFileNameFromPath(pfn)	We get file name from path.
+
+GetsScript(sf)		We return Script.
+
 GetsVarString(var)	Creates the string for the global variable name value.
 			The 'var' is given and we return variable name 
 			prefixed of 'g:' as a string. Nothing set in memory
@@ -82,52 +87,39 @@ CreatesGlobalVar(var)	We set a global variable in memory with var.
 			memory. HEnce, g:true is returned if no error met
 			otherwise g:false.
 
-LoadSource(file)
-	Loads source
+LoadSource(file)	Loads source
 
-GetsCurrentFileName()
-	Gets current file nale
+GetsCurrentFileName()	Gets current file nale
 
-CreatesEnvVar(en)
-	We create a envarionment variable string
+CreatesEnvVar(en) 	We create a envarionment variable string
 
-LoadGlobVar(...)
-	Load global extension that start with suf(ix)
+LoadGlobVar(...)	Load global extension that start with suf(ix)
 
-Rand()
-	Calculates random number
+Rand()			Calculates random number
 
-MyExec(p)
-	Executes shell script input entered should be returned!
-	p as  ':!read momo;echo $momo'
+MyExec(p)		Executes shell script input entered should be 
+			returned! p as  ':!read momo;echo $momo'.
 
-MyExecOut(p)
-	Executes shell script no input expected so no result returned!
-	p as  ':!read momo;echo $momo'
+MyExecOut(p)		Executes shell script no input expected so no result 
+			returned!p as  ':!read momo;echo $momo'
 
-GetsPid()
-	Gets PID
+GetsPid() 		Gets PID
 
-PrintsColoredString(arr)
-	Prints colored string. Needs array as parameter.
-	let MyArray = [['string1','highlightString1'], 
-		       ['string2','highlighString2'] ]
+PrintsColoredString(arr)Prints colored string. Needs array as parameter.
+			let MyArray = [['string1','highlightString1'], 
+			['string2','highlighString2'] ]
 
-AddToPrintColorString(a,s,c)
-	Add new info to print in the string
-	array, new string, color
+AddToPrintColorString(a,s,c)	Add new info to print in the string
+				array, new string, color
 
-ClearStringColor(a)
-	We erase the string
-	a is the is external Array declared!
+ClearStringColor(a) 	We erase the string a is the is external Array 
+			declared!
 
-AddStackStringColor(s,tuple)
-	AddStackStringColor is to add tuple to s at the end
-	returns the new list
+AddStackStringColor(s,tuple) AddStackStringColor is to add tuple to s at the 
+			     end returns the new list
 
-AddHeadStringColor(s,tuple)
-	AddHeadStringColor is to add tuple to s at the beging
-	returns the new list
+AddHeadStringColor(s,tuple) 	AddHeadStringColor is to add tuple to s at the 
+				beging returns the new list
 
 ==============================================================================
 EXAMPLE                                                   *help_MaCoLib_Example*
