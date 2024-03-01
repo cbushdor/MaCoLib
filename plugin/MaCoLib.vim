@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-02-29 22:59:25
+" Last Modified : 2024-03-01 19:35:46
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.387
+" Version : 0.0.0.389
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -37,10 +37,10 @@ let g:current_path=expand('<sfile>:p:h')
 let g:local_path_homedir = substitute(g:current_path,'\v(\/[^\/]+){1}$','',"")..'/' 
 
 " Split by separator g:local_path_homedir
-let dirs=split(g:local_path_homedir,'/')
+let s:mydirs=split(g:local_path_homedir,'/')
 
 " We get module name from homedir path
-let g:module_name=substitute(dirs[len(dirs)-1],'-','',"")
+let g:module_name=substitute(s:mydirs[len(s:mydirs)-1],'-','',"")
 
 " We get file name from path
 function! GetsFileNameFromPath(pfn)
