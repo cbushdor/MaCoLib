@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-03-01 19:35:46
+" Last Modified : 2024-03-06 00:21:22
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.389
+" Version : 0.0.0.393
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -29,6 +29,18 @@ else
 endif
 
 " Check bellow MyDefine("MaCoLib") for sanitary fence
+
+function! MyOwnCheck()
+    let tutu="execute ':echo expand(\"<script>\")'"
+    return tutu
+endfunction
+
+function! GetMyScript()
+:execute  MyOwnCheck()
+endfunction
+
+call GetMyScript()
+
 
 " We get current path
 let g:current_path=expand('<sfile>:p:h')
