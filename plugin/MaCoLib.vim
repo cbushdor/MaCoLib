@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-03-06 00:41:52
+" Last Modified : 2024-03-06 23:55:09
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.395
+" Version : 0.0.0.401
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -28,19 +28,20 @@ else
   finish
 endif
 
-" Check bellow MyDefine("MaCoLib") for sanitary fence
-
 " We get path of the current file
-function! MyOwnCheck()
+function! GetsMyExecScript()
     let l:apth="execute ':echo expand(\"<script>\")'"
     return l:apth
 endfunction
 
-function! GetMyScript()
-:execute  MyOwnCheck()
-endfunction
+" Check bellow MyDefine("MaCoLib") for sanitary fence
 
-call GetMyScript()
+
+"function! GetMyExecScript()
+"    return execute(MyOwnCheck())
+"endfunction
+"
+"echo "------>". GetMyExecScript() . "(========"
 
 
 " We get current path
@@ -136,7 +137,8 @@ endfunction
 
 " We create a envarionment variable string 
 function! CreatesEnvVar(en)
-  return 'g:my_auto_'..a:en " We take file associated with script name and create environment variable/memory associated
+  " We take file associated with script name and create environment variable/memory associated
+  return 'g:my_auto_'..a:en 
 endfunction
 
 " Load global extension that start with suf(ix)
