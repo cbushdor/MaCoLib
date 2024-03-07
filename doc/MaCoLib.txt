@@ -1,8 +1,8 @@
 *MaCoLib.txt*       my MAnager for COlor LIBrary and some more stuff
 
 		Creation Date :2024-02-15 23:11:52
-		Last Modified : 2024-03-06 23:51:03
-		Version : 0.0.0.123
+		Last Modified : 2024-03-07 01:18:47
+		Version : 0.0.0.130
 
 ==============================================================================
 CONTENTS                                                *MaCoLib* *help_MaCoLib*
@@ -59,6 +59,8 @@ Sometimes it is hard to read and, to UNDERSTAND!
 ==============================================================================
 VARIABLES                                               *help_MaCoLib_Variables*
 
+g:current_script_path 	We get the source path and script name of MaCoLib.vim.
+
 g:current_path	 	We get current path.
 g:local_path_homedir	Path to vimrc that contains files.
 g:module_name		We get module name from homedir path.
@@ -69,6 +71,9 @@ g:pathConf 		File that contains local configuration
 
 ==============================================================================
 FUNCTIONS                                               *help_MaCoLib_Functions*
+
+MyChomp(s) 		Remove last cariage return withing string s.
+
 
 GetsFileNameFromPath(pfn)	We get file name from path.
 

@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-03-06 23:55:09
+" Last Modified : 2024-03-07 01:02:51
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.401
+" Version : 0.0.0.422
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -36,13 +36,15 @@ endfunction
 
 " Check bellow MyDefine("MaCoLib") for sanitary fence
 
+" Remove cariage return
+function! MyChomp(s)
+  return substitute(a:s,'\n$','',"g")
+endfunction
 
-"function! GetMyExecScript()
-"    return execute(MyOwnCheck())
-"endfunction
-"
-"echo "------>". GetMyExecScript() . "(========"
 
+" We get current script path source
+" let g:current_script_path = substitute(execute(GetsMyExecScript()),'\n','',"g")
+let g:current_script_path = MyChomp(execute(GetsMyExecScript()))
 
 " We get current path
 let g:current_path=expand('<sfile>:p:h')
