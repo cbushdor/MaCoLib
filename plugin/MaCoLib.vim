@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-03-07 01:02:51
+" Last Modified : 2024-03-07 23:43:13
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.422
+" Version : 0.0.0.424
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -14,16 +14,16 @@
 " ------------------------------------------------------
 
 
-if !has("g:true")
-  let g:true = 1
-endif
-
-if !has("g:false")
-  let g:false = 0
-endif
+" if !has("g:true")
+"   let g:true = 1
+" endif
+" 
+" if !has("g:false")
+"   let g:false = 0
+" endif
 
 if !exists("g:MaCoLib")
-  let g:MaCoLib = g:true
+  let g:MaCoLib = v:true
 else
   finish
 endif
@@ -36,7 +36,7 @@ endfunction
 
 " Check bellow MyDefine("MaCoLib") for sanitary fence
 
-" Remove cariage return
+" Remove last cariage return
 function! MyChomp(s)
   return substitute(a:s,'\n$','',"g")
 endfunction
@@ -76,24 +76,24 @@ function! GetsVarString(var)
   return "g:"..a:var
 endfunction
 
-" We check if variable is defined and return g:true if so
+" We check if variable is defined and return v:true if so
 function! IsVarDefined(var)
   if !exists(a:var)
-    return g:false
+    return v:false
   endif
-  return g:true
+  return v:true
 endfunction
 
-" We return string for global variable set in memory and return g:true if
+" We return string for global variable set in memory and return v:true if
 " created.
 function! CreatesGlobalVar(var)
   try
     " Variable created
     exe "let "..a:var.."=1"
     " Variable created return
-    return g:true
+    return v:true
   catch
-    return g:false
+    return v:false
   endtry
 endfunction
 
