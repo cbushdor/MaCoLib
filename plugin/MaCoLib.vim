@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-03-07 23:43:13
+" Last Modified : 2024-03-08 23:34:34
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.424
+" Version : 0.0.0.426
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -78,10 +78,10 @@ endfunction
 
 " We check if variable is defined and return v:true if so
 function! IsVarDefined(var)
-  if !exists(a:var)
-    return v:false
-  endif
-  return v:true
+  return exists(a:var)
+"    return v:false
+"  endif
+"  return v:true
 endfunction
 
 " We return string for global variable set in memory and return v:true if
