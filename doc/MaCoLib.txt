@@ -1,8 +1,8 @@
 *MaCoLib.txt*       my MAnager for COlor LIBrary and some more stuff
 
 		Creation Date :2024-02-15 23:11:52
-		Last Modified : 2024-03-07 01:18:47
-		Version : 0.0.0.130
+		Last Modified : 2024-03-10 01:22:08
+		Version : 0.0.0.138
 
 ==============================================================================
 CONTENTS                                                *MaCoLib* *help_MaCoLib*
@@ -126,7 +126,10 @@ AddStackStringColor(s,tuple) AddStackStringColor is to add tuple to s at the
 AddHeadStringColor(s,tuple) 	AddHeadStringColor is to add tuple to s at the 
 				beging returns the new list
 
-GetsMyExecScript()	We get path of the current file
+GetsMyExecScript(str)	We create the script line to be executed with execute
+			command to get expand(...) value  s.a 
+			GetsMyExecScript("<script>"). Read :help expand() for 
+			more information.
 
 ==============================================================================
 EXAMPLE                                                   *help_MaCoLib_Example*

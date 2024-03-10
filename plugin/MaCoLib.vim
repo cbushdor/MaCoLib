@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-03-09 00:17:57
+" Last Modified : 2024-03-10 00:53:02
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.427
+" Version : 0.0.0.431
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -13,15 +13,6 @@
 " 	DEbug: breakadd file 15 ~/.vim/plugged/MyNewPlugin/plugin/MyNewPlugin.vim
 " ------------------------------------------------------
 
-
-" if !has("g:true")
-"   let g:true = 1
-" endif
-" 
-" if !has("g:false")
-"   let g:false = 0
-" endif
-
 if !exists("g:MaCoLib")
   let g:MaCoLib = v:true
 else
@@ -29,8 +20,8 @@ else
 endif
 
 " We get path of the current file
-function! GetsMyExecScript()
-    let l:apth="execute ':echo expand(\"<script>\")'"
+function! GetsMyExecScript(str)
+    let l:apth="execute ':echo expand(\""..a:str.."\")'"
     return l:apth
 endfunction
 
@@ -43,8 +34,7 @@ endfunction
 
 
 " We get current script path source
-" let g:current_script_path = substitute(execute(GetsMyExecScript()),'\n','',"g")
-let g:current_script_path = MyChomp(execute(GetsMyExecScript()))
+let g:current_script_path = MyChomp(execute(GetsMyExecScript("<script>")))
 
 " We get current path
 let g:current_path=expand('<sfile>:p:h')
