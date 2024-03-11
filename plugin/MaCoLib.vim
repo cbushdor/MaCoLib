@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-03-10 00:53:02
+" Last Modified : 2024-03-11 23:43:43
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.431
+" Version : 0.0.0.444
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -18,6 +18,8 @@ if !exists("g:MaCoLib")
 else
   finish
 endif
+
+let myVars = {'a': 1}
 
 " We get path of the current file
 function! GetsMyExecScript(str)
@@ -190,7 +192,7 @@ endfunction
 
 " Add new info to print in the string
 " array, new string, color
-function! AddToPrintColorString(a,s,c)
+function! plugin#MaCoLib#AddToPrintColorString(a,s,c)
   call add(a:a,[a:s,a:c])
 endfunction
 
