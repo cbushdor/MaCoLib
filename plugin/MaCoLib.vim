@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-03-13 02:09:19
+" Last Modified : 2024-03-14 03:23:51
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.474
+" Version : 0.0.0.583
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -22,12 +22,25 @@ endif
 " Object for color printing
 let g:ManageColorLine = {}
 
-function g:ManageColorLine.new(block,color)
-  let l:oneBlock = copy(self)
-  let l:oneBlock.block = a:block
-  let l:oneBlock.color = a:color
-
-  return l:oneBlock
+function g:ManageColorLine.new(...)
+    "  let l:oneBlock = copy(self)
+    "  let l:oneBlock.block = a:block
+    "  let l:oneBlock.color = a:color
+    "
+    let mylist = [1, "two", 3, "four"]
+    "if type(mylist) == type([])
+    for i in range(1,a:0)
+      if type(a:{i}) == v:t_list
+        echo i.." ------->["..join(a:{i},",").."]: ".. "ok for list\n" 
+      elseif type(a:{i}) == v:t_string
+        echo i.." ------->"..a:{i}..": ".. "ok for string\n" 
+      elseif type(a:{i}) == v:t_dict
+        echo i.." ------->a:{i}.. ok for string\n" 
+      else 
+        throw "Wrong arguments"
+      endif
+    endfor
+  return -1
 endfu
 
 function g:ManageColorLine.Say()
