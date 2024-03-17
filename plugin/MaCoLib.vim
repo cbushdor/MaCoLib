@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-03-14 03:23:51
+" Last Modified : 2024-03-16 01:06:01
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.583
+" Version : 0.0.0.589
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -23,24 +23,28 @@ endif
 let g:ManageColorLine = {}
 
 function g:ManageColorLine.new(...)
-    "  let l:oneBlock = copy(self)
-    "  let l:oneBlock.block = a:block
-    "  let l:oneBlock.color = a:color
-    "
+  " We create our object
+    let l:oneBlock = copy(self)
+    " We create in the object a field block where our first field is a block (future
+    " might change but for dem it a string
+    let l:oneBlock.block = a:1
+    " We create in the object a field called color where color will be set
+    let l:oneBlock.color = a:2
+    
     let mylist = [1, "two", 3, "four"]
     "if type(mylist) == type([])
     for i in range(1,a:0)
       if type(a:{i}) == v:t_list
         echo i.." ------->["..join(a:{i},",").."]: ".. "ok for list\n" 
       elseif type(a:{i}) == v:t_string
-        echo i.." ------->"..a:{i}..": ".. "ok for string\n" 
+        echo i.." ------->"..a:{i}..": ".. "ok for string WE ARE HERE\n" 
       elseif type(a:{i}) == v:t_dict
         echo i.." ------->a:{i}.. ok for string\n" 
       else 
         throw "Wrong arguments"
       endif
     endfor
-  return -1
+  return l:oneBlock
 endfu
 
 function g:ManageColorLine.Say()
