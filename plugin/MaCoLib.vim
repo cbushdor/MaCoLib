@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-03-20 23:04:55
+" Last Modified : 2024-03-21 22:54:58
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.655
+" Version : 0.0.0.673
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -22,56 +22,55 @@ endif
 " Object for color printing
 let g:ManageColorLine = {}
 
-function g:ManageColorLine.new(...)
-  " We create our object
-  let l:oneBlock = copy(self)
-  let l:oneBlock.myexpand = {"SCRIPT": "<script>"}
+function g:ManageColorLine.new(...) abort
+  try
+    " We create our object
+    let l:oneBlock = copy(self)
+    let l:oneBlock.myexpand = {"SCRIPT": "<script>"}
 
-  " Test regarding con,stant
-"  const x = 10
-"  let l:myArr = {"MYCONSTANT": x,"ANOTHERCONST": x}
-"  echo items(l:myArr)
-"  echo items({'a': 100, 'b': 200})
-"  for i in keys(l:myArr)
-"    let l:stri = "myArr."..i
-"    echo "LoopFor: "..i ..":"..l:myArr[i] .. "<--".. "l:myArr."..i .. "<--->" ..stri .. "==="..get(l:myArr,i)
-"  endfor
-"
+    " Loop to analyze params in new
+    for i in range(1,a:0)
+      if type(a:{i}) == v:t_list
+        echo i.." ------->["..join(a:{i},",").."]: ".. "ok for list\n" 
+      elseif type(a:{i}) == v:t_string
+        echo i.." ------->"..a:{i}..": ".. "ok for string\n" 
+        if a:{i} =~ '\v^:hi(ghlight){0,1}\ '
+          echo "(within loop) We have highligtht :"..a:{i}
 
+          " We create in the object a field called color where color will be set
+          let l:oneBlock.color = a:2
+        else
+          echo "(within loop) We have string to print in color: "..a:{i}
 
-"  let mylist = [1, "two", 3, "four"]
-  "if type(mylist) == type([])
-  for i in range(1,a:0)
-    if type(a:{i}) == v:t_list
-      echo i.." ------->["..join(a:{i},",").."]: ".. "ok for list\n" 
-    elseif type(a:{i}) == v:t_string
-"      echo i.." ------->"..a:{i}..": ".. "ok for string\n" 
-      if a:{i} =~ '\v^:hi(ghlight){0,1}\ '
-        "echo "(within loop) We have highligtht :"..a:{i}
-
-        " We create in the object a field called color where color will be set
-        let l:oneBlock.color = a:2
-      else
-       " echo "(within loop) We have string to print in color: "..a:{i}
-
-        " We create in the object a field block where our first field is a block (future
-        " might change but for dem it a string
-        let l:oneBlock.block = a:1
+          " We create in the object a field block where our first field is a block (future
+          " might change but for dem it a string
+          let l:oneBlock.block = a:1
+        endif
+      elseif type(a:{i}) == v:t_dict
+        echo i.." ------->a:{i}.. ok for string\n" 
+      else 
+        throw "Wrong arguments"
       endif
-    elseif type(a:{i}) == v:t_dict
-      echo i.." ------->a:{i}.. ok for string\n" 
-    else 
-      throw "Wrong arguments"
-    endif
-  endfor
-  return l:oneBlock
+    endfor
+    return l:oneBlock
+  catch /Key.*/
+    echoerr "We have error herere ======================="
+    finish
+  finally
+  endtry
 endfu
 
-function g:ManageColorLine.Say()
-  exe self.color
-  echohl MyColor
-  echon self.block
-  echohl None
+function g:ManageColorLine.Say() abort
+  try
+    exe self.color
+    echohl MyColor
+    echon self.block
+    echohl None
+  catch
+    echo "Caught error: " . v:exception
+  finally
+    echo "Finally Say()"
+  endtry
 endfunction
 
 
