@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-03-21 22:54:58
+" Last Modified : 2024-03-21 23:52:43
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.673
+" Version : 0.0.0.710
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -27,6 +27,7 @@ function g:ManageColorLine.new(...) abort
     " We create our object
     let l:oneBlock = copy(self)
     let l:oneBlock.myexpand = {"SCRIPT": "<script>"}
+    let l:oneBlock.error = ":hi MyErrorManagement  term=italic ctermfg=Red guifg=#80a0ff gui=bold"
 
     " Loop to analyze params in new
     for i in range(1,a:0)
@@ -35,12 +36,12 @@ function g:ManageColorLine.new(...) abort
       elseif type(a:{i}) == v:t_string
         echo i.." ------->"..a:{i}..": ".. "ok for string\n" 
         if a:{i} =~ '\v^:hi(ghlight){0,1}\ '
-          echo "(within loop) We have highligtht :"..a:{i}
+          "echo "(within loop) We have highligtht :"..a:{i}
 
           " We create in the object a field called color where color will be set
           let l:oneBlock.color = a:2
         else
-          echo "(within loop) We have string to print in color: "..a:{i}
+          "echo "(within loop) We have string to print in color: "..a:{i}
 
           " We create in the object a field block where our first field is a block (future
           " might change but for dem it a string
@@ -67,9 +68,7 @@ function g:ManageColorLine.Say() abort
     echon self.block
     echohl None
   catch
-    echo "Caught error: " . v:exception
-  finally
-    echo "Finally Say()"
+    echoerr "Caught error in ["..expand("<script>").."] Say(): " .. v:exception
   endtry
 endfunction
 
