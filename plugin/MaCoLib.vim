@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-04-01 23:27:01
+" Last Modified : 2024-04-03 01:20:17
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.981
+" Version : 0.0.0.990
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -34,11 +34,19 @@ endfunction
 function! s:new(p) dict abort
   echo (type(a:p) == v:t_dict ) ? "is type v:t_dict\n" : "is not type v:t_dict\n"
   echo (type(a:p) == v:t_list ) ? "is type v:t_list\n" : "is not type v:t_list\n"
+  let l:oneBlock = copy(self)
   if (type(a:p) != v:t_list )
     throw "Argument type should be v:t_list. "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+  else
+    let np = a:p[0]
+    echo "***********>"..string(a:p)
+    if (type(np) != v:t_list )
+      let l:oneBlock.MyArray = a:p
+    else
+      echo "++++++++++++++>"..string(np)
+      let l:oneBlock.MyArray = np
+    endif
   endif
-  let l:oneBlock = copy(self)
-  let l:oneBlock.MyArray = a:p
 
   return l:oneBlock
 endfunction
@@ -53,6 +61,11 @@ endfunction
 
 let g:ManageColorLine.new = function('s:new') 
 let g:ManageColorLine.say = function('s:say') 
+
+let func = string(g:ManageColorLine.new)
+echo "------->"..func.."\n"
+let func = string(g:ManageColorLine.say)
+echo "------->"..func.."\n"
 
 "let g:ManageColorLine.new = function("s:new")
 "let g:ManageColorLine.say = function("s:say")
