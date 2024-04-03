@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-04-03 22:42:54
+" Last Modified : 2024-04-03 23:16:51
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1003
+" Version : 0.0.0.1011
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -38,32 +38,33 @@ function! s:new(p) dict abort
   if (type(a:p) != v:t_list )
     throw "Argument type should be v:t_list. "..OutsideTesting(expand('<script>'),expand('<sfile>'))
   else
-    let np = a:p[0]
-    echo "***********>"..string(a:p)
-    if (type(np) != v:t_list )
       let l:oneBlock.MyArray = a:p
-    else
-      echo "++++++++++++++>"..string(np)
-      let l:oneBlock.MyArray = np
-    endif
   endif
 
   return l:oneBlock
 endfunction
 
 function! s:say() dict abort
-    exe self.MyArray[1]
+  for [m,c] in self.MyArray
+    echo "----->"..c.."\n"
+    echo "----->"..m.."\n"
+    exe c
     echohl MyColor
-    echon self.MyArray[0]
+    echon m
     echohl None
+  endfor
 endfunction
 
 function! s:prompt() dict abort
+  for [m,c] in self.MyArray
+    exe c
     echohl MyColor
     call inputsave()
-    let name = input(self.MyArray[0] .. '> ')
+    let name = input(m .. '> ')
     call inputrestore()
     echohl None
+    echo "\n"
+  endfor
 endfunction
 
 let g:ManageColorLine.new = function('s:new') 
