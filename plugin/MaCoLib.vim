@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-04-03 01:20:17
+" Last Modified : 2024-04-03 22:42:54
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.990
+" Version : 0.0.0.1003
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -52,20 +52,28 @@ function! s:new(p) dict abort
 endfunction
 
 function! s:say() dict abort
-  exe self.MyArray[1]
-  echohl MyColor
-  echon self.MyArray[0]
-  echohl None
-  echo ""
+    exe self.MyArray[1]
+    echohl MyColor
+    echon self.MyArray[0]
+    echohl None
+endfunction
+
+function! s:prompt() dict abort
+    echohl MyColor
+    call inputsave()
+    let name = input(self.MyArray[0] .. '> ')
+    call inputrestore()
+    echohl None
 endfunction
 
 let g:ManageColorLine.new = function('s:new') 
 let g:ManageColorLine.say = function('s:say') 
+let g:ManageColorLine.prompt = function('s:prompt') 
 
 let func = string(g:ManageColorLine.new)
-echo "------->"..func.."\n"
+"echo "------->"..func.."\n"
 let func = string(g:ManageColorLine.say)
-echo "------->"..func.."\n"
+"echo "------->"..func.."\n"
 
 "let g:ManageColorLine.new = function("s:new")
 "let g:ManageColorLine.say = function("s:say")
