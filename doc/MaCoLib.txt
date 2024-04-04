@@ -11,6 +11,7 @@ How to Install Plugin                                   |help_MaCoLib_install|
 Intro                                                     |help_MaCoLib_intro|
 Variables                                             |help_MaCoLib_Variables|
 Functions                                             |help_MaCoLib_Functions|
+Object                                                   |help_MaCoLib_Object|
 Example                                                 |help_MaCoLib_Example|
 Warning						          |help_MaCoLib_notes|
 Helps                                                     |help_MaCoLib_extra|
@@ -130,6 +131,41 @@ GetsMyExecScript(str)	We create the script line to be executed with execute
 			command to get expand(...) value  s.a 
 			GetsMyExecScript("<script>"). Read :help expand() for 
 			more information.
+
+==============================================================================
+OBJECT                                                     *help_MaCoLib_Object*
+
+To create an object g:ManageColorLine or dictionary we need new() function.
+
+  " We create an object or dictionary called l:myTest from object or
+  dictionary g:ManageColorLine.
+  let l:myTest = g:ManageColorLine.new([["s1",
+  \':hi MyColor  term=italic ctermfg=Brown guifg=#80a0ff gui=bold',v:false]])
+  " We print print
+  call l:myTest.say()
+  " We ask prompt
+  let l:res =  l:myTest.prompt()
+
+
+==============================================================================
+new([["S1","hi1",bool],["S2","hi2",bool],...])  Creates a new 
+					        object/dictionary. As 
+						arguments it takes an array
+						of array. 
+						The array of array is a 
+						list of array. The array
+						as a specific format.
+						iFirst is a string, second 
+						give the color to print the
+						string (read :help highlight)
+						the third and last is a
+						boolean which values can be
+						v:false or v:true. The v:false
+						say print that string, v:true
+						is used for prompt.
+say() We print all strings v:false no carriage return if not specified.
+
+prompt() We prompt message if v:true met.
 
 ==============================================================================
 EXAMPLE                                                   *help_MaCoLib_Example*
