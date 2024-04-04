@@ -138,7 +138,7 @@ OBJECT                                                     *help_MaCoLib_Object*
 To create an object g:ManageColorLine or dictionary we need new() function.
 
   " We create an object or dictionary called l:myTest from object or
-  dictionary g:ManageColorLine.
+  " dictionary g:ManageColorLine.
   let l:myTest = g:ManageColorLine.new([["s1",
   \':hi MyColor  term=italic ctermfg=Brown guifg=#80a0ff gui=bold',v:false]])
   " We print print
