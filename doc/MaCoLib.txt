@@ -166,6 +166,7 @@ new([["S1","hi1",bool],["S2","hi2",bool],...])  Creates a new
 say() We print all strings v:false no carriage return if not specified.
 
 prompt() We prompt message if v:true met. Return result of prompt as a stack.
+	Fisrt prompt result in 0 , second prompt result in 1,...
 
 ==============================================================================
 EXAMPLE                                                   *help_MaCoLib_Example*
