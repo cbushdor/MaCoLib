@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-04-04 23:03:48
+" Last Modified : 2024-04-05 01:11:48
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1073
+" Version : 0.0.0.1080
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -65,8 +65,10 @@ endfunction
 
 function! s:say() dict abort
   if self.len > 0
+    let l:cpt = 0
     for [m,c,r] in self.MyArray
       if r != v:true
+        let l:cpt += 1
         "echo "----->"..c.."\n"
         "echo "----->"..m.."\n"
         exe c
@@ -75,25 +77,37 @@ function! s:say() dict abort
         echohl None
       endif
     endfor
+    if l:cpt == 0
+      throw "Nothing to print "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+    endif
   else
     throw "Nothing to print "..OutsideTesting(expand('<script>'),expand('<sfile>'))
   endif
 endfunction
 
 function! s:prompt() dict abort
-  let l:MyRes = []
-  for [m,c,r] in self.MyArray
-    if r == v:true
-      exe c
-      echohl MyColor
-      call inputsave()
-      let l:res = input(m .. '> ')
-      call add(l:MyRes,l:res)
-      call inputrestore()
-      echohl None
-      echo "\n"
+  if self.len > 0
+    let l:cpt = 0
+    let l:MyRes = []
+    for [m,c,r] in self.MyArray
+      if r == v:true
+        let l:cpt += 1
+        exe c
+        echohl MyColor
+        call inputsave()
+        let l:res = input(m .. '> ')
+        call add(l:MyRes,l:res)
+        call inputrestore()
+        echohl None
+        echo "\n"
+      endif
+    endfor
+    if l:cpt == 0
+      throw "Nothing to prompt "..OutsideTesting(expand('<script>'),expand('<sfile>'))
     endif
-  endfor
+  else
+    throw "Nothing to prompt "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+  endif
   return l:MyRes
 endfunction
 
