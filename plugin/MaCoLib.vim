@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-04-04 03:29:05
+" Last Modified : 2024-04-04 21:35:31
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1048
+" Version : 0.0.0.1052
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -41,8 +41,8 @@ function! s:new(...) dict abort
     " l:p is for parameter but it's argument
     let l:p = a:[1]
 
-"    echo (type(a:p) == v:t_dict ) ? "is type v:t_dict\n" : "is not type v:t_dict\n"
-"    echo (type(a:p) == v:t_list ) ? "is type v:t_list\n" : "is not type v:t_list\n"
+    "    echo (type(a:p) == v:t_dict ) ? "is type v:t_dict\n" : "is not type v:t_dict\n"
+    "    echo (type(a:p) == v:t_list ) ? "is type v:t_list\n" : "is not type v:t_list\n"
     if (type(l:p) != v:t_list )
       throw "Argument type should be v:t_list. "..OutsideTesting(expand('<script>'),expand('<sfile>'))
     else
@@ -64,16 +64,20 @@ function! s:new(...) dict abort
 endfunction
 
 function! s:say() dict abort
-  for [m,c,r] in self.MyArray
-    if r != v:true
-      "echo "----->"..c.."\n"
-      "echo "----->"..m.."\n"
-      exe c
-      echohl MyColor
-      echon m
-      echohl None
-    endif
-  endfor
+  if len(self.MyArray)>0
+    for [m,c,r] in self.MyArray
+      if r != v:true
+        "echo "----->"..c.."\n"
+        "echo "----->"..m.."\n"
+        exe c
+        echohl MyColor
+        echon m
+        echohl None
+      endif
+    endfor
+  else
+    throw "Nothing to print "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+  endif
 endfunction
 
 function! s:prompt() dict abort
