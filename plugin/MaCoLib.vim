@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-04-04 00:13:00
+" Last Modified : 2024-04-04 03:29:05
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1026
+" Version : 0.0.0.1048
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -31,14 +31,33 @@ function! g:HiClear() abort
   hi clear
 endfunction
 
-function! s:new(p) dict abort
-  echo (type(a:p) == v:t_dict ) ? "is type v:t_dict\n" : "is not type v:t_dict\n"
-  echo (type(a:p) == v:t_list ) ? "is type v:t_list\n" : "is not type v:t_list\n"
+function! s:new(...) dict abort
+  " We create an object (hash)
   let l:oneBlock = copy(self)
-  if (type(a:p) != v:t_list )
-    throw "Argument type should be v:t_list. "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+
+  if a:0 == 0
+    let l:oneBlock.MyArray = []
   else
-    let l:oneBlock.MyArray = a:p
+    " l:p is for parameter but it's argument
+    let l:p = a:[1]
+
+"    echo (type(a:p) == v:t_dict ) ? "is type v:t_dict\n" : "is not type v:t_dict\n"
+"    echo (type(a:p) == v:t_list ) ? "is type v:t_list\n" : "is not type v:t_list\n"
+    if (type(l:p) != v:t_list )
+      throw "Argument type should be v:t_list. "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+    else
+      " To check if first element of the array is a list 
+      " we store first element in a local memory l:po
+      " then, we check if, that element is a list itself.
+      " Hence, if it is not we throw an error.
+      let l:po = a:[1]
+
+      if (type(l:po) != v:t_list )
+        throw "Argument type should be v:t_list. "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+      else
+        let l:oneBlock.MyArray = l:p
+      endif
+    endif
   endif
 
   return l:oneBlock
