@@ -165,12 +165,20 @@ new([["S1","hi1",bool],["S2","hi2",bool],...])  Creates a new
 						is used for prompt.
                                                 check for ERRORS
 
-say() We print all strings v:false no carriage return if not specified.
-      Error is thrown when nothin to print.
+==============================================================================
+say() We print all strings if v:false is met. If no carriage return met, or
+      if not specified and severel message with different colors are specified
+      when prompt, a string in deffierent color will be printed with not
+      carriage return. In case of carriage return meet, it will be printed.
+      Error is thrown when there is nothin to print. To summup no v:false met.
 
-prompt() We prompt message if v:true met. Return result of prompt as a stack.
-	Fisrt prompt result in 0 , second prompt result in 1,...
-        Error is thrown when nothin to prompt.
+==============================================================================
+prompt()  We prompt message if v:true met. The prompt() within object, will 
+          return results of prompt as it appears in the stack order.
+          For instance, fisrt prompt result in 0, second prompt result in
+          1,...
+          If no prompt met, but asked an error is thrown when there is 
+          nothing to prompt. To summup no v:true met.
 
 ==============================================================================
 EXAMPLE                                                   *help_MaCoLib_Example*
