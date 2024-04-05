@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-04-06 00:03:45
+" Last Modified : 2024-04-06 00:19:11
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1082
+" Version : 0.0.0.1084
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -70,7 +70,7 @@ function! s:say() dict abort
   if self.len > 0
     let l:cpt = 0
     for [m,c,r] in self.MyArray
-      if r != v:true
+      if r == g:MACOLIB_PRINT
         let l:cpt += 1
         "echo "----->"..c.."\n"
         "echo "----->"..m.."\n"
@@ -93,7 +93,7 @@ function! s:prompt() dict abort
     let l:cpt = 0
     let l:MyRes = []
     for [m,c,r] in self.MyArray
-      if r == v:true
+      if r == g:MACOLIB_PROMPT
         let l:cpt += 1
         exe c
         echohl MyColor
