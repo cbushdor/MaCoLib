@@ -170,7 +170,8 @@ say() We print all strings if v:false is met. If no carriage return met, or
       if not specified and severel message with different colors are specified
       when prompt, a string in deffierent color will be printed with not
       carriage return. In case of carriage return meet, it will be printed.
-      Error is thrown when there is nothin to print. To summup no v:false met.
+      Error is thrown when there is nothin to print. To summup no v:false met
+      will become g:MACOLIB_PRINT.
 
 ==============================================================================
 prompt()  We prompt message if v:true met. The prompt() within object, will 
@@ -178,7 +179,8 @@ prompt()  We prompt message if v:true met. The prompt() within object, will
           For instance, fisrt prompt result in 0, second prompt result in
           1,...
           If no prompt met, but asked an error is thrown when there is 
-          nothing to prompt. To summup no v:true met.
+          nothing to prompt. To summup no v:true met. To summup no 
+          v:true will become g:MACOLIB_PROMPT.
 
 ==============================================================================
 EXAMPLE                                                   *help_MaCoLib_Example*
