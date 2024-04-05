@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-04-05 01:11:48
+" Last Modified : 2024-04-06 00:03:45
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1080
+" Version : 0.0.0.1082
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -21,6 +21,9 @@ endif
 
 " Object for color printing
 let g:ManageColorLine = {}
+
+const g:MACOLIB_PRINT = v:false
+const g:MACOLIB_PROMPT = v:true
 
 " expand('<script>'),expand('<sfile>'    )
 function! OutsideTesting(sc,sf)
