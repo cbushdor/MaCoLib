@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-04-09 00:47:55
+" Last Modified : 2024-04-09 00:53:13
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1102
+" Version : 0.0.0.1104
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -34,7 +34,8 @@ function! g:HiClear() abort
   hi clear
 endfunction
 
-function! s:checks_prints_and_prompt() dict abort
+" W only check how many print are and, how many prompt are ... declared
+function! s:checks_prints_and_prompts() dict abort
   let l:cMACOLIB_PRINT = 0
   let l:cMACOLIB_PROMPT = 0
   for [m,c,r] in self.MyArray
@@ -47,6 +48,7 @@ function! s:checks_prints_and_prompt() dict abort
   return {"PRINT": l:cMACOLIB_PRINT,"PROMPT": l:cMACOLIB_PROMPT}
 endfunction
 
+" This gathersay and prompt function but only paste and copy
 function! s:prints_and_prompts() dict abort
     let l:MyRes = []
   for [m,c,r] in self.MyArray
@@ -152,7 +154,7 @@ endfunction
 let g:ManageColorLine.new = function('s:new') 
 let g:ManageColorLine.say = function('s:say') 
 let g:ManageColorLine.prompt = function('s:prompt') 
-let g:ManageColorLine.checks_pap = function('s:checks_prints_and_prompt') 
+let g:ManageColorLine.checks_pap = function('s:checks_prints_and_prompts') 
 let g:ManageColorLine.pap = function('s:prints_and_prompts')
 
 let func = string(g:ManageColorLine.new)

@@ -182,6 +182,15 @@ prompt()  We prompt message if v:true met. The prompt() within object, will
           nothing to prompt. To summup no v:true met. To summup no 
           v:true will become g:MACOLIB_PROMPT.
 
+checks_pap()  is a reference on s:checks_prints_and_prompt() and we 
+              only check how many print(s) are and, how many prompt 
+              are ... declared We return a dictionary where values 
+              are stored s.a {'PRINT': 1, 'PROMPT': 4}.
+
+pap()   is a reference on s:prints_and_prompts and this is a gathering 
+        of say() and prompt() function. No error raised for the time
+        being.
+
 ==============================================================================
 EXAMPLE                                                   *help_MaCoLib_Example*
 In $MYVIMRC you should have something like this.
