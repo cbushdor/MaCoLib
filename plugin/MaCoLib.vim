@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-04-06 00:19:11
+" Last Modified : 2024-04-09 00:47:55
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1084
+" Version : 0.0.0.1102
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -22,8 +22,8 @@ endif
 " Object for color printing
 let g:ManageColorLine = {}
 
-const g:MACOLIB_PRINT = v:false
-const g:MACOLIB_PROMPT = v:true
+let g:MACOLIB_PRINT = v:false
+let g:MACOLIB_PROMPT = v:true
 
 " expand('<script>'),expand('<sfile>'    )
 function! OutsideTesting(sc,sf)
@@ -32,6 +32,41 @@ endfunction
 
 function! g:HiClear() abort
   hi clear
+endfunction
+
+function! s:checks_prints_and_prompt() dict abort
+  let l:cMACOLIB_PRINT = 0
+  let l:cMACOLIB_PROMPT = 0
+  for [m,c,r] in self.MyArray
+    if r == g:MACOLIB_PRINT
+      let l:cMACOLIB_PRINT += 1
+    elseif r == g:MACOLIB_PROMPT
+      let l:cMACOLIB_PROMPT += 1
+    endif
+  endfor
+  return {"PRINT": l:cMACOLIB_PRINT,"PROMPT": l:cMACOLIB_PROMPT}
+endfunction
+
+function! s:prints_and_prompts() dict abort
+    let l:MyRes = []
+  for [m,c,r] in self.MyArray
+    if r == g:MACOLIB_PRINT
+      exe c
+      echohl MyColor
+      echon m
+      echohl None
+    elseif r == g:MACOLIB_PROMPT
+      exe c
+      echohl MyColor
+      call inputsave()
+      let l:res = input(m .. '> ')
+      call add(l:MyRes,l:res)
+      call inputrestore()
+      echohl None
+      echo "\n"
+    endif
+  endfor
+  return MyRes
 endfunction
 
 function! s:new(...) dict abort
@@ -117,6 +152,8 @@ endfunction
 let g:ManageColorLine.new = function('s:new') 
 let g:ManageColorLine.say = function('s:say') 
 let g:ManageColorLine.prompt = function('s:prompt') 
+let g:ManageColorLine.checks_pap = function('s:checks_prints_and_prompt') 
+let g:ManageColorLine.pap = function('s:prints_and_prompts')
 
 let func = string(g:ManageColorLine.new)
 "echo "------->"..func.."\n"
