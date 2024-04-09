@@ -190,6 +190,8 @@ checks_pap()  is a reference on s:checks_prints_and_prompt() and we
 pap()   is a reference on s:prints_and_prompts and this is a gathering 
         of say() and prompt() function. No error raised for the time
         being.
+        Error thrown if value not in g:MACOLIB_PROMPT or g:MACOLIB_PRINT 
+        s.a "Bad value "... where ... is extra local values.
 
 ==============================================================================
 EXAMPLE                                                   *help_MaCoLib_Example*

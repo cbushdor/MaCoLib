@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-04-09 00:53:13
+" Last Modified : 2024-04-09 02:01:37
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1104
+" Version : 0.0.0.1109
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -50,7 +50,8 @@ endfunction
 
 " This gathersay and prompt function but only paste and copy
 function! s:prints_and_prompts() dict abort
-    let l:MyRes = []
+  let l:MyRes = []
+
   for [m,c,r] in self.MyArray
     if r == g:MACOLIB_PRINT
       exe c
@@ -66,6 +67,8 @@ function! s:prints_and_prompts() dict abort
       call inputrestore()
       echohl None
       echo "\n"
+    else
+      throw "Bad value "..OutsideTesting(expand('<script>'),expand('<sfile>'))
     endif
   endfor
   return MyRes
