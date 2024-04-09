@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-04-09 02:01:37
+" Last Modified : 2024-04-09 02:15:31
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1109
+" Version : 0.0.0.1110
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -43,6 +43,8 @@ function! s:checks_prints_and_prompts() dict abort
       let l:cMACOLIB_PRINT += 1
     elseif r == g:MACOLIB_PROMPT
       let l:cMACOLIB_PROMPT += 1
+    else
+      throw "Bad value "..OutsideTesting(expand('<script>'),expand('<sfile>'))
     endif
   endfor
   return {"PRINT": l:cMACOLIB_PRINT,"PROMPT": l:cMACOLIB_PROMPT}
