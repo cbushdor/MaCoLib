@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-04-10 23:21:41
+" Last Modified : 2024-04-10 23:29:11
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1122
+" Version : 0.0.0.1126
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -56,13 +56,19 @@ function! s:prints_and_prompts() dict abort
 
   for [m,c,r] in self.MyArray
     if r == g:MACOLIB_PRINT
+      let l:fields = split(c,' ')
+      let l:myechohl = ":echohl "..l:fields[1]
       exe c
-      echohl MyColor
+      exe l:myechohl
+      " echohl MyColor
       echon m
       echohl None
     elseif r == g:MACOLIB_PROMPT
+      let l:fields = split(c,' ')
+      let l:myechohl = ":echohl "..l:fields[1]
       exe c
-      echohl MyColor
+      exe l:myechohl
+      "echohl MyColor
       call inputsave()
       let l:res = input(m .. '> ')
       call add(l:MyRes,l:res)
