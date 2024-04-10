@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-04-09 02:15:31
+" Last Modified : 2024-04-10 23:21:41
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1110
+" Version : 0.0.0.1122
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -111,13 +111,17 @@ endfunction
 function! s:say() dict abort
   if self.len > 0
     let l:cpt = 0
+    " m: string to print
+    " c: syntax to highlight
+    " r: print or prompt
     for [m,c,r] in self.MyArray
       if r == g:MACOLIB_PRINT
         let l:cpt += 1
-        "echo "----->"..c.."\n"
-        "echo "----->"..m.."\n"
+        let l:fields = split(c,' ')
+        let l:myechohl = ":echohl "..l:fields[1]
         exe c
-        echohl MyColor
+        exe l:myechohl
+        "echohl MyColor
         echon m
         echohl None
       endif
@@ -134,11 +138,18 @@ function! s:prompt() dict abort
   if self.len > 0
     let l:cpt = 0
     let l:MyRes = []
+
+    " m: string to print
+    " c: syntax to highlight
+    " r: print or prompt
     for [m,c,r] in self.MyArray
       if r == g:MACOLIB_PROMPT
         let l:cpt += 1
+        let l:fields = split(c,' ')
+        let l:myechohl = ":echohl "..l:fields[1]
         exe c
-        echohl MyColor
+        exe l:myechohl
+        "echohl MyColor
         call inputsave()
         let l:res = input(m .. '> ')
         call add(l:MyRes,l:res)
@@ -159,8 +170,8 @@ endfunction
 let g:ManageColorLine.new = function('s:new') 
 let g:ManageColorLine.say = function('s:say') 
 let g:ManageColorLine.prompt = function('s:prompt') 
-let g:ManageColorLine.checks_pap = function('s:checks_prints_and_prompts') 
-let g:ManageColorLine.pap = function('s:prints_and_prompts')
+let g:ManageColorLine.checks_prints_and_prompts = function('s:checks_prints_and_prompts') 
+let g:ManageColorLine.prints_and_prompts = function('s:prints_and_prompts')
 
 let func = string(g:ManageColorLine.new)
 "echo "------->"..func.."\n"
