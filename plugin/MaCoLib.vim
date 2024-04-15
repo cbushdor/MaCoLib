@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-04-10 23:29:11
+" Last Modified : 2024-04-16 01:13:36
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1126
+" Version : 0.0.0.1139
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -173,11 +173,18 @@ function! s:prompt() dict abort
   return l:MyRes
 endfunction
 
+" Add new info to print in the string
+" array, new string, color
+function! s:addToPrintColorString(s,c,p) dict abort
+  call add(self.MyArray,[a:s,a:c,a:p])
+endfunction
+
 let g:ManageColorLine.new = function('s:new') 
 let g:ManageColorLine.say = function('s:say') 
 let g:ManageColorLine.prompt = function('s:prompt') 
 let g:ManageColorLine.checks_prints_and_prompts = function('s:checks_prints_and_prompts') 
 let g:ManageColorLine.prints_and_prompts = function('s:prints_and_prompts')
+let g:ManageColorLine.addToPrintColorString = function('s:addToPrintColorString')
 
 let func = string(g:ManageColorLine.new)
 "echo "------->"..func.."\n"
@@ -356,11 +363,6 @@ function! PrintsColoredString(arr)
   endwhile
 endfunction
 
-" Add new info to print in the string
-" array, new string, color
-function! AddToPrintColorString(a,s,c)
-  call add(a:a,[a:s,a:c])
-endfunction
 
 " We erase the string
 function! ClearStringColor(a)

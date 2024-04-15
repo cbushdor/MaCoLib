@@ -115,8 +115,13 @@ PrintsColoredString(arr)Prints colored string. Needs array as parameter.
 			let MyArray = [['string1','highlightString1'], 
 			['string2','highlighString2'] ]
 
-AddToPrintColorString(a,s,c)	Add new info to print in the string
-				array, new string, color
+obj.addToPrintColorString(s,c,p)	Add new string with associated color
+				to print, in the stack
+				and, theier format is:
+				  s: string to print. 
+				  c: color associated.
+				  p: [g:MACOLIB_PRINT,g:MACOLIB_PROMPT] are 
+				  potencial values
 
 ClearStringColor(a) 	We erase the string a is the is external Array 
 			declared!
