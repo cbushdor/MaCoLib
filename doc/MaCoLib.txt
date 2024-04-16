@@ -123,8 +123,7 @@ obj.addToPrintColorString(s,c,p)	Add new string with associated color
 				  p: [g:MACOLIB_PRINT,g:MACOLIB_PROMPT] are 
 				  potencial values
 
-ClearStringColor(a) 	We erase the string a is the is external Array 
-			declared!
+obj.clearStringColor() 	We erase the array of strings declared!
 
 AddStackStringColor(s,tuple) AddStackStringColor is to add tuple to s at the 
 			     end returns the new list

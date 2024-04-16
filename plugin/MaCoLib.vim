@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-04-16 01:13:36
+" Last Modified : 2024-04-16 23:03:43
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1139
+" Version : 0.0.0.1153
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -179,12 +179,26 @@ function! s:addToPrintColorString(s,c,p) dict abort
   call add(self.MyArray,[a:s,a:c,a:p])
 endfunction
 
+" We erase the string
+function! s:clearStringColor() dict abort
+  let l:i = 0
+  while l:i < len(self.MyArray)
+    let l:k = remove(self.MyArray,-1)
+    let l:i += 1
+  endwhile
+  let l:k = remove(self.MyArray,-1)
+  echo "\n---------------------------------------\n"
+  echo "Cleaned\n"
+  echo "\n---------------------------------------\n"
+endfunction
+
 let g:ManageColorLine.new = function('s:new') 
 let g:ManageColorLine.say = function('s:say') 
 let g:ManageColorLine.prompt = function('s:prompt') 
 let g:ManageColorLine.checks_prints_and_prompts = function('s:checks_prints_and_prompts') 
 let g:ManageColorLine.prints_and_prompts = function('s:prints_and_prompts')
 let g:ManageColorLine.addToPrintColorString = function('s:addToPrintColorString')
+let g:ManageColorLine.clearStringColor = function("s:clearStringColor")
 
 let func = string(g:ManageColorLine.new)
 "echo "------->"..func.."\n"
@@ -350,29 +364,6 @@ function! GetsPid()
   return l:term
 endfunction
 
-" Prints colored string. Needs array as parameter. 
-" let MyArray = [['string1','highlightString1'], ['string2','highlighString2'] ]
-function! PrintsColoredString(arr)
-  let l:i = 0
-  while l:i < len(a:arr)
-    exe a:arr[l:i][1]
-    echohl MyColor
-    echon a:arr[l:i][0]
-    echohl None
-    let l:i += 1
-  endwhile
-endfunction
-
-
-" We erase the string
-function! ClearStringColor(a)
-  let l:i = 0
-  while l:i < len(a:a)
-    let l:k = remove(a:a,-1)
-    let l:i += 1
-  endwhile
-  let l:k = remove(a:a,-1)
-endfunction
 
 " AddStackStringColor is to add tuple to s at the end
 " returns the new list
