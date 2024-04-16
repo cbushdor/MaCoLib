@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-04-16 23:03:43
+" Last Modified : 2024-04-17 00:08:32
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1153
+" Version : 0.0.0.1159
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -183,10 +183,19 @@ endfunction
 function! s:clearStringColor() dict abort
   let l:i = 0
   while l:i < len(self.MyArray)
-    let l:k = remove(self.MyArray,-1)
+    echo self.MyArray[l:i]
+    call remove(self.MyArray[l:i],0,2)
+    echo self.MyArray[l:i]
     let l:i += 1
   endwhile
-  let l:k = remove(self.MyArray,-1)
+  echo "#**********>"..len(self.MyArray).."\n"
+  let l:i = 0
+  while l:i < len(self.MyArray)
+    call remove(self.MyArray,-1)
+    let l:i += 1
+  endwhile
+  echo "-**********>"..len(self.MyArray).."\n"
+  " remove(self.MyArray,-1)
   echo "\n---------------------------------------\n"
   echo "Cleaned\n"
   echo "\n---------------------------------------\n"
