@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-04-17 00:08:32
+" Last Modified : 2024-04-17 00:37:42
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1159
+" Version : 0.0.0.1174
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -181,24 +181,17 @@ endfunction
 
 " We erase the string
 function! s:clearStringColor() dict abort
-  let l:i = 0
-  while l:i < len(self.MyArray)
-    echo self.MyArray[l:i]
-    call remove(self.MyArray[l:i],0,2)
-    echo self.MyArray[l:i]
-    let l:i += 1
-  endwhile
-  echo "#**********>"..len(self.MyArray).."\n"
-  let l:i = 0
-  while l:i < len(self.MyArray)
-    call remove(self.MyArray,-1)
-    let l:i += 1
-  endwhile
-  echo "-**********>"..len(self.MyArray).."\n"
-  " remove(self.MyArray,-1)
-  echo "\n---------------------------------------\n"
-  echo "Cleaned\n"
-  echo "\n---------------------------------------\n"
+  if len(self.MyArray) > 0
+    let l:i = 0
+    while l:i < len(self.MyArray)
+      call remove(self.MyArray[l:i],0,2)
+      let l:i += 1
+    endwhile
+    call remove(self.MyArray,0,len(self.MyArray)-1)
+    return len(self.MyArray) == 0
+  else
+    throw "Nothing to clean "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+  endif
 endfunction
 
 let g:ManageColorLine.new = function('s:new') 

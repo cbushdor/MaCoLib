@@ -124,6 +124,9 @@ obj.addToPrintColorString(s,c,p)	Add new string with associated color
 				  potencial values
 
 obj.clearStringColor() 	We erase the array of strings declared!
+			Error is thrown when there is nothing to clean
+			or, there is nothing in the stack
+			and, we want to clean with extra info.
 
 AddStackStringColor(s,tuple) AddStackStringColor is to add tuple to s at the 
 			     end returns the new list
@@ -170,12 +173,12 @@ new([["S1","hi1",bool],["S2","hi2",bool],...])  Creates a new
                                                 check for ERRORS
 
 ==============================================================================
-say() We print all strings if v:false is met. If no carriage return met, or
+obj.say() We print all strings if v:false is met. If no carriage return met, or
       if not specified and severel message with different colors are specified
       when prompt, a string in deffierent color will be printed with not
       carriage return. In case of carriage return meet, it will be printed.
-      Error is thrown when there is nothin to print. To summup no v:false met
-      will become g:MACOLIB_PRINT.
+      Error is thrown when there is nothing to print with extra info. To 
+      summup no v:false met will become g:MACOLIB_PRINT.
 
 ==============================================================================
 prompt()  We prompt message if v:true met. The prompt() within object, will 
