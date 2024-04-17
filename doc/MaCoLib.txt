@@ -146,7 +146,7 @@ To create an object g:ManageColorLine or dictionary we need new() function.
 
   " We create an object or dictionary called l:myTest from object or
   " dictionary g:ManageColorLine.
-  let l:myTest = g:ManageColorLine.new([["s1",
+  let l:myTest = MaCoLib#new([["s1",
   \':hi MyColor  term=italic ctermfg=Brown guifg=#80a0ff gui=bold',v:false]])
   " We print print
   call l:myTest.say()
@@ -154,8 +154,9 @@ To create an object g:ManageColorLine or dictionary we need new() function.
   let l:res =  l:myTest.prompt()
 
 
-==============================================================================
-new([["S1","hi1",bool],["S2","hi2",bool],...])  Creates a new 
+To Summup we will call <obj> the object declared with MaCoLib#new().
+
+<obj>.new([["S1","hi1",bool],["S2","hi2",bool],...])  Creates a new 
 					        object/dictionary. As 
 						arguments it takes an array
 						of array. 
@@ -172,36 +173,36 @@ new([["S1","hi1",bool],["S2","hi2",bool],...])  Creates a new
 						is used for prompt.
                                                 check for ERRORS
 
-==============================================================================
-obj.say() We print all strings if v:false is met. If no carriage return met, or
-      if not specified and severel message with different colors are specified
-      when prompt, a string in deffierent color will be printed with not
-      carriage return. In case of carriage return meet, it will be printed.
-      Error is thrown when there is nothing to print with extra info. To 
-      summup no v:false met will become g:MACOLIB_PRINT.
+<obj>.say() We print all strings if v:false is met. If no carriage return 
+	    met, or if not specified and severel message with different colors 
+	    are specified when prompt, a string in deffierent color will be 
+	    printed with not carriage return. In case of carriage return meet, 
+	    it will be printed.
+	    Error is thrown when there is nothing to print with extra info. To 
+	    summup no v:false met will become g:MACOLIB_PRINT.
 
-==============================================================================
-prompt()  We prompt message if v:true met. The prompt() within object, will 
-          return results of prompt as it appears in the stack order.
-          For instance, fisrt prompt result in 0, second prompt result in
-          1,...
-          If no prompt met, but asked an error is thrown when there is 
-          nothing to prompt. To summup no v:true met. To summup no 
-          v:true will become g:MACOLIB_PROMPT.
+<obj>.prompt()  We prompt message if v:true met. The prompt() within object, 
+		will return results of prompt as it appears in the stack 
+		order. For instance, fisrt prompt result in 0, second prompt 
+		result in 1,...
+		If no prompt met, but asked an error is thrown when there is 
+		nothing to prompt. To summup no v:true met. To summup no 
+		v:true will become g:MACOLIB_PROMPT.
 
-checks_pap()  is a reference on s:checks_prints_and_prompt() and we 
-              only check how many print(s) are and, how many prompt 
-              are ... declared We return a dictionary where values 
-              are stored s.a {'PRINT': 1, 'PROMPT': 4}.
-              Error thrown if value not in g:MACOLIB_PROMPT or 
-              g:MACOLIB_PRINT s.a "Bad value "... where ... is 
-              extra local values.
+<obj>.checks_prints_and_prompt()  We only check how many print(s) are and,
+				  how many prompt are ... declared.
+				  We return a dictionary where values are 
+				  stored s.a {'PRINT': 1, 'PROMPT': 4}.
+				  Error thrown if value not in 
+				  g:MACOLIB_PROMPT or g:MACOLIB_PRINT s.a 
+				  "Bad value "...  where ... is extra local 
+				  values.
 
-pap()   is a reference on s:prints_and_prompts and this is a gathering 
-        of say() and prompt() function. No error raised for the time
-        being.
-        Error thrown if value not in g:MACOLIB_PROMPT or g:MACOLIB_PRINT 
-        s.a "Bad value "... where ... is extra local values.
+<obj>.prints_and_prompts()  and this is a gathering of say() and prompt() 
+                            functions. No error raised for the time being.
+			    Error thrown if value not in g:MACOLIB_PROMPT or 
+			    g:MACOLIB_PRINT s.a "Bad value "... where ... 
+			    is extra local values.
 
 ==============================================================================
 EXAMPLE                                                   *help_MaCoLib_Example*
