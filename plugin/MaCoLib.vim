@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-04-17 00:37:42
+" Last Modified : 2024-04-17 23:39:32
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1174
+" Version : 0.0.0.1191
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -20,7 +20,6 @@ else
 endif
 
 " Object for color printing
-let g:ManageColorLine = {}
 
 let g:MACOLIB_PRINT = v:false
 let g:MACOLIB_PROMPT = v:true
@@ -34,60 +33,13 @@ function! g:HiClear() abort
   hi clear
 endfunction
 
-" W only check how many print are and, how many prompt are ... declared
-function! s:checks_prints_and_prompts() dict abort
-  let l:cMACOLIB_PRINT = 0
-  let l:cMACOLIB_PROMPT = 0
-  for [m,c,r] in self.MyArray
-    if r == g:MACOLIB_PRINT
-      let l:cMACOLIB_PRINT += 1
-    elseif r == g:MACOLIB_PROMPT
-      let l:cMACOLIB_PROMPT += 1
-    else
-      throw "Bad value "..OutsideTesting(expand('<script>'),expand('<sfile>'))
-    endif
-  endfor
-  return {"PRINT": l:cMACOLIB_PRINT,"PROMPT": l:cMACOLIB_PROMPT}
-endfunction
 
-" This gathersay and prompt function but only paste and copy
-function! s:prints_and_prompts() dict abort
-  let l:MyRes = []
-
-  for [m,c,r] in self.MyArray
-    if r == g:MACOLIB_PRINT
-      let l:fields = split(c,' ')
-      let l:myechohl = ":echohl "..l:fields[1]
-      exe c
-      exe l:myechohl
-      " echohl MyColor
-      echon m
-      echohl None
-    elseif r == g:MACOLIB_PROMPT
-      let l:fields = split(c,' ')
-      let l:myechohl = ":echohl "..l:fields[1]
-      exe c
-      exe l:myechohl
-      "echohl MyColor
-      call inputsave()
-      let l:res = input(m .. '> ')
-      call add(l:MyRes,l:res)
-      call inputrestore()
-      echohl None
-      echo "\n"
-    else
-      throw "Bad value "..OutsideTesting(expand('<script>'),expand('<sfile>'))
-    endif
-  endfor
-  return MyRes
-endfunction
-
-function! s:new(...) dict abort
+function! MaCoLib#new(...)
   " We create an object (hash)
-  let l:oneBlock = copy(self)
+  let obj = {}
 
   if a:0 == 0
-    let l:oneBlock.MyArray = []
+    let obj.MyArray = []
   else
     " l:p is for parameter but it's argument
     let l:p = a:[1]
@@ -106,51 +58,43 @@ function! s:new(...) dict abort
       if (type(l:po) != v:t_list )
         throw "Argument type should be v:t_list. "..OutsideTesting(expand('<script>'),expand('<sfile>'))
       else
-        let l:oneBlock.MyArray = l:p
+        let obj.MyArray = l:p
       endif
     endif
   endif
-  let l:oneBlock.len = len(l:oneBlock.MyArray)
-  return l:oneBlock
-endfunction
 
-function! s:say() dict abort
-  if self.len > 0
-    let l:cpt = 0
-    " m: string to print
-    " c: syntax to highlight
-    " r: print or prompt
+  let obj.len = len(obj.MyArray)
+
+  " W only check how many print are and, how many prompt are ... declared
+  function! obj.checks_prints_and_prompts() dict abort
+    let l:cMACOLIB_PRINT = 0
+    let l:cMACOLIB_PROMPT = 0
     for [m,c,r] in self.MyArray
       if r == g:MACOLIB_PRINT
-        let l:cpt += 1
+        let l:cMACOLIB_PRINT += 1
+      elseif r == g:MACOLIB_PROMPT
+        let l:cMACOLIB_PROMPT += 1
+      else
+        throw "Bad value "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+      endif
+    endfor
+    return {"PRINT": l:cMACOLIB_PRINT,"PROMPT": l:cMACOLIB_PROMPT}
+  endfunction
+
+  " This gathersay and prompt function but only paste and copy
+  function! obj.prints_and_prompts() dict abort
+    let l:MyRes = []
+
+    for [m,c,r] in self.MyArray
+      if r == g:MACOLIB_PRINT
         let l:fields = split(c,' ')
         let l:myechohl = ":echohl "..l:fields[1]
         exe c
         exe l:myechohl
-        "echohl MyColor
+        " echohl MyColor
         echon m
         echohl None
-      endif
-    endfor
-    if l:cpt == 0
-      throw "Nothing to print "..OutsideTesting(expand('<script>'),expand('<sfile>'))
-    endif
-  else
-    throw "Nothing to print "..OutsideTesting(expand('<script>'),expand('<sfile>'))
-  endif
-endfunction
-
-function! s:prompt() dict abort
-  if self.len > 0
-    let l:cpt = 0
-    let l:MyRes = []
-
-    " m: string to print
-    " c: syntax to highlight
-    " r: print or prompt
-    for [m,c,r] in self.MyArray
-      if r == g:MACOLIB_PROMPT
-        let l:cpt += 1
+      elseif r == g:MACOLIB_PROMPT
         let l:fields = split(c,' ')
         let l:myechohl = ":echohl "..l:fields[1]
         exe c
@@ -162,53 +106,94 @@ function! s:prompt() dict abort
         call inputrestore()
         echohl None
         echo "\n"
+      else
+        throw "Bad value "..OutsideTesting(expand('<script>'),expand('<sfile>'))
       endif
     endfor
-    if l:cpt == 0
+    return MyRes
+  endfunction
+
+  function! obj.say() dict abort
+    if self.len > 0
+      let l:cpt = 0
+      " m: string to print
+      " c: syntax to highlight
+      " r: print or prompt
+      for [m,c,r] in self.MyArray
+        if r == g:MACOLIB_PRINT
+          let l:cpt += 1
+          let l:fields = split(c,' ')
+          let l:myechohl = ":echohl "..l:fields[1]
+          exe c
+          exe l:myechohl
+          "echohl MyColor
+          echon m
+          echohl None
+        endif
+      endfor
+      if l:cpt == 0
+        throw "Nothing to print "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+      endif
+    else
+      throw "Nothing to print "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+    endif
+  endfunction
+
+  function! obj.prompt() dict abort
+    if self.len > 0
+      let l:cpt = 0
+      let l:MyRes = []
+
+      " m: string to print
+      " c: syntax to highlight
+      " r: print or prompt
+      for [m,c,r] in self.MyArray
+        if r == g:MACOLIB_PROMPT
+          let l:cpt += 1
+          let l:fields = split(c,' ')
+          let l:myechohl = ":echohl "..l:fields[1]
+          exe c
+          exe l:myechohl
+          "echohl MyColor
+          call inputsave()
+          let l:res = input(m .. '> ')
+          call add(l:MyRes,l:res)
+          call inputrestore()
+          echohl None
+          echo "\n"
+        endif
+      endfor
+      if l:cpt == 0
+        throw "Nothing to prompt "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+      endif
+    else
       throw "Nothing to prompt "..OutsideTesting(expand('<script>'),expand('<sfile>'))
     endif
-  else
-    throw "Nothing to prompt "..OutsideTesting(expand('<script>'),expand('<sfile>'))
-  endif
-  return l:MyRes
+    return l:MyRes
+  endfunction
+
+  " Add new info to print in the string
+  " array, new string, color
+  function! obj.addToPrintColorString(s,c,p) dict abort
+    call add(self.MyArray,[a:s,a:c,a:p])
+  endfunction
+
+  " We erase the string
+  function! obj.clearStringColor() dict abort
+    if len(self.MyArray) > 0
+      let l:i = 0
+      while l:i < len(self.MyArray)
+        call remove(self.MyArray[l:i],0,2)
+        let l:i += 1
+      endwhile
+      call remove(self.MyArray,0,len(self.MyArray)-1)
+      return len(self.MyArray) == 0
+    else
+      throw "Nothing to clean "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+    endif
+  endfunction
+  return obj
 endfunction
-
-" Add new info to print in the string
-" array, new string, color
-function! s:addToPrintColorString(s,c,p) dict abort
-  call add(self.MyArray,[a:s,a:c,a:p])
-endfunction
-
-" We erase the string
-function! s:clearStringColor() dict abort
-  if len(self.MyArray) > 0
-    let l:i = 0
-    while l:i < len(self.MyArray)
-      call remove(self.MyArray[l:i],0,2)
-      let l:i += 1
-    endwhile
-    call remove(self.MyArray,0,len(self.MyArray)-1)
-    return len(self.MyArray) == 0
-  else
-    throw "Nothing to clean "..OutsideTesting(expand('<script>'),expand('<sfile>'))
-  endif
-endfunction
-
-let g:ManageColorLine.new = function('s:new') 
-let g:ManageColorLine.say = function('s:say') 
-let g:ManageColorLine.prompt = function('s:prompt') 
-let g:ManageColorLine.checks_prints_and_prompts = function('s:checks_prints_and_prompts') 
-let g:ManageColorLine.prints_and_prompts = function('s:prints_and_prompts')
-let g:ManageColorLine.addToPrintColorString = function('s:addToPrintColorString')
-let g:ManageColorLine.clearStringColor = function("s:clearStringColor")
-
-let func = string(g:ManageColorLine.new)
-"echo "------->"..func.."\n"
-let func = string(g:ManageColorLine.say)
-"echo "------->"..func.."\n"
-
-"let g:ManageColorLine.new = function("s:new")
-"let g:ManageColorLine.say = function("s:say")
 
 " We get path of the current file
 function! GetsMyExecScript(str)
