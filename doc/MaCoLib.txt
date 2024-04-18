@@ -1,8 +1,8 @@
 *MaCoLib.txt*       my MAnager for COlor LIBrary and some more stuff
 
 		Creation Date :2024-02-15 23:11:52
-		Last Modified : 2024-03-10 01:22:08
-		Version : 0.0.0.138
+		Last Modified : 2024-04-19 00:56:43
+		Version : 0.0.0.150
 
 ==============================================================================
 CONTENTS                                                *MaCoLib* *help_MaCoLib*
@@ -145,7 +145,8 @@ OBJECT                                                     *help_MaCoLib_Object*
 To create an object or dictionary we need new() function.
 To Summup we will call <obj> the object declared with MaCoLib#new().
 
-	let obj = MaCoLib#new(  
+>
+      let obj = MaCoLib#new(  
 	\           [
 	\               [
 	\			"Hello test",
@@ -154,8 +155,8 @@ To Summup we will call <obj> the object declared with MaCoLib#new().
 	\               ]
 	\           ]
 	\)		 
+<
 
-==============================================================================
 MaCoLib#new(...) We create a new object/dictionary. As arguments it takes an 
 		 array of array. The array of array is a list of array(s). 
 		 The first array is a list of Array.
@@ -170,7 +171,7 @@ MaCoLib#new(...) We create a new object/dictionary. As arguments it takes an
 		check for ERRORS:
 			- Argument type should be v:t_list.
 
-<obj>.say() We print all strings if v:false is met. If no carriage return 
+obj .say()  We print all strings if v:false is met. If no carriage return 
 	    met, or if not specified and severel message with different colors 
 	    are specified when prompt, a string in deffierent color will be 
 	    printed with not carriage return. In case of carriage return meet, 
@@ -178,7 +179,7 @@ MaCoLib#new(...) We create a new object/dictionary. As arguments it takes an
 	    Error is thrown when there is nothing to print with extra info. To 
 	    summup no v:false met will become g:MACOLIB_PRINT.
 
-<obj>.prompt()  We prompt message if v:true met. The prompt() within object, 
+obj.prompt()    We prompt message if v:true met. The prompt() within object, 
 		will return results of prompt as it appears in the stack 
 		order. For instance, fisrt prompt result in 0, second prompt 
 		result in 1,...
@@ -186,7 +187,7 @@ MaCoLib#new(...) We create a new object/dictionary. As arguments it takes an
 		nothing to prompt. To summup no v:true met. To summup no 
 		v:true will become g:MACOLIB_PROMPT.
 
-<obj>.checks_prints_and_prompt()  We only check how many print(s) are and,
+obj.checks_prints_and_prompt()    We only check how many print(s) are and,
 				  how many prompt are ... declared.
 				  We return a dictionary where values are 
 				  stored s.a {'PRINT': 1, 'PROMPT': 4}.
@@ -195,8 +196,8 @@ MaCoLib#new(...) We create a new object/dictionary. As arguments it takes an
 				  "Bad value "...  where ... is extra local 
 				  values.
 
-<obj>.prints_and_prompts()  and this is a gathering of say() and prompt() 
-                            functions. No error raised for the time being.
+obj.prints_and_prompts()    and this is a gathering of say() and prompt() 
+                            functions.
 			    Error thrown if value not in g:MACOLIB_PROMPT or 
 			    g:MACOLIB_PRINT s.a "Bad value "... where ... 
 			    is extra local values.
