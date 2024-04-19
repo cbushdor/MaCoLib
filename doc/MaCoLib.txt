@@ -149,9 +149,9 @@ obj.addHeapStringColor(tuple)  The function is to add tuple to the heap
 
 TODO
 
-obj.push() Push last elem from list.
+obj.push() Remove first elem from list. It returns the elem removed.
 
-obj.pop() Push first elem from list.
+obj.pop() Remove last elem from list. It returns the elem removed.
 
 ==============================================================================
 OBJECT                                                     *help_MaCoLib_Object*
