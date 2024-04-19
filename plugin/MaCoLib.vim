@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-04-19 02:27:41
+" Last Modified : 2024-04-19 21:18:26
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1213
+" Version : 0.0.0.1214
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -334,7 +334,7 @@ function! MaCoLib#new(...)
     call add(self.MyArray,[a:s,a:c,a:p])
   endfunction
 
-  " We erase the string
+  " We erase the string list/stack
   function! obj.clearStringColor() dict abort
     if len(self.MyArray) > 0
       let l:i = 0

@@ -123,7 +123,8 @@ obj.addToPrintColorString(s,c,p)	Add new string with associated color
 				  p: [g:MACOLIB_PRINT,g:MACOLIB_PROMPT] are 
 				  potencial values
 
-obj.clearStringColor() 	We erase the array of strings declared!
+obj.clearStringColor() 	We erase the whole / full list/stack/heap of strings 
+                        declared!
 			Error is thrown when there is nothing to clean
 			or, there is nothing in the stack
 			and, we want to clean with extra info.
