@@ -128,11 +128,22 @@ obj.clearStringColor() 	We erase the array of strings declared!
 			or, there is nothing in the stack
 			and, we want to clean with extra info.
 
-AddStackStringColor(s,tuple) AddStackStringColor is to add tuple to s at the 
-			     end returns the new list
+obj.addStackStringColor(tuple) The function is to add a tuple to the 
+			       stack in object. The obj in current list in object
+			       list tuple (read below)
+			         tuple = ["String",':highlight ...',method].
+			       check :help highlight when in vim for help.
+			       The method for printing can be one of these: 
+			       g:MACOLIB_PRINT or g:MACOLIB_PROMPT.
+			       The current list can be viewed as a stack.
 
-AddHeadStringColor(s,tuple) 	AddHeadStringColor is to add tuple to s at the 
-				beging returns the new list
+obj.addHeapStringColor(tuple)  The function is to add tuple to the heap 
+			       in object.
+			       tuple = ["String",':highlight ...',method].
+			       check :help highlight when in vim for help.
+			       The method for printing can be one of these: 
+			       g:MACOLIB_PRINT or g:MACOLIB_PROMPT.
+			       The current list can be viewed as a heap.
 
 GetsMyExecScript(str)	We create the script line to be executed with execute
 			command to get expand(...) value  s.a 

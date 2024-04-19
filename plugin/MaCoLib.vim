@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-04-19 00:34:49
+" Last Modified : 2024-04-19 02:19:10
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1196
+" Version : 0.0.0.1204
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -18,8 +18,6 @@ if !exists("g:MaCoLib")
 else
   finish
 endif
-
-source "/Users/sdo/.vim/plugged/MaCoLib/pluggin/syntax.vim"
 
 " Object for color printing
 
@@ -194,6 +192,18 @@ function! MaCoLib#new(...)
       throw "Nothing to clean "..OutsideTesting(expand('<script>'),expand('<sfile>'))
     endif
   endfunction
+
+  function! obj.addStackStringColor(tuple) dict abort
+    call add(self.MyArray,a:tuple)
+  endfunction
+
+" AddHeadStringColor is to add tuple to s at the beging
+" returns the new list
+function! obj.addHeapStringColor(tuple) dict abort
+  call reverse(self.MyArray)
+  call add(self.MyArray , a:tuple)
+  call reverse(self.MyArray)
+endfunction
   return obj
 endfunction
 
@@ -353,17 +363,3 @@ function! GetsPid()
   return l:term
 endfunction
 
-
-" AddStackStringColor is to add tuple to s at the end
-" returns the new list
-function! AddStackStringColor(s,tuple)
-  call add(a:s,a:tuple)
-endfunction
-
-" AddHeadStringColor is to add tuple to s at the beging
-" returns the new list
-function! AddHeadStringColor(s,tuple)
-  call reverse(a:s)
-  call add(a:s , a:tuple)
-  call reverse(a:s)
-endfunction
