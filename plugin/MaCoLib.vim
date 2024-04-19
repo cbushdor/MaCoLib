@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-04-19 21:18:26
+" Last Modified : 2024-04-19 21:25:30
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1214
+" Version : 0.0.0.1217
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -357,6 +357,14 @@ function! MaCoLib#new(...)
     call reverse(self.MyArray)
     call add(self.MyArray , a:tuple)
     call reverse(self.MyArray)
+  endfunction
+
+  " Todo
+  function! obj.push() dict abort
+  endfunction
+
+  " Todo
+  function! obj.pop() dict abort
   endfunction
 
   return obj

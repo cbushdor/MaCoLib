@@ -115,6 +115,11 @@ PrintsColoredString(arr)Prints colored string. Needs array as parameter.
 			let MyArray = [['string1','highlightString1'], 
 			['string2','highlighString2'] ]
 
+GetsMyExecScript(str)	We create the script line to be executed with execute
+			command to get expand(...) value  s.a 
+			GetsMyExecScript("<script>"). Read :help expand() for 
+			more information.
+
 obj.addToPrintColorString(s,c,p)	Add new string with associated color
 				to print, in the stack
 				and, theier format is:
@@ -146,11 +151,11 @@ obj.addHeapStringColor(tuple)  The function is to add tuple to the heap
 			       g:MACOLIB_PRINT or g:MACOLIB_PROMPT.
 			       The current list can be viewed as a heap.
 
-GetsMyExecScript(str)	We create the script line to be executed with execute
-			command to get expand(...) value  s.a 
-			GetsMyExecScript("<script>"). Read :help expand() for 
-			more information.
+*Todo
 
+obj.push() Push last elem from list.
+
+obj.pop() Push first elem from list.
 ==============================================================================
 OBJECT                                                     *help_MaCoLib_Object*
 
