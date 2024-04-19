@@ -139,6 +139,11 @@ obj.addStackStringColor(tuple) The function is to add a tuple to the
 			       g:MACOLIB_PRINT or g:MACOLIB_PROMPT.
 			       The current list can be viewed as a stack.
 
+obj.removeStackStringColor() We remove last element entered from stack (last in 
+                             first out).
+			     Error thrown "Stack is empty "... when stack is 
+			     empty.
+
 obj.addHeapStringColor(tuple)  The function is to add tuple to the heap 
 			       in object.
 			       tuple = ["String",':highlight ...',method].
@@ -148,8 +153,6 @@ obj.addHeapStringColor(tuple)  The function is to add tuple to the heap
 			       The current list can be viewed as a heap.
 
 TODO
-
-obj.stackPush(tuple) We add element at top of the stack
 
 obj.stackPop() We remove first element from the top of stack (last in first
                out).
