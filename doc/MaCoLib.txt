@@ -151,11 +151,12 @@ TODO
 
 obj.stackPush(tuple) We add element at top of the stack
 
-obj.stackPop() We remove element from the top of stack.
+obj.stackPop() We remove first element from the top of stack (last in first
+               out).
 
-obj.heapPop() We Add element at bottom of heap (the first element).
+obj.heapPop() We Add element at bottom of heap (the first element rom bottom).
 
-obj.heapPush(tuple) We remove element from bottom of heap (the first element).
+obj.heapPush(tuple) We remove first element from bottom of heap.
 
 ==============================================================================
 OBJECT                                                     *help_MaCoLib_Object*
