@@ -111,10 +111,6 @@ MyExecOut(p)		Executes shell script no input expected so no result
 
 GetsPid() 		Gets PID
 
-PrintsColoredString(arr)Prints colored string. Needs array as parameter.
-			let MyArray = [['string1','highlightString1'], 
-			['string2','highlighString2'] ]
-
 GetsMyExecScript(str)	We create the script line to be executed with execute
 			command to get expand(...) value  s.a 
 			GetsMyExecScript("<script>"). Read :help expand() for 
