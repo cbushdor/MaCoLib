@@ -154,7 +154,7 @@ obj.stackPush(tuple) We add element at top of the stack
 obj.stackPop() We remove first element from the top of stack (last in first
                out).
 
-obj.heapPop(tuple) We Add element at bottom of heap (the first element rom 
+obj.heapPop(tuple) We Add element at bottom of heap (the first element from 
 		   bottom).
 
 obj.heapPush() We remove last element from top of heap.
