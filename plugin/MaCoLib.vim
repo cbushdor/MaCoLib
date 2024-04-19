@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-04-19 21:30:33
+" Last Modified : 2024-04-19 22:02:50
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1218
+" Version : 0.0.0.1219
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -360,11 +360,17 @@ function! MaCoLib#new(...)
   endfunction
 
   " Todo
-  function! obj.push() dict abort
+  function! obj.stackPush(tuple) dict abort
+  endfunction
+
+  function! obj.stackPpop() dict abort
   endfunction
 
   " Todo
-  function! obj.pop() dict abort
+  function! obj.heapPush(tuple) dict abort
+  endfunction
+
+  function! obj.heapPpop() dict abort
   endfunction
 
   return obj
