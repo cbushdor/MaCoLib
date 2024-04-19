@@ -147,11 +147,12 @@ obj.addHeapStringColor(tuple)  The function is to add tuple to the heap
 			       g:MACOLIB_PRINT or g:MACOLIB_PROMPT.
 			       The current list can be viewed as a heap.
 
-*Todo
+TODO
 
 obj.push() Push last elem from list.
 
 obj.pop() Push first elem from list.
+
 ==============================================================================
 OBJECT                                                     *help_MaCoLib_Object*
 
