@@ -116,14 +116,6 @@ GetsMyExecScript(str)	We create the script line to be executed with execute
 			GetsMyExecScript("<script>"). Read :help expand() for 
 			more information.
 
-obj.addToPrintColorString(s,c,p)	Add new string with associated color
-				to print, in the stack
-				and, theier format is:
-				  s: string to print. 
-				  c: color associated.
-				  p: [g:MACOLIB_PRINT,g:MACOLIB_PROMPT] are 
-				  potencial values (DEPRECATED)
-
 obj.clearStringColor() 	We erase the whole / full list/stack/heap of strings 
                         declared!
 			Error is thrown when there is nothing to clean
