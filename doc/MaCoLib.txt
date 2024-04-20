@@ -122,7 +122,7 @@ obj.addToPrintColorString(s,c,p)	Add new string with associated color
 				  s: string to print. 
 				  c: color associated.
 				  p: [g:MACOLIB_PRINT,g:MACOLIB_PROMPT] are 
-				  potencial values
+				  potencial values (DEPRECATED)
 
 obj.clearStringColor() 	We erase the whole / full list/stack/heap of strings 
                         declared!
@@ -142,7 +142,7 @@ obj.addStackStringColor(tuple) The function is to add a tuple to the
 obj.removeStackStringColor() We remove last element entered from stack (last in 
                              first out).
 			     Error thrown "Stack is empty "... when stack is 
-			     empty.
+			     empty. (temporary solution)
 
 obj.addHeapStringColor(tuple)  The function is to add tuple to the heap 
 			       in object.
@@ -152,15 +152,10 @@ obj.addHeapStringColor(tuple)  The function is to add tuple to the heap
 			       g:MACOLIB_PRINT or g:MACOLIB_PROMPT.
 			       The current list can be viewed as a heap.
 
-TODO
-
-obj.stackPop() We remove first element from the top of stack (last in first
-               out).
-
-obj.heapPop(tuple) We Add element at bottom of heap (the first element from 
-		   bottom).
-
-obj.heapPush() We remove last element from top of heap.
+obj.removeHeapStringColor()  We remove last element entered from heap (last in 
+                             last out).
+			     Error thrown "Heap is empty "... when stack is 
+			     empty. (temporary solution)
 
 ==============================================================================
 OBJECT                                                     *help_MaCoLib_Object*

@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-04-20 01:11:56
+" Last Modified : 2024-04-20 23:55:59
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1246
+" Version : 0.0.0.1257
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -329,12 +329,12 @@ function! MaCoLib#new(...)
 		return l:MyRes
 	endfunction
 
-	" Add new info to print in the string
-	" array, new string, color
-	function! obj.addToPrintColorString(s,c,p) dict abort
-		call add(self.MyArray,[a:s,a:c,a:p])
-		let self.len = len(self.MyArray)
-	endfunction
+"	" Add new info to print in the string
+"	" array, new string, color
+"	function! obj.addToPrintColorString(s,c,p) dict abort
+"		call add(self.MyArray,[a:s,a:c,a:p])
+"		let self.len = len(self.MyArray)
+"	endfunction
 
 	" We erase the string list/stack
 	function! obj.clearStringColor() dict abort
@@ -375,6 +375,17 @@ function! MaCoLib#new(...)
 		call add(self.MyArray , a:tuple)
 		call reverse(self.MyArray)
 		let self.len = len(self.MyArray)
+	endfunction
+
+	function! obj.removeHeapStringColor() dict abort
+		if (self.len > 0)
+			call reverse(self.MyArray)
+			let l:rem =  self.removeStackStringColor()
+			call reverse(self.MyArray)
+			return l:rem
+		else
+			throw "Heap is empty "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+		endif
 	endfunction
 
 	return obj
