@@ -1,8 +1,8 @@
 *MaCoLib.txt*       my MAnager for COlor LIBrary and some more stuff
 
 		Creation Date :2024-02-15 23:11:52
-		Last Modified : 2024-04-21 00:17:03
-		Version : 0.0.0.152
+		Last Modified : 2024-04-21 22:34:34
+		Version : 0.0.0.156
 
 ==============================================================================
 CONTENTS                                                *MaCoLib* *help_MaCoLib*
@@ -135,6 +135,8 @@ obj.removeStackStringColor() We remove last element entered from stack (last in
                              first out).
 			     Error thrown "Stack is empty "... when stack is 
 			     empty. (temporary solution)
+
+obj.isEmptyStackStringColor() Returns v:true if stack is empty else v:false.
 
 obj.addHeapStringColor(tuple)  The function is to add tuple to the heap 
 			       in object.
