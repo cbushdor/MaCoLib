@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-04-21 22:50:27
+" Last Modified : 2024-04-22 02:10:07
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1265
+" Version : 0.0.0.1286
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -189,124 +189,75 @@ function! GetsPid()
 	return l:term
 endfunction
 
+function! s:fakeError()
+	throw "My error s:fakeError()"
+endfunction
 
 function! MaCoLib#new(...)
-	" We create an object (hash)
-	let obj = {}
+	try
+		" We create an object (hash)
+		let obj = {}
 
-	if a:0 == 0
-		let obj.MyArray = []
-		let obj.len = 0
-	else
-		" l:p is for parameter but it's argument
-		let l:p = a:[1]
+		call s:fakeError()
 
-		"    echo (type(a:p) == v:t_dict ) ? "is type v:t_dict\n" : "is not type v:t_dict\n"
-		"    echo (type(a:p) == v:t_list ) ? "is type v:t_list\n" : "is not type v:t_list\n"
-		if (type(l:p) != v:t_list )
-			throw "Argument type should be v:t_list. "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+		if a:0 == 0
+			let obj.MyArray = []
+			let obj.len = 0
 		else
-			" To check if first element of the array is a list 
-			" we store first element in a local memory l:po
-			" then, we check if, that element is a list itself.
-			" Hence, if it is not we throw an error.
-			let l:po = a:[1]
+			" l:p is for parameter but it's argument
+			let l:p = a:[1]
 
-			if (type(l:po) != v:t_list )
+			"    echo (type(a:p) == v:t_dict ) ? "is type v:t_dict\n" : "is not type v:t_dict\n"
+			"    echo (type(a:p) == v:t_list ) ? "is type v:t_list\n" : "is not type v:t_list\n"
+			if (type(l:p) != v:t_list )
 				throw "Argument type should be v:t_list. "..OutsideTesting(expand('<script>'),expand('<sfile>'))
 			else
-				let obj.MyArray = l:p
+				" To check if first element of the array is a list 
+				" we store first element in a local memory l:po
+				" then, we check if, that element is a list itself.
+				" Hence, if it is not we throw an error.
+				let l:po = a:[1]
+
+				if (type(l:po) != v:t_list )
+					throw "Argument type should be v:t_list. "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+				else
+					let obj.MyArray = l:p
+				endif
 			endif
 		endif
-	endif
 
-	let obj.len = len(obj.MyArray)
+		let obj.len = len(obj.MyArray)
 
-	" W only check how many print are and, how many prompt are ... declared
-	function! obj.checks_prints_and_prompts() dict abort
-		let l:cMACOLIB_PRINT = 0
-		let l:cMACOLIB_PROMPT = 0
-		for [m,c,r] in self.MyArray
-			if r == g:MACOLIB_PRINT
-				let l:cMACOLIB_PRINT += 1
-			elseif r == g:MACOLIB_PROMPT
-				let l:cMACOLIB_PROMPT += 1
-			else
-				throw "Bad value "..OutsideTesting(expand('<script>'),expand('<sfile>'))
-			endif
-		endfor
-		return {"PRINT": l:cMACOLIB_PRINT,"PROMPT": l:cMACOLIB_PROMPT}
-	endfunction
-
-	" This gathersay and prompt function but only paste and copy
-	function! obj.prints_and_prompts() dict abort
-		let l:MyRes = []
-
-		for [m,c,r] in self.MyArray
-			if r == g:MACOLIB_PRINT
-				let l:fields = split(c,' ')
-				let l:myechohl = ":echohl "..l:fields[1]
-				exe c
-				exe l:myechohl
-				" echohl MyColor
-				echon m
-				echohl None
-			elseif r == g:MACOLIB_PROMPT
-				let l:fields = split(c,' ')
-				let l:myechohl = ":echohl "..l:fields[1]
-				exe c
-				exe l:myechohl
-				"echohl MyColor
-				call inputsave()
-				let l:res = input(m .. '> ')
-				call add(l:MyRes,l:res)
-				call inputrestore()
-				echohl None
-				echo "\n"
-			else
-				throw "Bad value "..OutsideTesting(expand('<script>'),expand('<sfile>'))
-			endif
-		endfor
-		return MyRes
-	endfunction
-
-	function! obj.say() dict abort
-		if self.len > 0
-			let l:cpt = 0
-			" m: string to print
-			" c: syntax to highlight
-			" r: print or prompt
+		" W only check how many print are and, how many prompt are ... declared
+		function! obj.checks_prints_and_prompts() dict abort
+			let l:cMACOLIB_PRINT = 0
+			let l:cMACOLIB_PROMPT = 0
 			for [m,c,r] in self.MyArray
 				if r == g:MACOLIB_PRINT
-					let l:cpt += 1
+					let l:cMACOLIB_PRINT += 1
+				elseif r == g:MACOLIB_PROMPT
+					let l:cMACOLIB_PROMPT += 1
+				else
+					throw "Bad value "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+				endif
+			endfor
+			return {"PRINT": l:cMACOLIB_PRINT,"PROMPT": l:cMACOLIB_PROMPT}
+		endfunction
+
+		" This gathersay and prompt function but only paste and copy
+		function! obj.prints_and_prompts() dict abort
+			let l:MyRes = []
+
+			for [m,c,r] in self.MyArray
+				if r == g:MACOLIB_PRINT
 					let l:fields = split(c,' ')
 					let l:myechohl = ":echohl "..l:fields[1]
 					exe c
 					exe l:myechohl
-					"echohl MyColor
+					" echohl MyColor
 					echon m
 					echohl None
-				endif
-			endfor
-			if l:cpt == 0
-				throw "Nothing to print "..OutsideTesting(expand('<script>'),expand('<sfile>'))
-			endif
-		else
-			throw "Nothing to print "..OutsideTesting(expand('<script>'),expand('<sfile>'))
-		endif
-	endfunction
-
-	function! obj.prompt() dict abort
-		if self.len > 0
-			let l:cpt = 0
-			let l:MyRes = []
-
-			" m: string to print
-			" c: syntax to highlight
-			" r: print or prompt
-			for [m,c,r] in self.MyArray
-				if r == g:MACOLIB_PROMPT
-					let l:cpt += 1
+				elseif r == g:MACOLIB_PROMPT
 					let l:fields = split(c,' ')
 					let l:myechohl = ":echohl "..l:fields[1]
 					exe c
@@ -318,73 +269,132 @@ function! MaCoLib#new(...)
 					call inputrestore()
 					echohl None
 					echo "\n"
+				else
+					throw "Bad value "..OutsideTesting(expand('<script>'),expand('<sfile>'))
 				endif
 			endfor
-			if l:cpt == 0
+			return MyRes
+		endfunction
+
+		function! obj.say() dict abort
+			if self.len > 0
+				let l:cpt = 0
+				" m: string to print
+				" c: syntax to highlight
+				" r: print or prompt
+				for [m,c,r] in self.MyArray
+					if r == g:MACOLIB_PRINT
+						let l:cpt += 1
+						let l:fields = split(c,' ')
+						let l:myechohl = ":echohl "..l:fields[1]
+						exe c
+						exe l:myechohl
+						"echohl MyColor
+						echon m
+						echohl None
+					endif
+				endfor
+				if l:cpt == 0
+					throw "Nothing to print 1. "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+				endif
+			else
+				throw "Nothing to print 2. "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+			endif
+		endfunction
+
+		function! obj.prompt() dict abort
+			if self.len > 0
+				let l:cpt = 0
+				let l:MyRes = []
+
+				" m: string to print
+				" c: syntax to highlight
+				" r: print or prompt
+				for [m,c,r] in self.MyArray
+					if r == g:MACOLIB_PROMPT
+						let l:cpt += 1
+						let l:fields = split(c,' ')
+						let l:myechohl = ":echohl "..l:fields[1]
+						exe c
+						exe l:myechohl
+						"echohl MyColor
+						call inputsave()
+						let l:res = input(m .. '> ')
+						call add(l:MyRes,l:res)
+						call inputrestore()
+						echohl None
+						echo "\n"
+					endif
+				endfor
+				if l:cpt == 0
+					throw "Nothing to prompt "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+				endif
+			else
 				throw "Nothing to prompt "..OutsideTesting(expand('<script>'),expand('<sfile>'))
 			endif
-		else
-			throw "Nothing to prompt "..OutsideTesting(expand('<script>'),expand('<sfile>'))
-		endif
-		return l:MyRes
-	endfunction
+			return l:MyRes
+		endfunction
 
-	" We erase the string list/stack
-	function! obj.clearStringColor() dict abort
-		if len(self.MyArray) > 0
-			let l:i = 0
-			while l:i < len(self.MyArray)
-				call remove(self.MyArray[l:i],0,2)
-				let l:i += 1
-			endwhile
-			call remove(self.MyArray,0,len(self.MyArray)-1)
+		" We erase the string list/stack
+		function! obj.clearStringColor() dict abort
+			if len(self.MyArray) > 0
+				let l:i = 0
+				while l:i < len(self.MyArray)
+					call remove(self.MyArray[l:i],0,2)
+					let l:i += 1
+				endwhile
+				call remove(self.MyArray,0,len(self.MyArray)-1)
+				let self.len = len(self.MyArray)
+				return len(self.MyArray) == 0
+			else
+				throw "Nothing to clean 1. "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+			endif
+		endfunction
+
+		function! obj.addStackStringColor(tuple) dict abort
+			call add(self.MyArray,a:tuple)
 			let self.len = len(self.MyArray)
-			return len(self.MyArray) == 0
-		else
-			throw "Nothing to clean "..OutsideTesting(expand('<script>'),expand('<sfile>'))
-		endif
-	endfunction
+			echo "Added:"..string(a:tuple).."\n"
+		endfunction
 
-	function! obj.addStackStringColor(tuple) dict abort
-		call add(self.MyArray,a:tuple)
-		let self.len = len(self.MyArray)
-		echo "Added:"..string(a:tuple).."\n"
-	endfunction
+		function! obj.removeStackStringColor() dict abort
+			if (self.len > 0)
+				let l:elem = copy(get(self.MyArray,len(self.MyArray)-1))
+				call remove(self.MyArray[len(self.MyArray)-1],0,2)
+				call remove(self.MyArray,len(self.MyArray)-1)
+				let self.len = len(self.MyArray)
+				return l:elem
+			else
+				throw "Stack is empty "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+			endif
+		endfunction
 
-	function! obj.removeStackStringColor() dict abort
-		if (self.len > 0)
-			let l:elem = copy(get(self.MyArray,len(self.MyArray)-1))
-			call remove(self.MyArray[len(self.MyArray)-1],0,2)
-			call remove(self.MyArray,len(self.MyArray)-1)
+		function! obj.isEmptyStackStringColor() dict abort
+			return (self.len == 0) ? v:true : v:false
+		endfunction
+
+		function! obj.addHeapStringColor(tuple) dict abort
+			call reverse(self.MyArray)
+			call add(self.MyArray , a:tuple)
+			call reverse(self.MyArray)
 			let self.len = len(self.MyArray)
-			return l:elem
-		else
-			throw "Stack is empty "..OutsideTesting(expand('<script>'),expand('<sfile>'))
-		endif
-	endfunction
+		endfunction
 
-	function! obj.isEmptyStackStringColor() dict abort
-		return (self.len == 0) ? v:true : v:false
-	endfunction
+		function! obj.removeHeapStringColor() dict abort
+			if (self.len > 0)
+				call reverse(self.MyArray)
+				let l:rem =  self.removeStackStringColor()
+				call reverse(self.MyArray)
+				return l:rem
+			else
+				throw "Heap is empty "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+			endif
+		endfunction
 
-	function! obj.addHeapStringColor(tuple) dict abort
-		call reverse(self.MyArray)
-		call add(self.MyArray , a:tuple)
-		call reverse(self.MyArray)
-		let self.len = len(self.MyArray)
-	endfunction
-
-	function! obj.removeHeapStringColor() dict abort
-		if (self.len > 0)
-			call reverse(self.MyArray)
-			let l:rem =  self.removeStackStringColor()
-			call reverse(self.MyArray)
-			return l:rem
-		else
-			throw "Heap is empty "..OutsideTesting(expand('<script>'),expand('<sfile>'))
-		endif
-	endfunction
-
-	return obj
+		return obj
+	catch /My error.*/
+		echo "1.My Error -------------->"..v:exception.."\n"
+		throw "Another error "..v:exception
+	endtry
 endfunction
 
