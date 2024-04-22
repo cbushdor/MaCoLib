@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-04-22 02:10:07
+" Last Modified : 2024-04-22 02:30:45
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1286
+" Version : 0.0.0.1292
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -189,16 +189,10 @@ function! GetsPid()
 	return l:term
 endfunction
 
-function! s:fakeError()
-	throw "My error s:fakeError()"
-endfunction
-
 function! MaCoLib#new(...)
 	try
 		" We create an object (hash)
 		let obj = {}
-
-		call s:fakeError()
 
 		if a:0 == 0
 			let obj.MyArray = []
@@ -392,9 +386,8 @@ function! MaCoLib#new(...)
 		endfunction
 
 		return obj
-	catch /My error.*/
-		echo "1.My Error -------------->"..v:exception.."\n"
-		throw "Another error "..v:exception
+	catch /.*/
+		throw "MaCoLib:"..v:exception
 	endtry
 endfunction
 
