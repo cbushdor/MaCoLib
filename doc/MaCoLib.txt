@@ -1,8 +1,8 @@
 *MaCoLib.txt*       my MAnager for COlor LIBrary and some more stuff
 
 		Creation Date :2024-02-15 23:11:52
-		Last Modified : 2024-04-23 04:38:43
-		Version : 0.0.0.160
+		Last Modified : 2024-04-23 21:17:05
+		Version : 0.0.0.161
 
 ==============================================================================
 CONTENTS                                                *MaCoLib* *help_MaCoLib*
@@ -110,7 +110,8 @@ MyExecOut(p)		Executes shell script no input expected so no result
 			returned!p as  ':!read momo;echo $momo'
 
 
-Stop() 			We kill process with the kill command.
+Stop() 			We kill process with the kill command. We need to
+                        improve algoprithm.
 
 GetsPid() 		Gets PID
 
