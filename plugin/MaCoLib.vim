@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-04-23 04:32:59
+" Last Modified : 2024-04-23 05:28:35
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1323
+" Version : 0.0.0.1351
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -197,7 +197,7 @@ function! MaCoLib#new(...)
 		" We create an object (hash)
 		let obj = {}
 
-      throw "My Error"
+      throw "MyErrorForTheTest\n"
 
 		if a:0 == 0
 			let obj.MyArray = []
@@ -392,7 +392,6 @@ function! MaCoLib#new(...)
 
 		return obj
 	catch /My Error/
-      echo "Error catched "..v:exception
 		throw "MaCoLib#"..v:exception
 	catch /.*/
 		throw "MaCoLib#"..v:exception
