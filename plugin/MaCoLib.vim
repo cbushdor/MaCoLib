@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-04-22 02:33:50
+" Last Modified : 2024-04-23 04:32:59
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1293
+" Version : 0.0.0.1323
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -183,16 +183,21 @@ function! MyExecOut(p)
 	:silent exec l:parm
 endfunction
 
+function! Stop() abort
+   call system('kill -9 ' .. getpid())
+endfunction
+
 " Gets PID 
 function! GetsPid()
-	let l:term = MyExec(':!export MYPID=$(echo $$);echo ${MYPID}')
-	return l:term
+	return getpid()
 endfunction
 
 function! MaCoLib#new(...)
 	try
 		" We create an object (hash)
 		let obj = {}
+
+      throw "My Error"
 
 		if a:0 == 0
 			let obj.MyArray = []
@@ -386,8 +391,11 @@ function! MaCoLib#new(...)
 		endfunction
 
 		return obj
+	catch /My Error/
+      echo "Error catched "..v:exception
+		throw "MaCoLib#"..v:exception
 	catch /.*/
-		throw "MaCoLib:"..v:exception
+		throw "MaCoLib#"..v:exception
 	endtry
 endfunction
 
