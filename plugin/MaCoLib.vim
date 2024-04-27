@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-04-26 02:51:30
+" Last Modified : 2024-04-27 02:25:25
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1378
+" Version : 0.0.0.1400
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -21,6 +21,7 @@ endif
 
 " Object for color printing
 
+const g:MAX_STACK = 14
 let g:MACOLIB_PRINT = v:false
 let g:MACOLIB_PROMPT = v:true
 
@@ -184,7 +185,6 @@ function! MyExecOut(p)
 endfunction
 
 function! Stop() abort
-   echo "------------------------------------------"
    call system('kill -9 ' .. getpid())
 endfunction
 
@@ -202,7 +202,7 @@ function! MaCoLib#new(...)
 
       if a:0 == 0
          let obj.MyArray = []
-         let obj.len = 0
+         let obj.len = -1
       else
          " l:p is for parameter but it's argument
          let l:p = a:[1]
@@ -230,50 +230,58 @@ function! MaCoLib#new(...)
 
       " W only check how many print are and, how many prompt are ... declared
       function! obj.checks_prints_and_prompts() dict abort
-         let l:cMACOLIB_PRINT = 0
-         let l:cMACOLIB_PROMPT = 0
-         for [m,c,r] in self.MyArray
-            if r == g:MACOLIB_PRINT
-               let l:cMACOLIB_PRINT += 1
-            elseif r == g:MACOLIB_PROMPT
-               let l:cMACOLIB_PROMPT += 1
-            else
-               throw "Bad value "..OutsideTesting(expand('<script>'),expand('<sfile>'))
-            endif
-         endfor
+         if self.len < 0
+            throw "Error stack is empty"
+         else
+            let l:cMACOLIB_PRINT = 0
+            let l:cMACOLIB_PROMPT = 0
+            for [m,c,r] in self.MyArray
+               if r == g:MACOLIB_PRINT
+                  let l:cMACOLIB_PRINT += 1
+               elseif r == g:MACOLIB_PROMPT
+                  let l:cMACOLIB_PROMPT += 1
+               else
+                  throw "Bad value "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+               endif
+            endfor
+         endif
          return {"PRINT": l:cMACOLIB_PRINT,"PROMPT": l:cMACOLIB_PROMPT}
       endfunction
 
       " This gathersay and prompt function but only paste and copy
       function! obj.prints_and_prompts() dict abort
-         let l:MyRes = []
+         if self.len < 0
+            throw "Error stack is empty"
+         else
+            let l:MyRes = []
 
-         for [m,c,r] in self.MyArray
-            if r == g:MACOLIB_PRINT
-               let l:fields = split(c,' ')
-               let l:myechohl = ":echohl "..l:fields[1]
-               exe c
-               exe l:myechohl
-               " echohl MyColor
-               echon m
-               echohl None
-            elseif r == g:MACOLIB_PROMPT
-               let l:fields = split(c,' ')
-               let l:myechohl = ":echohl "..l:fields[1]
-               exe c
-               exe l:myechohl
-               "echohl MyColor
-               call inputsave()
-               let l:res = input(m .. '> ')
-               call add(l:MyRes,l:res)
-               call inputrestore()
-               echohl None
-               echo "\n"
-            else
-               throw "Bad value "..OutsideTesting(expand('<script>'),expand('<sfile>'))
-            endif
-         endfor
-         return MyRes
+            for [m,c,r] in self.MyArray
+               if r == g:MACOLIB_PRINT
+                  let l:fields = split(c,' ')
+                  let l:myechohl = ":echohl "..l:fields[1]
+                  exe c
+                  exe l:myechohl
+                  " echohl MyColor
+                  echon m
+                  echohl None
+               elseif r == g:MACOLIB_PROMPT
+                  let l:fields = split(c,' ')
+                  let l:myechohl = ":echohl "..l:fields[1]
+                  exe c
+                  exe l:myechohl
+                  "echohl MyColor
+                  call inputsave()
+                  let l:res = input(m .. '> ')
+                  call add(l:MyRes,l:res)
+                  call inputrestore()
+                  echohl None
+                  echo "\n"
+               else
+                  throw "Bad value "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+               endif
+            endfor
+            return MyRes
+         endif
       endfunction
 
       function! obj.say() dict abort
@@ -326,7 +334,7 @@ function! MaCoLib#new(...)
                   echo "\n"
                endif
             endfor
-            if l:cpt == 0
+            if l:cpt <= 0
                throw "Nothing to prompt "..OutsideTesting(expand('<script>'),expand('<sfile>'))
             endif
          else
@@ -351,10 +359,14 @@ function! MaCoLib#new(...)
          endif
       endfunction
 
-      function! obj.addStackStringColor(tuple) dict abort
-         call add(self.MyArray,a:tuple)
-         let self.len = len(self.MyArray)
-         echo "Added:"..string(a:tuple).."\n"
+      function! obj.addStackStringColor(nuplet) dict abort
+         if self.len+1 < g:MAX_STACK 
+            call add(self.MyArray,a:nuplet)
+            let self.len = len(self.MyArray)
+            echo "Added:"..string(a:nuplet).."\n"
+         else
+            throw "Max size reached "..g:MAX_STACK
+         endif
       endfunction
 
       function! obj.removeStackStringColor() dict abort
