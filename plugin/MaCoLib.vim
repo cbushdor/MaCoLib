@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-04-27 03:03:06
+" Last Modified : 2024-04-28 01:16:57
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1402
+" Version : 0.0.0.1419
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -21,7 +21,7 @@ endif
 
 " Object for color printing
 
-const g:MAX_STACK = 14
+const s:DEFAULT_MAX_STACK = 14
 let g:MACOLIB_PRINT = v:false
 let g:MACOLIB_PROMPT = v:true
 
@@ -197,6 +197,11 @@ function! MaCoLib#new(...)
    try
       " We create an object (hash)
       let obj = {}
+      if a:0 == 2
+         const s:MAX_STACK = a:2
+      else
+         const s:MAX_STACK = s:DEFAULT_MAX_STACK
+      endif
 
       " throw "MyErrorForTheTest"
 
@@ -360,12 +365,12 @@ function! MaCoLib#new(...)
       endfunction
 
       function! obj.addStackStringColor(nuplet) dict abort
-         if self.len+1 < g:MAX_STACK 
+         if self.len+1 < s:MAX_STACK 
             call add(self.MyArray,a:nuplet)
             let self.len = len(self.MyArray)
             echo "Added:"..string(a:nuplet).."\n"
          else
-            throw "Max size reached "..g:MAX_STACK
+            throw "Max size reached "..s:MAX_STACK
          endif
       endfunction
 

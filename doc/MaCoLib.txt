@@ -174,12 +174,14 @@ To Summup we will call <obj> the object declared with MaCoLib#new().
 	\			":hi comment ctermfg=grey ctermbg=darkblue",
 	\			g:MACOLIB_PRINT
 	\               ]
-	\           ]
-	\)		 
+	\           ],
+	\14)		 
 <
 
-MaCoLib#new(...) We create a new object/dictionary. As arguments it takes an 
-		 array of array. The array of array is a list of array(s). 
+MaCoLib#new(...) We create a new object/dictionary. As first argument it takes an 
+		 array of array. The array of array is a list of array(s).
+		 The second argument is the size of the stack if not specified
+		 4 is value by default defined in s:DEFAULT_MAX_STACK.
 		 The first array is a list of Array.
 		 The second array as a specific format:
 			- First is a string,
