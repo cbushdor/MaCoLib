@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-04-28 01:16:57
+" Last Modified : 2024-04-29 00:35:07
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1419
+" Version : 0.0.0.1438
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -202,13 +202,24 @@ function! MaCoLib#new(...)
       else
          const s:MAX_STACK = s:DEFAULT_MAX_STACK
       endif
-
-      " throw "MyErrorForTheTest"
-
       if a:0 == 0
          let obj.MyArray = []
          let obj.len = -1
-      else
+      endif
+
+      " throw "MyErrorForTheTest"
+      let index = 0
+      " echo "index=======>" .. index .. "<------>" .. a:0
+      while index < a:0 " while index < a:0
+         let index += 1
+         echo "i" .. index .. "---->" .. string(a:{index})
+         "   echo "-"
+         " echo index .. "---->" .. string(a:{index})
+
+         "if a:0 == 0
+         "   let obj.MyArray = []
+         "   let obj.len = -1
+         "else
          " l:p is for parameter but it's argument
          let l:p = a:[1]
 
@@ -229,7 +240,8 @@ function! MaCoLib#new(...)
                let obj.MyArray = l:p
             endif
          endif
-      endif
+      endwhile " endwhile while index < a:0
+      "endif
 
       let obj.len = len(obj.MyArray)
 
