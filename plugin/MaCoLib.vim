@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-04-30 00:46:05
+" Last Modified : 2024-04-30 01:24:58
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1515
+" Version : 0.0.0.1533
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -22,7 +22,7 @@ endif
 " Object for color printing
 
 const s:DEFAULT_MAX_STACK = 14
-let g:func_print_col = {"MACOLIB_PRINT": 1,"MACOLIB_PROMPT": 2}
+const g:func_print_col = {"MACOLIB_PRINT": "MCLPR","MACOLIB_PROMPT": "MCLPT"}
 
 " expand('<script>'),expand('<sfile>'    )
 function! OutsideTesting(sc,sf)
@@ -199,12 +199,17 @@ function! MaCoLib#new(...)
          echo "----->" .. a:s[0] .. "<----"
          if match(a:s[1],'^:(hi|highlight) ') 
             echo "----->" .. a:s[1] .. "<----"
-            " if a:s[2] == 
-            echo "----->" .. a:s[2] .. "<----"
-            return v:true
-         else
+            for l:mkey in keys(g:func_print_col)
+               if g:func_print_col[l:mkey] == a:s[2]
+                  echo "----->" .. a:s[2] .. "<----"
+                  return v:true
+               endif
+            endfor
             return v:false
          endif
+      else
+         return v:false
+      endif
       else
          return v:false
       endif
