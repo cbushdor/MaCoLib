@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-04-29 23:15:00
+" Last Modified : 2024-04-29 23:23:32
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1476
+" Version : 0.0.0.1479
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -197,7 +197,7 @@ function! MaCoLib#new(...)
    function! s:is_spec_col_str(s)
       let l:p = a:s
       if (type(l:p) != v:t_list )
-         throw "Argument type should be v:t_list. "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+         return v:false
       else
          " To check if first element of the array is a list 
          " we store first element in a local memory l:po
@@ -206,10 +206,9 @@ function! MaCoLib#new(...)
 
          "let l:po = a:[index][0]
          let l:po = l:p[0]
-         echo ")))))))))" .. string(l:po) .. "(((((((((((((("
 
          if (type(l:po) != v:t_list )
-            throw "Argument type should be v:t_list. "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+         return v:false
          else
             return v:true
          endif
@@ -239,6 +238,8 @@ function! MaCoLib#new(...)
          let l:p = a:[index]
          if s:is_spec_col_str(l:p) == v:true
             let obj.MyArray = l:p
+         else
+         throw "Argument type should be v:t_list. "..OutsideTesting(expand('<script>'),expand('<sfile>'))
          endif
 
       endwhile " endwhile while index < a:0
