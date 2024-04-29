@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-04-29 23:23:32
+" Last Modified : 2024-04-30 00:46:05
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1479
+" Version : 0.0.0.1515
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -22,8 +22,7 @@ endif
 " Object for color printing
 
 const s:DEFAULT_MAX_STACK = 14
-let g:MACOLIB_PRINT = v:false
-let g:MACOLIB_PROMPT = v:true
+let g:func_print_col = {"MACOLIB_PRINT": 1,"MACOLIB_PROMPT": 2}
 
 " expand('<script>'),expand('<sfile>'    )
 function! OutsideTesting(sc,sf)
@@ -194,6 +193,24 @@ function! GetsPid()
 endfunction
 
 function! MaCoLib#new(...)
+   " Ths function checks if the array is valid
+   function! s:is_valid_col_arr(s)
+      if match(a:s[0],'^[.\t\n]*$') 
+         echo "----->" .. a:s[0] .. "<----"
+         if match(a:s[1],'^:(hi|highlight) ') 
+            echo "----->" .. a:s[1] .. "<----"
+            " if a:s[2] == 
+            echo "----->" .. a:s[2] .. "<----"
+            return v:true
+         else
+            return v:false
+         endif
+      else
+         return v:false
+      endif
+   endfunction
+
+   " That function check if the arrays of arrays is valid
    function! s:is_spec_col_str(s)
       let l:p = a:s
       if (type(l:p) != v:t_list )
@@ -208,9 +225,14 @@ function! MaCoLib#new(...)
          let l:po = l:p[0]
 
          if (type(l:po) != v:t_list )
-         return v:false
+            return v:false
          else
-            return v:true
+            echo "TRUE(" .. string(l:po) .. ")\n"
+            if s:is_valid_col_arr(l:po) == v:true
+               return v:true
+            else
+               throw "Argument type should be v:t_list. "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+            endif
          endif
       endif
    endfunction
@@ -239,7 +261,7 @@ function! MaCoLib#new(...)
          if s:is_spec_col_str(l:p) == v:true
             let obj.MyArray = l:p
          else
-         throw "Argument type should be v:t_list. "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+            throw "Argument type should be v:t_list. "..OutsideTesting(expand('<script>'),expand('<sfile>'))
          endif
 
       endwhile " endwhile while index < a:0
@@ -255,9 +277,9 @@ function! MaCoLib#new(...)
             let l:cMACOLIB_PRINT = 0
             let l:cMACOLIB_PROMPT = 0
             for [m,c,r] in self.MyArray
-               if r == g:MACOLIB_PRINT
+               if r == g:func_print_col.MACOLIB_PRINT
                   let l:cMACOLIB_PRINT += 1
-               elseif r == g:MACOLIB_PROMPT
+               elseif r == g:func_print_col.MACOLIB_PROMPT
                   let l:cMACOLIB_PROMPT += 1
                else
                   throw "Bad value "..OutsideTesting(expand('<script>'),expand('<sfile>'))
@@ -275,7 +297,7 @@ function! MaCoLib#new(...)
             let l:MyRes = []
 
             for [m,c,r] in self.MyArray
-               if r == g:MACOLIB_PRINT
+               if r == g:func_print_col.MACOLIB_PRINT
                   let l:fields = split(c,' ')
                   let l:myechohl = ":echohl "..l:fields[1]
                   exe c
@@ -283,7 +305,7 @@ function! MaCoLib#new(...)
                   " echohl MyColor
                   echon m
                   echohl None
-               elseif r == g:MACOLIB_PROMPT
+               elseif r == g:func_print_col.MACOLIB_PROMPT
                   let l:fields = split(c,' ')
                   let l:myechohl = ":echohl "..l:fields[1]
                   exe c
@@ -310,7 +332,7 @@ function! MaCoLib#new(...)
             " c: syntax to highlight
             " r: print or prompt
             for [m,c,r] in self.MyArray
-               if r == g:MACOLIB_PRINT
+               if r == g:func_print_col.MACOLIB_PRINT
                   let l:cpt += 1
                   let l:fields = split(c,' ')
                   let l:myechohl = ":echohl "..l:fields[1]
@@ -338,7 +360,7 @@ function! MaCoLib#new(...)
             " c: syntax to highlight
             " r: print or prompt
             for [m,c,r] in self.MyArray
-               if r == g:MACOLIB_PROMPT
+               if r == g:func_print_col.MACOLIB_PROMPT
                   let l:cpt += 1
                   let l:fields = split(c,' ')
                   let l:myechohl = ":echohl "..l:fields[1]
