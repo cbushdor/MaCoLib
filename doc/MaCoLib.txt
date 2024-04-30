@@ -201,7 +201,7 @@ MaCoLib#new(...) We create a new object/dictionary. We can declare the
 			  of the current array.
 			  The MACOLIB_PROMPT is used for prompt.
 			  Same remark as before for the string.
-		ERRORS:
+		ERRORS: 
 			- Argument type should be v:t_list.
 			- If maximum of element defined in arguments was 
 			  declared twice an error is thrown 
