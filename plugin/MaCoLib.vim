@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-04-30 01:24:58
+" Last Modified : 2024-04-30 03:56:29
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1533
+" Version : 0.0.0.1559
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -22,6 +22,7 @@ endif
 " Object for color printing
 
 const s:DEFAULT_MAX_STACK = 14
+let s:MAX_STACK = s:DEFAULT_MAX_STACK
 const g:func_print_col = {"MACOLIB_PRINT": "MCLPR","MACOLIB_PROMPT": "MCLPT"}
 
 " expand('<script>'),expand('<sfile>'    )
@@ -195,21 +196,26 @@ endfunction
 function! MaCoLib#new(...)
    " Ths function checks if the array is valid
    function! s:is_valid_col_arr(s)
-      if match(a:s[0],'^[.\t\n]*$') 
-         echo "----->" .. a:s[0] .. "<----"
-         if match(a:s[1],'^:(hi|highlight) ') 
-            echo "----->" .. a:s[1] .. "<----"
-            for l:mkey in keys(g:func_print_col)
-               if g:func_print_col[l:mkey] == a:s[2]
-                  echo "----->" .. a:s[2] .. "<----"
-                  return v:true
-               endif
-            endfor
+      echo "s:is_valid_col_arr----->" .. string(a:s)
+      if (type(a:s) != v:t_list )
+         echo "error type("..string(a:s)..")"
+         return v:false
+      else
+         if match(a:s[0],'^[.\t\n]*$') 
+            echo "----->" .. a:s[0] .. "<----"
+            if match(a:s[1],'^:(hi|highlight) ') 
+               echo "----->" .. a:s[1] .. "<----"
+               for l:mkey in keys(g:func_print_col)
+                  if g:func_print_col[l:mkey] == a:s[2]
+                     echo "----->" .. a:s[2] .. "<----"
+                     return v:true
+                  endif
+               endfor
+               return v:false
+            endif
+         else
             return v:false
          endif
-      else
-         return v:false
-      endif
       else
          return v:false
       endif
@@ -245,12 +251,9 @@ function! MaCoLib#new(...)
    try
       " We create an object (hash)
       let obj = {}
-      if a:0 == 2
-         const s:MAX_STACK = a:2
-      else
-         const s:MAX_STACK = s:DEFAULT_MAX_STACK
-      endif
       if a:0 == 0
+         echo "momomomo"
+         let s:MAX_STACK = s:DEFAULT_MAX_STACK
          let obj.MyArray = []
          let obj.len = -1
       endif
@@ -265,6 +268,11 @@ function! MaCoLib#new(...)
          let l:p = a:[index]
          if s:is_spec_col_str(l:p) == v:true
             let obj.MyArray = l:p
+            "   add(obj.MyArray,l:p)
+         elseif s:is_valid_col_arr(l:p)
+               add(obj.MyArray,l:p)
+         elseif (type(l:p) == v:t_number)
+            let s:MAX_STACK = l:p
          else
             throw "Argument type should be v:t_list. "..OutsideTesting(expand('<script>'),expand('<sfile>'))
          endif
