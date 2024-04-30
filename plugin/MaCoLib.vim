@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-04-30 03:56:29
+" Last Modified : 2024-04-30 23:22:58
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1559
+" Version : 0.0.0.1572
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -22,7 +22,6 @@ endif
 " Object for color printing
 
 const s:DEFAULT_MAX_STACK = 14
-let s:MAX_STACK = s:DEFAULT_MAX_STACK
 const g:func_print_col = {"MACOLIB_PRINT": "MCLPR","MACOLIB_PROMPT": "MCLPT"}
 
 " expand('<script>'),expand('<sfile>'    )
@@ -194,6 +193,10 @@ function! GetsPid()
 endfunction
 
 function! MaCoLib#new(...)
+   let s:MAX_STACK = s:DEFAULT_MAX_STACK
+   " We check if max stack specified in param
+   let s:check_max_stack = v:false
+
    " Ths function checks if the array is valid
    function! s:is_valid_col_arr(s)
       echo "s:is_valid_col_arr----->" .. string(a:s)
@@ -268,11 +271,16 @@ function! MaCoLib#new(...)
          let l:p = a:[index]
          if s:is_spec_col_str(l:p) == v:true
             let obj.MyArray = l:p
-            "   add(obj.MyArray,l:p)
+         "   add(obj.MyArray,l:p)
          elseif s:is_valid_col_arr(l:p)
-               add(obj.MyArray,l:p)
+            add(obj.MyArray,l:p)
          elseif (type(l:p) == v:t_number)
-            let s:MAX_STACK = l:p
+            if s:check_max_stack == v:false
+               let s:MAX_STACK = l:p
+               let s:check_max_stack = v:true
+            else
+               throw "Stack max(".. s:MAX_STACK .. ") already specified."
+            endif
          else
             throw "Argument type should be v:t_list. "..OutsideTesting(expand('<script>'),expand('<sfile>'))
          endif
