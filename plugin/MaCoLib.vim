@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-05-01 00:51:57
+" Last Modified : 2024-05-01 01:47:03
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1573
+" Version : 0.0.0.1574
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -279,7 +279,7 @@ function! MaCoLib#new(...)
                let s:MAX_STACK = l:p
                let s:check_max_stack = v:true
             else
-               throw "Stack max(".. s:MAX_STACK .. ") already specified."
+               throw "Stack max(".. s:MAX_STACK .. ") already specified "..OutsideTesting(expand('<script>'),expand('<sfile>'))
             endif
          else
             throw "Argument type should be v:t_list. "..OutsideTesting(expand('<script>'),expand('<sfile>'))
