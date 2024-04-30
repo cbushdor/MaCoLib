@@ -192,10 +192,16 @@ MaCoLib#new(...) We create a new object/dictionary. We can declare the
 			- Second gives the color to print the string
 			  (read :help highlight)
 			- Third and last has two possible values s.a 
-			  [g:MACOLIB_PRINT,g:MACOLIB_PROMPT].
-			  The g:MACOLIB_PRINT says print that string 
-			  whereas g:MACOLIB_PROMPT is used for prompt.
-		check for ERRORS:
+			  in g:func_print_col dictionary. To access
+			  them just prefix g:func_print_col.<value>.
+			  The <value> can be either MACOLIB_PRINT or
+			  MACOLIB_PROMPT. 
+			  The MACOLIB_PRINT says print the string in
+			  color specified by the two previous element
+			  of the current array.
+			  The MACOLIB_PROMPT is used for prompt.
+			  Same remark as before for the string.
+		ERRORS:
 			- Argument type should be v:t_list.
 			- If maximum of element defined in arguments was 
 			  declared twice an error is thrown 
