@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-05-01 01:47:03
+" Last Modified : 2024-05-01 23:33:40
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1574
+" Version : 0.0.0.1613
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -196,22 +196,23 @@ function! MaCoLib#new(...)
    let s:MAX_STACK = s:DEFAULT_MAX_STACK
    " We check if max stack specified in param
    let s:check_max_stack = v:false
+   let s:check_max_array_of_array = v:false
 
    " Ths function checks if the array is valid
    function! s:is_valid_col_arr(s)
-      echo "s:is_valid_col_arr----->" .. string(a:s)
+      " echo "s:is_valid_col_arr----->" .. string(a:s)
       if (type(a:s) != v:t_list )
-         echo "error type("..string(a:s)..")"
+         " echo "error type("..string(a:s)..")"
          return v:false
       else
          if match(a:s[0],'^[.\t\n]*$') 
-            echo "----->" .. a:s[0] .. "<----"
+            "echo "1----->" .. a:s[0] .. "<----"
             if match(a:s[1],'^:(hi|highlight) ') 
-               echo "----->" .. a:s[1] .. "<----"
-               for l:mkey in keys(g:func_print_col)
-                  if g:func_print_col[l:mkey] == a:s[2]
-                     echo "----->" .. a:s[2] .. "<----"
-                     return v:true
+               "echo "2----->" .. string(a:s[1]) .. "<----"
+               for l:mkey in keys(g:func_print_col) " We parse all values from dictionary to check that 3rd field within dictionary
+                  if g:func_print_col[l:mkey] == a:s[2] " We check that value is in dictionary
+                     "echo "3----->" .. a:s[2] .. "<----"
+                     return v:true " Value found and, return true
                   endif
                endfor
                return v:false
@@ -241,7 +242,7 @@ function! MaCoLib#new(...)
          if (type(l:po) != v:t_list )
             return v:false
          else
-            echo "TRUE(" .. string(l:po) .. ")\n"
+            "echo "TRUE(" .. string(l:po) .. ")\n"
             if s:is_valid_col_arr(l:po) == v:true
                return v:true
             else
@@ -254,12 +255,12 @@ function! MaCoLib#new(...)
    try
       " We create an object (hash)
       let obj = {}
-      if a:0 == 0
-         echo "momomomo"
-         let s:MAX_STACK = s:DEFAULT_MAX_STACK
-         let obj.MyArray = []
+  "    if a:0 == 0
+  "       echo "momomomo"
+  "    endif
          let obj.len = -1
-      endif
+         let obj.MyArray = []
+      let s:MAX_STACK = s:DEFAULT_MAX_STACK " Case it is not specified
 
       " throw "MyErrorForTheTest"
       let index = 0
@@ -269,12 +270,16 @@ function! MaCoLib#new(...)
 
          " let l:p = a:[1]
          let l:p = a:[index]
-         if s:is_spec_col_str(l:p) == v:true
+         " echo "a:(" .. index .. ")====)" .. string(a:[index]) .. "(*******"
+         if s:is_spec_col_str(l:p) == v:true " Array of array
+
+   if s:check_max_array_of_array == v:false
+   let s:check_max_array_of_array = v:true
             let obj.MyArray = l:p
-         "   add(obj.MyArray,l:p)
-         elseif s:is_valid_col_arr(l:p)
-            add(obj.MyArray,l:p)
-         elseif (type(l:p) == v:t_number)
+   else
+      throw "Spec for color and  string already declared in arguments."
+   endif
+         elseif (type(l:p) == v:t_number) " Number of element in the stack specified
             if s:check_max_stack == v:false
                let s:MAX_STACK = l:p
                let s:check_max_stack = v:true

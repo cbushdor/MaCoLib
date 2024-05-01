@@ -184,17 +184,19 @@ MaCoLib#new(...) We create a new object/dictionary. We can declare the
 	         the maximum of elements in the stack. If it  is not 
 		 specified in arguments of MaCoLib#new then 
 		 s:DEFULT_MAX_STACK is used. 
-		 As the second argument of MaCoLib#new it takes an array of
-		 array. The array of array is a list of array(s).
+		 As the second argument, of MaCoLib#new it takes 
+		 an array of array. The array of array is a list of 
+		 array(s).
 		 The first array is a list of Array.
 		 The second array as a specific format:
 			- First is a string,
 			- Second gives the color to print the string
-			  (read :help highlight)
-			- Third and last has two possible values s.a 
-			  in g:func_print_col dictionary. To access
-			  them just prefix g:func_print_col.<value>.
-			  The <value> can be either MACOLIB_PRINT or
+			  (read :help highlight).
+			- Third and, last has two possible values 
+			  s.a in g:func_print_col dictionary. To 
+			  access them just prefix 
+			  g:func_print_col.<value>. The <value> 
+			  can be either MACOLIB_PRINT or
 			  MACOLIB_PROMPT. 
 			  The MACOLIB_PRINT says print the string in
 			  color specified by the two previous element
@@ -207,6 +209,9 @@ MaCoLib#new(...) We create a new object/dictionary. We can declare the
 			  declared twice an error is thrown 
 			  "Stack max(number of element specified) 
 			  already specified." .
+		        - If array of array already declared an error is
+			  thrown "Spec for color and  string already 
+			  declared in arguments."
 
 obj.checks_prints_and_prompts() Check if last field value is well defined.
 				ERRORS:
