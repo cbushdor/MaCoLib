@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-05-01 23:33:40
+" Last Modified : 2024-05-02 00:21:09
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1613
+" Version : 0.0.0.1615
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -22,7 +22,7 @@ endif
 " Object for color printing
 
 const s:DEFAULT_MAX_STACK = 14
-const g:func_print_col = {"MACOLIB_PRINT": "MCLPR","MACOLIB_PROMPT": "MCLPT"}
+const g:func_print_col = {"MACOLIB_PRINT": "MACOLIB_PRINT","MACOLIB_PROMPT": "MACOLIB_PROMPT"}
 
 " expand('<script>'),expand('<sfile>'    )
 function! OutsideTesting(sc,sf)
