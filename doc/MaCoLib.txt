@@ -121,7 +121,6 @@ GetsMyExecScript(str)	We create the script line to be executed with execute
 			more information.
 
 ==============================================================================
-==============================================================================
 OBJECT                                                     *help_MaCoLib_Object*
 
 To create an object or dictionary we need new() function.
