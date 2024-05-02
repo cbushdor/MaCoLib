@@ -120,25 +120,6 @@ GetsMyExecScript(str)	We create the script line to be executed with execute
 			GetsMyExecScript("<script>"). Read :help expand() for 
 			more information.
 
-obj.clearStringColor() 	We erase the whole / full list/stack/heap of strings 
-                        declared!
-			Error is thrown when there is nothing to clean
-			or, there is nothing in the stack
-			and, we want to clean with extra info.
-
-obj.addStackStringColor(tuple) The function is to add a nuplet to the 
-			       stack in object. The obj in current list in 
-			       object list tuple (read below)
-			         nuplet = ["String",':highlight ...',method].
-			       It is necessary to check ":help highlight" in vim
-			       the right format values.
-			       The methods can be one of these: g:MACOLIB_PRINT
-			       or g:MACOLIB_PROMPT.
-			       The current list can be viewed as a stack.
-			       ERROR
-			       - If stack size reached an error is thrown 
-				 s.a "Max size reached " 
-
 ==============================================================================
 obj.removeStackStringColor() We remove last element entered from stack (last 
 			     in first out).
@@ -204,14 +185,17 @@ MaCoLib#new(...) We create a new object/dictionary. We can declare the
 			  The MACOLIB_PROMPT is used for prompt.
 			  Same remark as before for the string.
 		ERRORS: 
-			- Argument type should be v:t_list.
-			- If maximum of element defined in arguments was 
-			  declared twice an error is thrown 
+			- If the maximum of elements that can be 
+			  stored in the stack and, is defined in 
+			  arguments twice an error is thrown 
 			  "Stack max(number of element specified) 
 			  already specified." .
 		        - If array of array already declared an error is
-			  thrown "Spec for color and  string already 
+			  thrown "Spec for color and string already 
 			  declared in arguments."
+			- If argument declared is not array of something
+			  different than of array then an error is
+			  thrown "Argument type should be v:t_list. ".
 
 obj.checks_prints_and_prompts() Check if last field value is well defined.
 				ERRORS:
@@ -255,6 +239,25 @@ obj.prints_and_prompts()    and this is a gathering of say() and prompt()
 			    - An error is thrown if value not in 
 			      g:MACOLIB_PROMPT or g:MACOLIB_PRINT s.a 
 			      "Bad value "... where ... is extra local values.
+
+obj.clearStringColor() 	We erase the whole / full list/stack/heap of strings 
+                        declared!
+			Error is thrown when there is nothing to clean
+			or, there is nothing in the stack
+			and, we want to clean with extra info.
+
+obj.addStackStringColor(tuple) The function is to add a nuplet to the 
+			       stack in object. The obj in current list in 
+			       object list tuple (read below)
+			         nuplet = ["String",':highlight ...',method].
+			       It is necessary to check ":help highlight" in vim
+			       the right format values.
+			       The methods can be one of these: g:MACOLIB_PRINT
+			       or g:MACOLIB_PROMPT.
+			       The current list can be viewed as a stack.
+			       ERROR
+			       - If stack size reached an error is thrown 
+				 s.a "Max size reached " 
 
 ==============================================================================
 EXAMPLE                                                   *help_MaCoLib_Example*

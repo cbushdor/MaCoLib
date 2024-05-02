@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-05-02 00:21:09
+" Last Modified : 2024-05-02 22:50:40
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1615
+" Version : 0.0.0.1618
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -200,18 +200,13 @@ function! MaCoLib#new(...)
 
    " Ths function checks if the array is valid
    function! s:is_valid_col_arr(s)
-      " echo "s:is_valid_col_arr----->" .. string(a:s)
       if (type(a:s) != v:t_list )
-         " echo "error type("..string(a:s)..")"
          return v:false
       else
          if match(a:s[0],'^[.\t\n]*$') 
-            "echo "1----->" .. a:s[0] .. "<----"
             if match(a:s[1],'^:(hi|highlight) ') 
-               "echo "2----->" .. string(a:s[1]) .. "<----"
                for l:mkey in keys(g:func_print_col) " We parse all values from dictionary to check that 3rd field within dictionary
                   if g:func_print_col[l:mkey] == a:s[2] " We check that value is in dictionary
-                     "echo "3----->" .. a:s[2] .. "<----"
                      return v:true " Value found and, return true
                   endif
                endfor
@@ -242,7 +237,6 @@ function! MaCoLib#new(...)
          if (type(l:po) != v:t_list )
             return v:false
          else
-            "echo "TRUE(" .. string(l:po) .. ")\n"
             if s:is_valid_col_arr(l:po) == v:true
                return v:true
             else
