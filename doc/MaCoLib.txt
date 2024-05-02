@@ -121,26 +121,6 @@ GetsMyExecScript(str)	We create the script line to be executed with execute
 			more information.
 
 ==============================================================================
-obj.removeStackStringColor() We remove last element entered from stack (last 
-			     in first out).
-			     Error thrown "Stack is empty "... when stack is 
-			     empty. (temporary solution)
-
-obj.isEmptyStackStringColor() Returns v:true if stack is empty else v:false.
-
-obj.addHeapStringColor(tuple)  The function is to add tuple to the heap 
-			       in object.
-			       tuple = ["String",':highlight ...',method].
-			       check :help highlight when in vim for help.
-			       The method for printing can be one of these: 
-			       g:MACOLIB_PRINT or g:MACOLIB_PROMPT.
-			       The current list can be viewed as a heap.
-
-obj.removeHeapStringColor()  We remove last element entered from heap (last in 
-                             last out).
-			     Error thrown "Heap is empty "... when stack is 
-			     empty. (temporary solution)
-
 ==============================================================================
 OBJECT                                                     *help_MaCoLib_Object*
 
@@ -258,6 +238,26 @@ obj.addStackStringColor(tuple) The function is to add a nuplet to the
 			       ERROR
 			       - If stack size reached an error is thrown 
 				 s.a "Max size reached " 
+
+obj.removeStackStringColor() We remove last element entered from stack (last 
+			     in first out).
+			     Error thrown "Stack is empty "... when stack is 
+			     empty. (temporary solution)
+
+obj.isEmptyStackStringColor() Returns v:true if stack is empty else v:false.
+
+obj.addHeapStringColor(tuple)  The function is to add tuple to the heap 
+			       in object.
+			       tuple = ["String",':highlight ...',method].
+			       check :help highlight when in vim for help.
+			       The method for printing can be one of these: 
+			       g:MACOLIB_PRINT or g:MACOLIB_PROMPT.
+			       The current list can be viewed as a heap.
+
+obj.removeHeapStringColor()  We remove last element entered from heap (last in 
+                             last out).
+			     Error thrown "Heap is empty "... when stack is 
+			     empty. (temporary solution)
 
 ==============================================================================
 EXAMPLE                                                   *help_MaCoLib_Example*
