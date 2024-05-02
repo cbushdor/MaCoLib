@@ -179,10 +179,10 @@ MaCoLib#new(...) We create a new object/dictionary. We can declare the
 
 obj.checks_prints_and_prompts() Check if last field value is well defined.
 				ERRORS:
-	    			- If Stack empty an error is thrown and error 
-				  "Error stack is empty".
-				- If field has bad value accepted in the stack 
-				  an error is thrown "Bad value ".
+				   - If Stack empty an error is thrown and 
+				     error "Error stack is empty".
+				   - If field has bad value accepted in the
+				     stack an error is thrown "Bad value ".
 
 obj .say()  We print all strings if v:false is met. If no carriage return 
 	    met, or if not specified and severel message with different colors 
@@ -204,27 +204,30 @@ obj.checks_prints_and_prompt()    We only check how many print(s) are and,
 				  how many prompt are ... declared.
 				  We return a dictionary where values are 
 				  stored s.a {'PRINT': 1, 'PROMPT': 4}.
-				  Error thrown if value not in 
-				  g:MACOLIB_PROMPT or g:MACOLIB_PRINT s.a 
-				  "Bad value "...  where ... is extra local 
-				  values.
+				  ERRORS:
+				  	- Error thrown if value not in 
+					g:MACOLIB_PROMPT or g:MACOLIB_PRINT 
+					s.a "Bad value "...  where '...' is 
+					extra local values.
 
 obj.prints_and_prompts()    and this is a gathering of say() and prompt() 
                             functions in order of declarations (no PROMPT list
 			    and, then PRINT list but only PRINT and PROMPTS
 			    mixed if mixed off  course).
-			    ERRORS
-			    - If Stack empty an error is thrown and error 
-			      "Error stack is empty".
-			    - An error is thrown if value not in 
-			      g:MACOLIB_PROMPT or g:MACOLIB_PRINT s.a 
-			      "Bad value "... where ... is extra local values.
+			    ERRORS:
+			       - If Stack empty an error is thrown and error 
+				 "Error stack is empty".
+			       - An error is thrown if value not in 
+				 g:MACOLIB_PROMPT or g:MACOLIB_PRINT s.a 
+				 "Bad value "... where '...' is extra local 
+				 values.
 
 obj.clearStringColor() 	We erase the whole / full list/stack/heap of strings 
                         declared!
-			Error is thrown when there is nothing to clean
-			or, there is nothing in the stack
-			and, we want to clean with extra info.
+			ERRORS:
+				- Error is thrown when there is nothing to
+				  clean or, there is nothing in the stack
+				  and, we want to clean with extra info.
 
 obj.addStackStringColor(tuple) The function is to add a nuplet to the 
 			       stack in object. The obj in current list in 
@@ -235,14 +238,16 @@ obj.addStackStringColor(tuple) The function is to add a nuplet to the
 			       The methods can be one of these: g:MACOLIB_PRINT
 			       or g:MACOLIB_PROMPT.
 			       The current list can be viewed as a stack.
-			       ERROR
-			       - If stack size reached an error is thrown 
-				 s.a "Max size reached " 
+			       ERRORS:
+				  - If stack size reached an error is thrown 
+				    s.a "Max size reached " 
 
 obj.removeStackStringColor() We remove last element entered from stack (last 
 			     in first out).
-			     Error thrown "Stack is empty "... when stack is 
-			     empty. (temporary solution)
+==============================================================================
+			     ERRORS:
+			     	- Error thrown "Stack is empty "... when stack 
+				  is empty. (temporary solution)
 
 obj.isEmptyStackStringColor() Returns v:true if stack is empty else v:false.
 
@@ -256,8 +261,9 @@ obj.addHeapStringColor(tuple)  The function is to add tuple to the heap
 
 obj.removeHeapStringColor()  We remove last element entered from heap (last in 
                              last out).
-			     Error thrown "Heap is empty "... when stack is 
-			     empty. (temporary solution)
+			     ERRORS:
+			     	- Error thrown "Heap is empty "... when stack 
+				  is empty. (temporary solution)
 
 ==============================================================================
 EXAMPLE                                                   *help_MaCoLib_Example*
