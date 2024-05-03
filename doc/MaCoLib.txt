@@ -1,8 +1,8 @@
 *MaCoLib.txt*       my MAnager for COlor LIBrary and some more stuff
 
 		Creation Date :2024-02-15 23:11:52
-		Last Modified : 2024-05-02 23:23:16
-		Version : 0.0.0.193
+		Last Modified : 2024-05-04 01:53:16
+		Version : 0.0.0.210
 
 ==============================================================================
 CONTENTS                                                *MaCoLib* *help_MaCoLib*
@@ -138,20 +138,19 @@ To Summup we will call <obj> the object declared with MaCoLib#new().
 	\14)		 
 <
 
-MaCoLib#new(...) We create a new object/dictionary. We can declare the
-                 following in the order that we want. 
-		 As an example, lets take first argument it takes
-	         the maximum of elements in the stack. If it  is not 
-		 specified in arguments of MaCoLib#new then 
-		 s:DEFULT_MAX_STACK is used. 
-		 As the second argument, of MaCoLib#new it takes 
+MaCoLib#new(...) The new operator creates an object/dictionary. 
+                 We can declare parameters in the order that we want. 
+		 For instance, lets take first argument as the maximum 
+		 of elements that can be stored in the stack. If it  is not 
+		 specified in arguments list of MaCoLib#new then 
+		 s:DEFAULT_MAX_STACK is used. 
+		 Hence, the second argument, of MaCoLib#new, takes 
 		 an array of array. The array of array is a list of 
-		 array(s).
-		 The first array is a list of Array.
-		 The second array as a specific format:
-			- First is a string,
+		 array(s) with a specific format. Now we talk about
+		 this array that has a specific format:
+			- First is a string to be printed in color,
 			- Second gives the color to print the string
-			  (read :help highlight).
+			  (read :help highlight for specific format).
 			- Third and, last has two possible values 
 			  s.a in g:func_print_col dictionary. To 
 			  access them just prefix 
@@ -162,16 +161,21 @@ MaCoLib#new(...) We create a new object/dictionary. We can declare the
 			  color specified by the two previous element
 			  of the current array.
 			  The MACOLIB_PROMPT is used for prompt.
-			  Same remark as before for the string.
+			  Same remark as before for the string and color.
+			  If no array of array is not declared only empty
+			  object is returned.
 		ERRORS: 
 			- If the maximum of elements that can be 
-			  stored in the stack and, is defined in 
-			  arguments twice an error is thrown 
-			  "Stack max(number of element specified) 
+			  stored in the stack is declared twice in agument 
+			  list an error is thrown 
+			  "Stack max (<number of element specified>) 
 			  already specified." .
+			- An error can be thrown if the number of element in 
+			  the array of array is reach "Max size reached 
+			  (<number of element specified>).
 		        - If array of array already declared an error is
 			  thrown "Spec for color and string already 
-			  declared in arguments."
+			  declared in arguments." in argument list.
 			- If argument declared is not array of something
 			  different than of array then an error is
 			  thrown "Argument type should be v:t_list. ".
