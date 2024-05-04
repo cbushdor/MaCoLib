@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-05-04 02:10:04
+" Last Modified : 2024-05-05 01:14:48
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1636
+" Version : 0.0.0.1661
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -193,9 +193,9 @@ function! GetsPid()
 endfunction
 
 function! MaCoLib#new(...)
-   let s:MAX_STACK = s:DEFAULT_MAX_STACK
+   let s:MAX_STACK = -1
    " We check if max stack specified in param
-   let s:check_max_stack = v:false
+   " let s:check_max_stack = v:false
    let s:check_max_array_of_array = v:false
 
    " Ths function checks if the array is valid
@@ -248,50 +248,49 @@ function! MaCoLib#new(...)
 
    try
       " We create an object (hash)
-      let obj = {}
-      "    if a:0 == 0
-      "       echo "momomomo"
-      "    endif
-      let obj.len = -1
-      let obj.MyArray = []
-      let s:MAX_STACK = s:DEFAULT_MAX_STACK " Case it is not specified
+      let obj = {} " Object/Dictionary created
+      let obj.len = -1 " We initialise
+      let obj.MyArray = [] " This is where the array of array will be stored
+      " let s:MAX_STACK = s:DEFAULT_MAX_STACK " Case it is not specified
 
       " throw "MyErrorForTheTest"
       let index = 0
 
-      while index < a:0 " while index < a:0
+      while index < a:0 " Begin while index < a:0
          let index += 1
 
-         " let l:p = a:[1]
          let l:p = a:[index]
-         " echo "a:(" .. index .. ")====)" .. string(a:[index]) .. "(*******"
          if s:is_spec_col_str(l:p) == v:true " Array of array
-
             if s:check_max_array_of_array == v:false
                let s:check_max_array_of_array = v:true
-               if len(l:p)+1 >= s:MAX_STACK
-                  throw "Max size reached "..s:MAX_STACK
+               if s:MAX_STACK != -1 " Case where stack max was not met in parametters
+                  if len(l:p)+1 >= s:MAX_STACK
+                     throw "Max size reached "..s:MAX_STACK
+                  endif
                endif
                let obj.MyArray = l:p
             else
                throw "Spec for color and  string already declared in arguments."
             endif
          elseif (type(l:p) == v:t_number) " Number of element in the stack specified
-            if s:check_max_stack == v:false
-               let s:MAX_STACK = l:p
-               let s:check_max_stack = v:true
+            echo "Max " .. s:MAX_STACK
+            if s:MAX_STACK == -1 " Number of element(s) of the stack not met yet 
+               let s:MAX_STACK = l:p " We initialise the maximum of elements in the stack
+               if len(l:p)+1 >= s:MAX_STACK " We compare the element in the stack if not empty
+                  throw "Max size reached "..s:MAX_STACK
+               endif
             else
                throw "Stack max (".. s:MAX_STACK .. ") already specified "..OutsideTesting(expand('<script>'),expand('<sfile>'))
             endif
          else
             throw "Argument type should be v:t_list. "..OutsideTesting(expand('<script>'),expand('<sfile>'))
          endif
+      endwhile " End while index < a:0
 
-      endwhile " endwhile while index < a:0
-      "endif
-
+      if s:MAX_STACK == -1
+         let s:MAX_STACK = s:DEFAULT_MAX_STACK
+      endif
       let obj.len = len(obj.MyArray)
-
 
 
       " W only check how many print are and, how many prompt are ... declared
