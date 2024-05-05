@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-05-05 01:24:14
+" Last Modified : 2024-05-06 00:02:04
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1666
+" Version : 0.0.0.1676
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -286,11 +286,13 @@ function! MaCoLib#new(...)
          endif
       endwhile " End while index < a:0
 
-      if s:MAX_STACK == -1
+      if s:MAX_STACK == -1 " Case no arguments that  specify the number of elements in stack
          let s:MAX_STACK = s:DEFAULT_MAX_STACK
       endif
-      if len(l:p)+1 >= s:MAX_STACK " We compare the number of elements in the stack
-         throw "Max size reached "..s:MAX_STACK
+      if exists("l:p") " Case not enout arguments in MaCoLib#new(...)
+         if len(l:p)+1 >= s:MAX_STACK " We compare the number of elements in the stack
+            throw "Max size reached "..s:MAX_STACK
+         endif
       endif
       let obj.len = len(obj.MyArray)
 
