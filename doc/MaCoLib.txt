@@ -1,8 +1,8 @@
 *MaCoLib.txt*       my MAnager for COlor LIBrary and some more stuff
 
 		Creation Date :2024-02-15 23:11:52
-		Last Modified : 2024-05-07 01:13:40
-		Version : 0.0.0.241
+		Last Modified : 2024-05-07 02:34:21
+		Version : 0.0.0.252
 
 ==============================================================================
 CONTENTS                                                *MaCoLib* *help_MaCoLib*
@@ -139,23 +139,27 @@ To Summup we will call <obj> the object declared with MaCoLib#new().
 <
 
 MaCoLib#new(...) It creates a new object or dictionary. It is possible to 
-                 declare parameters in the order that user wants wihin
+                 declare parameters in the order that the user wants wihin
 		 constructor MaCoLib#new(...). For instance, the first 
 		 argument is the maximum of elements that can be stored in the 
 		 stack. If, it  is not specified in arguments list of the
-		 constructor then s:DEFAULT_MAX_STACK value is used.
+		 constructor then s:DEFAULT_MAX_STACK value is used. In the
+		 following, we are going to talk about list of array(s) but we
+		 don't use list but array of array(s). So, if in the following
+		 a list of array(s) is used, it is an array of array(s) as a
+		 matter of fact!!!!!!
 		 If the second argument does not exists, hence an empty array
-		 of array is created. If, the second argument of constructor,
-		 does exist here is the format of the inner array used.
-		 The inner array has a specific format. Now, we talk about 
-		 this specific format:
+		 of array(s) is created. If, the second argument of 
+		 constructor, does exist here is the format of the inner array 
+		 used. The inner array has a specific format. Now, we talk 
+		 about this specific format:
 			- First is a string to be printed or prompted in 
 			  color.
 			- Second gives the color to print the string
 			  (read :help highlight for specific format).
 			- Third and, last, has a dictionary. This, has two 
 			  possible values. To declare just prefix 
-			  g:func_print_col.<value>. The <value> 
+			  "g:func_print_col.<value>". The <value> 
 			  can be one of the two s.a MACOLIB_PRINT or
 			  MACOLIB_PROMPT but not both at the same time.
 			  The MACOLIB_PRINT is used to print the string in
