@@ -1,8 +1,8 @@
 *MaCoLib.txt*       my MAnager for COlor LIBrary and some more stuff
 
 		Creation Date :2024-02-15 23:11:52
-		Last Modified : 2024-05-08 01:07:45
-		Version : 0.0.0.272
+		Last Modified : 2024-05-08 01:31:21
+		Version : 0.0.0.274
 
 ==============================================================================
 CONTENTS                                                *MaCoLib* *help_MaCoLib*
@@ -222,7 +222,7 @@ obj.addStackStringColor(nuplet)Adds a nuplet to the stack within object <obj>.
 				    s.a "Max size reached " 
 				  - If the format of nuplet not respected then
 				    an error is thrown s.a "Error detected in 
-				    nuplet format."
+				    the nuplet format."
 
 
 obj.checks_prints_and_prompts() Check if last field value is well defined.
