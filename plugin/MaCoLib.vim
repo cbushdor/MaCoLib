@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-05-08 01:37:41
+" Last Modified : 2024-05-08 01:40:01
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1692
+" Version : 0.0.0.1693
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -297,6 +297,8 @@ function! MaCoLib#new(...)
       let obj.len = len(obj.MyArray)
 
       function! obj.addStackStringColor(nuplet) dict abort
+         " nuplet is an array with specific format
+         " to check the format we need to get array of array!
          if s:is_spec_col_str([a:nuplet]) == v:true " Array of array
             if self.len+1 < s:MAX_STACK 
                call add(self.MyArray,a:nuplet)
