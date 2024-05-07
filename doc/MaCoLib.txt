@@ -1,8 +1,8 @@
 *MaCoLib.txt*       my MAnager for COlor LIBrary and some more stuff
 
 		Creation Date :2024-02-15 23:11:52
-		Last Modified : 2024-05-07 02:34:21
-		Version : 0.0.0.252
+		Last Modified : 2024-05-08 01:07:45
+		Version : 0.0.0.272
 
 ==============================================================================
 CONTENTS                                                *MaCoLib* *help_MaCoLib*
@@ -148,15 +148,15 @@ MaCoLib#new(...) It creates a new object or dictionary. It is possible to
 		 don't use list but array of array(s). So, if in the following
 		 a list of array(s) is used, it is an array of array(s) as a
 		 matter of fact!!!!!!
-		 If the second argument does not exists, hence an empty array
+		 If, the second argument does not exists, hence an empty array
 		 of array(s) is created. If, the second argument of 
 		 constructor, does exist here is the format of the inner array 
 		 used. The inner array has a specific format. Now, we talk 
 		 about this specific format:
 			- First is a string to be printed or prompted in 
 			  color.
-			- Second gives the color to print the string
-			  (read :help highlight for specific format).
+			- Second gives the color to print or prompt the 
+			  string (read :help highlight for specific format).
 			- Third and, last, has a dictionary. This, has two 
 			  possible values. To declare just prefix 
 			  "g:func_print_col.<value>". The <value> 
@@ -165,15 +165,15 @@ MaCoLib#new(...) It creates a new object or dictionary. It is possible to
 			  The MACOLIB_PRINT is used to print the string in
 			  color specified by the two previous fields in the
 			  current array fields.
-			  The MACOLIB_PROMPT is used for prompt the string in
-			  color specified by the two previous fields in the
-			  current current array fields.
-			  If no array of array is not declared 
-			  only empty object is returned.
-			  If, one of these format is not respectected then, an
-			  error is thrown.
+			  The MACOLIB_PROMPT is used for prompting the 
+			  string in color specified by the two previous 
+			  fields in the current array fields.
+			  If, no array of array is declared only empty object
+			  is returned. If, one of these format is not 
+			  respectected then, an error is thrown.
 			- If these two fields are repeated several times
-			  errors can be thrown.
+			  stack size and or, the list of array(s) then 
+			  an error is thrown.
 		ERRORS: 
 			- If the maximum of elements that can be 
 			  stored in the stack is declared twice in arguments
@@ -184,12 +184,46 @@ MaCoLib#new(...) It creates a new object or dictionary. It is possible to
 			  in the list of array(s) is over maximum the size 
 			  specified within constructor s.a "Max size reached 
 			  (<number of element specified>)".
-		        - If, the list of array is already declared an error
-			  is thrown "Spec for color and string already 
+		        - If, the list of array(s) is already declared an 
+			  error is thrown "Spec for color and string already 
 			  declared in arguments.".
 			- If argument declared has not the format specified 
 			  then an error is thrown "Argument type should be 
 			  v:t_list. ".
+
+obj.addStackStringColor(nuplet)Adds a nuplet to the stack within object <obj>.
+                               The format of the nuplet is the following: 
+			         nuplet = ["String",':highlight ...',method].
+		               The array has a specific format. Now, we talk 
+			       about this specific format:
+			       	- First is a string to be printed or prompted
+				  in color.
+				- Second gives the color to print or prompt
+				  the string (read :help highlight for 
+				  specific format).
+				- Third and, last, has a dictionary. This, has
+				  two possible values. To declare just prefix 
+				  "g:func_print_col.<value>". The <value> can 
+				  be one of the two s.a MACOLIB_PRINT or
+				  MACOLIB_PROMPT but not both at the same 
+				  time. The MACOLIB_PRINT is used to print the 
+				  string in color specified by the two 
+				  previous fields in the current array fields.
+				  The MACOLIB_PROMPT is used for prompt the 
+				  string in color specified by the two 
+				  previous fields in the current current array 
+				  fields. It is necessary to check 
+				  ":help highlight" in vim for the right 
+				  format. The methods can be one of these: 
+				  g:MACOLIB_PRINT or g:MACOLIB_PROMPT. The 
+				  current list can be viewed as a stack.
+			       ERRORS:
+				  - If stack size reached an error is thrown 
+				    s.a "Max size reached " 
+				  - If the format of nuplet not respected then
+				    an error is thrown s.a "Error detected in 
+				    nuplet format."
+
 
 obj.checks_prints_and_prompts() Check if last field value is well defined.
 				ERRORS:
@@ -243,22 +277,8 @@ obj.clearStringColor() 	We erase the whole / full list/stack/heap of strings
 				  clean or, there is nothing in the stack
 				  and, we want to clean with extra info.
 
-obj.addStackStringColor(tuple) The function is to add a nuplet to the 
-			       stack in object. The obj in current list in 
-			       object list tuple (read below)
-			         nuplet = ["String",':highlight ...',method].
-			       It is necessary to check ":help highlight" in vim
-			       the right format values.
-			       The methods can be one of these: g:MACOLIB_PRINT
-			       or g:MACOLIB_PROMPT.
-			       The current list can be viewed as a stack.
-			       ERRORS:
-				  - If stack size reached an error is thrown 
-				    s.a "Max size reached " 
-
 obj.removeStackStringColor() We remove last element entered from stack (last 
 			     in first out).
-==============================================================================
 			     ERRORS:
 			     	- Error thrown "Stack is empty "... when stack 
 				  is empty. (temporary solution)

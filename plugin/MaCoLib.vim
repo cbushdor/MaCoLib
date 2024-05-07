@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-05-06 00:02:04
+" Last Modified : 2024-05-08 00:52:51
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1676
+" Version : 0.0.0.1683
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -296,6 +296,19 @@ function! MaCoLib#new(...)
       endif
       let obj.len = len(obj.MyArray)
 
+      function! obj.addStackStringColor(nuplet) dict abort
+         if s:is_spec_col_str(a:nuplet) == v:true " Array of array
+            if self.len+1 < s:MAX_STACK 
+               call add(self.MyArray,a:nuplet)
+               let self.len = len(self.MyArray)
+               echo "Added:"..string(a:nuplet).."\n"
+            else
+               throw "Max size reached "..s:MAX_STACK
+            endif
+         else
+            throw "Error detected in nuplet format."
+         endif
+      endfunction
 
       " W only check how many print are and, how many prompt are ... declared
       function! obj.checks_prints_and_prompts() dict abort
@@ -428,15 +441,6 @@ function! MaCoLib#new(...)
          endif
       endfunction
 
-      function! obj.addStackStringColor(nuplet) dict abort
-         if self.len+1 < s:MAX_STACK 
-            call add(self.MyArray,a:nuplet)
-            let self.len = len(self.MyArray)
-            echo "Added:"..string(a:nuplet).."\n"
-         else
-            throw "Max size reached "..s:MAX_STACK
-         endif
-      endfunction
 
       function! obj.removeStackStringColor() dict abort
          if (self.len > 0)
