@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-05-08 01:40:01
+" Last Modified : 2024-05-08 02:14:28
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1693
+" Version : 0.0.0.1704
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -223,9 +223,12 @@ function! MaCoLib#new(...)
    " That function check if the arrays of arrays is valid
    function! s:is_spec_col_str(s)
       let l:p = a:s
+      "echo "1"
       if (type(l:p) != v:t_list )
+      "echo "2"
          return v:false
       else
+      "echo "3"
          " To check if first element of the array is a list 
          " we store first element in a local memory l:po
          " then, we check if, that element is a list itself.
@@ -235,12 +238,17 @@ function! MaCoLib#new(...)
          let l:po = l:p[0]
 
          if (type(l:po) != v:t_list )
+      "echo "4"
             return v:false
          else
+      "echo "5"
             if s:is_valid_col_arr(l:po) == v:true
+      "echo "6"
                return v:true
             else
-               throw "Argument type should be v:t_list. "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+      "echo "7 "..string(l:po)
+             "  throw "Argument type should be v:t_list. "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+             return v:false
             endif
          endif
       endif
@@ -299,7 +307,8 @@ function! MaCoLib#new(...)
       function! obj.addStackStringColor(nuplet) dict abort
          " nuplet is an array with specific format
          " to check the format we need to get array of array!
-         if s:is_spec_col_str([a:nuplet]) == v:true " Array of array
+         echo (type(a:nuplet) == v:t_list) ? "is type v:t_list" : "is not type v:t_list"
+         if s:is_spec_col_str([ a:nuplet ]) == v:true " Array of array
             if self.len+1 < s:MAX_STACK 
                call add(self.MyArray,a:nuplet)
                let self.len = len(self.MyArray)
