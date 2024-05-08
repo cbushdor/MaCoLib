@@ -1,8 +1,8 @@
 *MaCoLib.txt*       my MAnager for COlor LIBrary and some more stuff
 
 		Creation Date :2024-02-15 23:11:52
-		Last Modified : 2024-05-08 01:38:06
-		Version : 0.0.0.275
+		Last Modified : 2024-05-08 23:54:43
+		Version : 0.0.0.288
 
 ==============================================================================
 CONTENTS                                                *MaCoLib* *help_MaCoLib*
@@ -193,7 +193,9 @@ MaCoLib#new(...) It creates a new object or dictionary. It is possible to
 
 obj.addStackStringColor(nuplet)Adds a nuplet to the stack within object <obj>.
                                The format of the nuplet is the following: 
+
 			         nuplet = ["String",':highlight ...',method].
+
 		               The array has a specific format. Now, we talk 
 			       about this specific format:
 			       	- First is a string to be printed or prompted
@@ -211,8 +213,8 @@ obj.addStackStringColor(nuplet)Adds a nuplet to the stack within object <obj>.
 				  previous fields in the current array fields.
 				  The MACOLIB_PROMPT is used for prompt the 
 				  string in color specified by the two 
-				  previous fields in the current current array 
-				  fields. It is necessary to check 
+				  previous fields in the current array fields.
+				  It is necessary to check 
 				  ":help highlight" in vim for the right 
 				  format. The methods can be one of these: 
 				  g:MACOLIB_PRINT or g:MACOLIB_PROMPT. The 
@@ -224,13 +226,18 @@ obj.addStackStringColor(nuplet)Adds a nuplet to the stack within object <obj>.
 				    an error is thrown s.a "Error detected in 
 				    the nuplet format."
 
-
-obj.checks_prints_and_prompts() Check if last field value is well defined.
-				ERRORS:
-				   - If Stack empty an error is thrown and 
-				     error "Error stack is empty".
-				   - If field has bad value accepted in the
-				     stack an error is thrown "Bad value ".
+obj.prints_and_prompts()    This is a gathering of say() and prompt() 
+                            functions (read respective definitions of both
+			    functions) in order of declarations (no PROMPT 
+			    list and, then PRINT list but only PRINT and 
+			    PROMPTS mixed if mixed of  course).
+			    ERRORS:
+			       - If Stack empty an error is thrown s.a
+				 "Error stack is empty".
+			       - An error is thrown if value not in 
+				 g:MACOLIB_PROMPT or g:MACOLIB_PRINT s.a 
+				 "Bad value "... where '...' is extra local 
+				 values (this may be deprecated).
 
 obj .say()  We print all strings if v:false is met. If no carriage return 
 	    met, or if not specified and severel message with different colors 
@@ -248,6 +255,14 @@ obj.prompt()    We prompt message if v:true met. The prompt() within object,
 		nothing to prompt. To summup no v:true met. To summup no 
 		v:true will become g:MACOLIB_PROMPT.
 
+
+obj.checks_prints_and_prompts() Check if last field value is well defined.
+				ERRORS:
+				   - If Stack empty an error is thrown and 
+				     error "Error stack is empty".
+				   - If field has bad value accepted in the
+				     stack an error is thrown "Bad value ".
+
 obj.checks_prints_and_prompt()    We only check how many print(s) are and,
 				  how many prompt are ... declared.
 				  We return a dictionary where values are 
@@ -257,18 +272,6 @@ obj.checks_prints_and_prompt()    We only check how many print(s) are and,
 					g:MACOLIB_PROMPT or g:MACOLIB_PRINT 
 					s.a "Bad value "...  where '...' is 
 					extra local values.
-
-obj.prints_and_prompts()    and this is a gathering of say() and prompt() 
-                            functions in order of declarations (no PROMPT list
-			    and, then PRINT list but only PRINT and PROMPTS
-			    mixed if mixed off  course).
-			    ERRORS:
-			       - If Stack empty an error is thrown and error 
-				 "Error stack is empty".
-			       - An error is thrown if value not in 
-				 g:MACOLIB_PROMPT or g:MACOLIB_PRINT s.a 
-				 "Bad value "... where '...' is extra local 
-				 values.
 
 obj.clearStringColor() 	We erase the whole / full list/stack/heap of strings 
                         declared!
