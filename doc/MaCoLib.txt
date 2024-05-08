@@ -1,8 +1,8 @@
 *MaCoLib.txt*       my MAnager for COlor LIBrary and some more stuff
 
 		Creation Date :2024-02-15 23:11:52
-		Last Modified : 2024-05-08 23:54:43
-		Version : 0.0.0.288
+		Last Modified : 2024-05-09 00:22:46
+		Version : 0.0.0.302
 
 ==============================================================================
 CONTENTS                                                *MaCoLib* *help_MaCoLib*
@@ -239,22 +239,25 @@ obj.prints_and_prompts()    This is a gathering of say() and prompt()
 				 "Bad value "... where '...' is extra local 
 				 values (this may be deprecated).
 
-obj .say()  We print all strings if v:false is met. If no carriage return 
-	    met, or if not specified and severel message with different colors 
-	    are specified when prompt, a string in deffierent color will be 
-	    printed with not carriage return. In case of carriage return meet, 
-	    it will be printed.
-	    Error is thrown when there is nothing to print with extra info. To 
-	    summup no v:false met will become g:MACOLIB_PRINT.
+obj .say()  We print at the specific color strings if 
+	    g:func_print_col.MACOLIB_PRINT is met in the stack.
+	    ERRORS
+	    	- An error message is thrown when stack empty when obj.say()
+		  is invoqued s.a "Nothing to print "... and stack not empty.
+	    	- An error message is thrown when the stack is empty  s.a 
+		  "Nothing to print "... when obj.say() is invoqued.
 
-obj.prompt()    We prompt message if v:true met. The prompt() within object, 
-		will return results of prompt as it appears in the stack 
-		order. For instance, fisrt prompt result in 0, second prompt 
-		result in 1,...
-		If no prompt met, but asked an error is thrown when there is 
-		nothing to prompt. To summup no v:true met. To summup no 
-		v:true will become g:MACOLIB_PROMPT.
-
+obj.prompt()    We prompt messages if g:func_print_col.MACOLIB_PROMPT met. 
+		The obj.prompt() within object, will return results of each
+		prompts as it appears in the stack order.
+		For instance, fisrt prompt result is at rank 0, second prompt 
+		result in 1,... in the array returned.
+		ERRORS
+		   - An error message is thrown when stack empty when
+		     obj.prompt() is invoqued s.a "Nothing to prompt "... 
+		     and stack not empty.
+		   - An error message is thrown when the stack is empty  s.a 
+		     "Nothing to prompt "... when obj.prompt() is invoqued.
 
 obj.checks_prints_and_prompts() Check if last field value is well defined.
 				ERRORS:

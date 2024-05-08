@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-05-08 02:26:30
+" Last Modified : 2024-05-09 00:04:41
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1705
+" Version : 0.0.0.1706
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -388,10 +388,10 @@ function! MaCoLib#new(...)
                endif
             endfor
             if l:cpt == 0
-               throw "Nothing to print 1. "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+               throw "Nothing to print "..OutsideTesting(expand('<script>'),expand('<sfile>'))
             endif
          else
-            throw "Nothing to print 2. "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+            throw "Nothing to print "..OutsideTesting(expand('<script>'),expand('<sfile>'))
          endif
       endfunction
 
