@@ -1,8 +1,8 @@
 *MaCoLib.txt*       my MAnager for COlor LIBrary and some more stuff
 
 		Creation Date :2024-02-15 23:11:52
-		Last Modified : 2024-05-09 00:34:45
-		Version : 0.0.0.311
+		Last Modified : 2024-05-09 00:40:15
+		Version : 0.0.0.312
 
 ==============================================================================
 CONTENTS                                                *MaCoLib* *help_MaCoLib*
