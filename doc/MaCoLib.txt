@@ -1,8 +1,8 @@
 *MaCoLib.txt*       my MAnager for COlor LIBrary and some more stuff
 
 		Creation Date :2024-02-15 23:11:52
-		Last Modified : 2024-05-09 00:40:15
-		Version : 0.0.0.312
+		Last Modified : 2024-05-09 00:50:10
+		Version : 0.0.0.319
 
 ==============================================================================
 CONTENTS                                                *MaCoLib* *help_MaCoLib*
@@ -240,13 +240,13 @@ obj.prints_and_prompts()    This is a gathering of say() and prompt()
 				 "Bad value "... where '...' is extra local 
 				 values (this may be deprecated).
 
-obj .say()  We print at the specific color strings if 
+obj.say()   We print at the specific color strings if 
 	    g:func_print_col.MACOLIB_PRINT is met in the stack.
 	    ERRORS
 	    	- An error message is thrown when stack empty when obj.say()
-		  is invoqued s.a "Nothing to print "... and stack not empty.
-	    	- An error message is thrown when the stack is empty  s.a 
-		  "Nothing to print "... when obj.say() is invoqued.
+		  is invoqued and, stack not empty s.a "Nothing to print "...
+	    	- An error message is thrown when the stack is empty when 
+		  obj.say() is invoqued s.a "Nothing to print "... 
 
 obj.prompt()    We prompt messages if g:func_print_col.MACOLIB_PROMPT met. 
 		The obj.prompt() within object, will return results of each
@@ -254,11 +254,11 @@ obj.prompt()    We prompt messages if g:func_print_col.MACOLIB_PROMPT met.
 		For instance, fisrt prompt result is at rank 0, second prompt 
 		result in 1,... in the array returned.
 		ERRORS
-		   - An error message is thrown when stack empty when
-		     obj.prompt() is invoqued s.a "Nothing to prompt "... 
-		     and stack not empty.
-		   - An error message is thrown when the stack is empty  s.a 
-		     "Nothing to prompt "... when obj.prompt() is invoqued.
+		   - An error message is thrown when obj.prompt() is 
+		     invoqued and, the stack is not empty s.a 
+		     "Nothing to prompt "... 
+		   - An error message is thrown when the stack is empty when 
+		     obj.prompt() is invoqued s.a "Nothing to prompt "...
 
 obj.checks_prints_and_prompts() Check if last field value is well defined.
 				ERRORS:
