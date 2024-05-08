@@ -1,8 +1,8 @@
 *MaCoLib.txt*       my MAnager for COlor LIBrary and some more stuff
 
 		Creation Date :2024-02-15 23:11:52
-		Last Modified : 2024-05-09 00:22:46
-		Version : 0.0.0.302
+		Last Modified : 2024-05-09 00:34:45
+		Version : 0.0.0.311
 
 ==============================================================================
 CONTENTS                                                *MaCoLib* *help_MaCoLib*
@@ -123,16 +123,17 @@ GetsMyExecScript(str)	We create the script line to be executed with execute
 ==============================================================================
 OBJECT                                                     *help_MaCoLib_Object*
 
-To create an object or dictionary we need new() function.
-To Summup we will call <obj> the object declared with MaCoLib#new().
-
+To create an object or dictionary we need MaCoLib#new() function. We can
+call that a constructor. In the next paragraphs, We will use obj as an
+instance of the object/dictionary MaCoLib. 
+To Summup we will call obj the object declared with MaCoLib#new().
 >
       let obj = MaCoLib#new(  
 	\           [
 	\               [
 	\			"Hello test",
 	\			":hi comment ctermfg=grey ctermbg=darkblue",
-	\			g:MACOLIB_PRINT
+	\			g:func_print_col.MACOLIB_PRINT
 	\               ]
 	\           ],
 	\14)		 
