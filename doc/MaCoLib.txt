@@ -1,8 +1,8 @@
 *MaCoLib.txt*       my MAnager for COlor LIBrary and some more stuff
 
 		Creation Date :2024-02-15 23:11:52
-		Last Modified : 2024-05-10 00:05:56
-		Version : 0.0.0.332
+		Last Modified : 2024-05-10 00:19:18
+		Version : 0.0.0.339
 
 ==============================================================================
 CONTENTS                                                *MaCoLib* *help_MaCoLib*
@@ -261,22 +261,17 @@ obj.prompt()    We prompt message(s) if g:func_print_col.MACOLIB_PROMPT met in
 		   - An error message is thrown s.a "Nothing to prompt "...
 		     when obj.prompt() is invoqued and, the stack is empty.
 
-obj.checks_prints_and_prompts() Check if last field value is well defined.
+obj.checks_prints_and_prompts() Check if, last field value of array list is
+				well defined.
+				It reurns a dictionary where there is number
+				of PRINT met and number of PROMPT met.
 				ERRORS:
-				   - If Stack empty an error is thrown and 
-				     error "Error stack is empty".
-				   - If field has bad value accepted in the
-				     stack an error is thrown "Bad value ".
-
-obj.checks_prints_and_prompt()    We only check how many print(s) are and,
-				  how many prompt are ... declared.
-				  We return a dictionary where values are 
-				  stored s.a {'PRINT': 1, 'PROMPT': 4}.
-				  ERRORS:
-				  	- Error thrown if value not in 
-					g:MACOLIB_PROMPT or g:MACOLIB_PRINT 
-					s.a "Bad value "...  where '...' is 
-					extra local values.
+				   - If Stack is empty an error message is 
+				     thrown s.a "Error stack is empty".
+				   - If field has a bad value in the list of array 
+				     at the third field accepted in the
+				     stack a message error is 
+				     thrown "Bad value ".
 
 obj.clearStringColor() 	We erase the whole / full list/stack/heap of strings 
                         declared!
