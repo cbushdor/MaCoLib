@@ -1,8 +1,8 @@
 *MaCoLib.txt*       my MAnager for COlor LIBrary and some more stuff
 
 		Creation Date :2024-02-15 23:11:52
-		Last Modified : 2024-05-09 00:50:10
-		Version : 0.0.0.319
+		Last Modified : 2024-05-10 00:05:56
+		Version : 0.0.0.332
 
 ==============================================================================
 CONTENTS                                                *MaCoLib* *help_MaCoLib*
@@ -243,22 +243,23 @@ obj.prints_and_prompts()    This is a gathering of say() and prompt()
 obj.say()   We print at the specific color strings if 
 	    g:func_print_col.MACOLIB_PRINT is met in the stack.
 	    ERRORS
-	    	- An error message is thrown when stack empty when obj.say()
-		  is invoqued and, stack not empty s.a "Nothing to print "...
-	    	- An error message is thrown when the stack is empty when 
-		  obj.say() is invoqued s.a "Nothing to print "... 
+	    	- An error message is thrown s.a "Nothing to print "... when 
+		  obj.say() is invoqued and, g:func_print_col.MACOLIB_PRINT 
+		  not met in the stack which is not empty.
+	    	- An error message is thrown s.a "Nothing to print "... when 
+		  obj.say() is invoqued and, the stack is empty.
 
-obj.prompt()    We prompt messages if g:func_print_col.MACOLIB_PROMPT met. 
-		The obj.prompt() within object, will return results of each
-		prompts as it appears in the stack order.
-		For instance, fisrt prompt result is at rank 0, second prompt 
-		result in 1,... in the array returned.
+obj.prompt()    We prompt message(s) if g:func_print_col.MACOLIB_PROMPT met in
+	        the stack. The obj.prompt() will return an array containing 
+		each results of each prompts met as it appears in the stack
+		order.
 		ERRORS
-		   - An error message is thrown when obj.prompt() is 
-		     invoqued and, the stack is not empty s.a 
-		     "Nothing to prompt "... 
-		   - An error message is thrown when the stack is empty when 
-		     obj.prompt() is invoqued s.a "Nothing to prompt "...
+		   - An error message is thrown s.a "Nothing to prompt "... 
+		     when obj.prompt() is invoqued and,
+		     g:func_print_col.MACOLIB_PROMPT met in the stack which
+		     is not empty.
+		   - An error message is thrown s.a "Nothing to prompt "...
+		     when obj.prompt() is invoqued and, the stack is empty.
 
 obj.checks_prints_and_prompts() Check if last field value is well defined.
 				ERRORS:
