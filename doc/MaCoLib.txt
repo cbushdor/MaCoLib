@@ -1,8 +1,8 @@
 *MaCoLib.txt*       my MAnager for COlor LIBrary and some more stuff
 
 		Creation Date :2024-02-15 23:11:52
-		Last Modified : 2024-05-10 00:19:18
-		Version : 0.0.0.339
+		Last Modified : 2024-05-12 02:17:53
+		Version : 0.0.0.353
 
 ==============================================================================
 CONTENTS                                                *MaCoLib* *help_MaCoLib*
@@ -139,16 +139,17 @@ To Summup we will call obj the object declared with MaCoLib#new().
 	\14)		 
 <
 
-MaCoLib#new(...) It creates a new object or dictionary. It is possible to 
-                 declare parameters in the order that the user wants wihin
-		 constructor MaCoLib#new(...). For instance, the first 
-		 argument is the maximum of elements that can be stored in the 
-		 stack. If, it  is not specified in arguments list of the
-		 constructor then s:DEFAULT_MAX_STACK value is used. In the
-		 following, we are going to talk about list of array(s) but we
-		 don't use list but array of array(s). So, if in the following
-		 a list of array(s) is used, it is an array of array(s) as a
-		 matter of fact!!!!!!
+MaCoLib#new(...) This is the constructor. It creates a new object or 
+                 dictionary. It is possible, to declare parameters in the 
+		 order that the user wants wihin constructor. For instance,
+		 the first argument is the maximum of elements that can be
+		 stored in the stack. If, it  is not specified in arguments
+		 list of the constructor then s:DEFAULT_MAX_STACK value is 
+		 used. In the following, we are going to talk about list of
+		 array(s) but we don't use list but array of array(s). So, if
+		 in the following a list of array(s) is used, it is an array
+		 of array(s) as a matter of fact. The inner array is a mix 
+		 with string, array and, dictionary!!!!!!
 		 If, the second argument does not exists, hence an empty array
 		 of array(s) is created. If, the second argument of 
 		 constructor, does exist here is the format of the inner array 
@@ -172,9 +173,9 @@ MaCoLib#new(...) It creates a new object or dictionary. It is possible to
 			  If, no array of array is declared only empty object
 			  is returned. If, one of these format is not 
 			  respectected then, an error is thrown.
-			- If these two fields are repeated several times
-			  stack size and or, the list of array(s) then 
-			  an error is thrown.
+			- If these one of these two fields, or both, are
+			  repeated several times stack size and or, the list
+			  of array(s) then an error is thrown.
 		ERRORS: 
 			- If the maximum of elements that can be 
 			  stored in the stack is declared twice in arguments
@@ -192,7 +193,7 @@ MaCoLib#new(...) It creates a new object or dictionary. It is possible to
 			  then an error is thrown "Argument type should be 
 			  v:t_list. ".
 
-obj.addStackStringColor(nuplet)Adds a nuplet to the stack within object <obj>.
+obj.addStackStringColor(nuplet)Adds a nuplet to the stack within object obj.
                                The format of the nuplet is the following: 
 
 			         nuplet = ["String",':highlight ...',method].
@@ -202,7 +203,7 @@ obj.addStackStringColor(nuplet)Adds a nuplet to the stack within object <obj>.
 			       	- First is a string to be printed or prompted
 				  in color.
 				- Second gives the color to print or prompt
-				  the string (read :help highlight for 
+				  the string (read :help highlight for
 				  specific format).
 				- Third and, last, has a dictionary. This, has
 				  two possible values. To declare just prefix 
