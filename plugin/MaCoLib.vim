@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-05-14 04:31:01
+" Last Modified : 2024-05-15 00:26:21
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1707
+" Version : 0.0.0.1709
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -325,8 +325,6 @@ function! MaCoLib#new(...)
                   let l:cMACOLIB_PRINT += 1
                elseif r == g:func_print_col.MACOLIB_PROMPT
                   let l:cMACOLIB_PROMPT += 1
-               else
-                  throw "Bad value "..OutsideTesting(expand('<script>'),expand('<sfile>'))
                endif
             endfor
          endif
