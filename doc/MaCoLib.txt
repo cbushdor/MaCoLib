@@ -1,8 +1,8 @@
 *MaCoLib.txt*       my MAnager for COlor LIBrary and some more stuff
 
 		Creation Date :2024-02-15 23:11:52
-		Last Modified : 2024-05-15 00:26:14
-		Version : 0.0.0.367
+		Last Modified : 2024-05-15 00:44:41
+		Version : 0.0.0.370
 
 ==============================================================================
 CONTENTS                                                *MaCoLib* *help_MaCoLib*
@@ -239,7 +239,7 @@ obj.prints_and_prompts()    This is a gathering of say() and prompt()
 			       - If Stack is empty, an error is thrown s.a
 				 "Error stack is empty" (s.a means such as).
 
-obj.say()   We print at the specific color strings if 
+obj.say()   We print message(s) at the specific color strings if 
 	    g:func_print_col.MACOLIB_PRINT is met in the stack.
 	    ERRORS
 	    	- An error message is thrown s.a "Nothing to print "... when 
@@ -255,8 +255,8 @@ obj.prompt()    We prompt message(s) if g:func_print_col.MACOLIB_PROMPT met in
 		ERRORS
 		   - An error message is thrown s.a "Nothing to prompt "... 
 		     when obj.prompt() is invoqued and,
-		     g:func_print_col.MACOLIB_PROMPT met in the stack which
-		     is not empty.
+		     g:func_print_col.MACOLIB_PROMPT not met in the stack 
+		     which is not empty.
 		   - An error message is thrown s.a "Nothing to prompt "...
 		     when obj.prompt() is invoqued and, the stack is empty.
 
