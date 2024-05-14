@@ -1,8 +1,8 @@
 *MaCoLib.txt*       my MAnager for COlor LIBrary and some more stuff
 
 		Creation Date :2024-02-15 23:11:52
-		Last Modified : 2024-05-12 23:33:12
-		Version : 0.0.0.355
+		Last Modified : 2024-05-14 04:36:44
+		Version : 0.0.0.360
 
 ==============================================================================
 CONTENTS                                                *MaCoLib* *help_MaCoLib*
@@ -157,17 +157,17 @@ MaCoLib#new(...) This is the constructor. It creates a new object or
 		 about this specific format:
 			- First is a string to be printed or prompted in 
 			  color.
-			- Second gives the color to print or prompt the 
+			- Second gives the color to print or to prompt the 
 			  string (read :help highlight for specific format).
-			- Third and, last, has a dictionary. This, has two 
-			  possible values. To declare just prefix 
+			- Third and, last, has a dictionary value. This, has 
+			  two possible values. To declare just prefix 
 			  "g:func_print_col.<value>". The <value> 
 			  can be one of the two s.a MACOLIB_PRINT or
 			  MACOLIB_PROMPT but not both at the same time.
 			  The MACOLIB_PRINT is used to print the string in
 			  color specified by the two previous fields in the
 			  current array fields.
-			  The MACOLIB_PROMPT is used for prompting the 
+			  The MACOLIB_PROMPT is used to prompting the 
 			  string in color specified by the two previous 
 			  fields in the current array fields.
 			  If, no array of array is declared only empty object
@@ -202,7 +202,7 @@ obj.addStackStringColor(nuplet)Adds a nuplet to the stack within object obj.
 			       about this specific format:
 			       	- First is a string to be printed or prompted
 				  in color.
-				- Second gives the color to print or prompt
+				- Second gives the color to print or to prompt
 				  the string (read :help highlight for
 				  specific format).
 				- Third and, last, has a dictionary. This, has
@@ -213,7 +213,7 @@ obj.addStackStringColor(nuplet)Adds a nuplet to the stack within object obj.
 				  time. The MACOLIB_PRINT is used to print the 
 				  string in color specified by the two 
 				  previous fields in the current array fields.
-				  The MACOLIB_PROMPT is used for prompt the 
+				  The MACOLIB_PROMPT is used to prompt the 
 				  string in color specified by the two 
 				  previous fields in the current array fields.
 				  It is necessary to check 
