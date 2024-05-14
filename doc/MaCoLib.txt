@@ -1,8 +1,8 @@
 *MaCoLib.txt*       my MAnager for COlor LIBrary and some more stuff
 
 		Creation Date :2024-02-15 23:11:52
-		Last Modified : 2024-05-15 00:44:41
-		Version : 0.0.0.370
+		Last Modified : 2024-05-15 00:51:58
+		Version : 0.0.0.374
 
 ==============================================================================
 CONTENTS                                                *MaCoLib* *help_MaCoLib*
@@ -260,10 +260,12 @@ obj.prompt()    We prompt message(s) if g:func_print_col.MACOLIB_PROMPT met in
 		   - An error message is thrown s.a "Nothing to prompt "...
 		     when obj.prompt() is invoqued and, the stack is empty.
 
-obj.checks_prints_and_prompts() Check if, last field value of array list is
-				well defined.
-				It reurns a dictionary where there is number
-				of PRINT met and number of PROMPT met.
+obj.checks_prints_and_prompts() Check if, last field value of list of array(s)
+				is well defined in dictionary 
+				g:func_print_col.
+				It returns a dictionary where there is number
+				of PRINT met and number of PROMPT metin the
+				stack.
 				ERRORS:
 				   - If Stack is empty an error message is 
 				     thrown s.a "Error stack is empty".
