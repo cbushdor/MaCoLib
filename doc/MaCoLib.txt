@@ -1,8 +1,8 @@
 *MaCoLib.txt*       my MAnager for COlor LIBrary and some more stuff
 
 		Creation Date :2024-02-15 23:11:52
-		Last Modified : 2024-05-15 00:51:58
-		Version : 0.0.0.374
+		Last Modified : 2024-05-17 23:26:45
+		Version : 0.0.0.376
 
 ==============================================================================
 CONTENTS                                                *MaCoLib* *help_MaCoLib*
@@ -274,12 +274,13 @@ obj.checks_prints_and_prompts() Check if, last field value of list of array(s)
 				     stack a message error is 
 				     thrown "Bad value ".
 
-obj.clearStringColor() 	We erase the whole / full list/stack/heap of strings 
+obj.clearStringColor() 	We erase the whole full list or stack or heap of strings 
                         declared!
 			ERRORS:
-				- Error is thrown when there is nothing to
-				  clean or, there is nothing in the stack
-				  and, we want to clean with extra info.
+				- Error is thrown when list, stack or stack or
+				  heap is empty. If there is nothing to
+				  clean the following error is thrown 
+				  "Nothing to clean "...
 
 obj.removeStackStringColor() We remove last element entered from stack (last 
 			     in first out).
