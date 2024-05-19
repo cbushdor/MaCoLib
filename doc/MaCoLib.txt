@@ -1,8 +1,8 @@
 *MaCoLib.txt*       my MAnager for COlor LIBrary and some more stuff
 
 		Creation Date :2024-02-15 23:11:52
-		Last Modified : 2024-05-17 23:26:45
-		Version : 0.0.0.376
+		Last Modified : 2024-05-19 20:47:38
+		Version : 0.0.0.380
 
 ==============================================================================
 CONTENTS                                                *MaCoLib* *help_MaCoLib*
@@ -282,8 +282,7 @@ obj.clearStringColor() 	We erase the whole full list or stack or heap of strings
 				  clean the following error is thrown 
 				  "Nothing to clean "...
 
-obj.removeStackStringColor() We remove last element entered from stack (last 
-			     in first out).
+obj.removeStackStringColor() We remove last element entered in the stack.
 			     ERRORS:
 			     	- Error thrown "Stack is empty "... when stack 
 				  is empty. (temporary solution)
