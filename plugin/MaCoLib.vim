@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-05-21 19:40:49
+" Last Modified : 2024-05-21 20:27:32
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1714
+" Version : 0.0.0.1716
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -437,7 +437,7 @@ function! MaCoLib#new(...)
             endwhile
             call remove(self.MyArray,0,len(self.MyArray)-1)
             let self.len = len(self.MyArray)
-            return len(self.MyArray) == 0
+            return (self.len == 0) ? v:true : v:false
          else
             throw "Nothing to clean "..OutsideTesting(expand('<script>'),expand('<sfile>'))
          endif
