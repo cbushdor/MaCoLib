@@ -1,8 +1,8 @@
 *MaCoLib.txt*       my MAnager for COlor LIBrary and some more stuff
 
 		Creation Date :2024-02-15 23:11:52
-		Last Modified : 2024-05-24 01:00:51
-		Version : 0.0.0.391
+		Last Modified : 2024-05-24 01:12:09
+		Version : 0.0.0.398
 
 ==============================================================================
 CONTENTS                                                *MaCoLib* *help_MaCoLib*
@@ -230,11 +230,15 @@ obj.addStackStringColor(nuplet)Adds a nuplet to the stack within object obj.
 
 obj.prints_and_prompts()    This is a gathering of say() and prompt() 
                             functions (read respective definitions of both
-			    functions) in order of declarations (no PROMPT 
-			    list and, then PRINT list but only PRINT and 
+			    functions). They will show up in order of 
+			    declarations in the stack (no PROMPT 
+			    list and, no PRINT list but only PRINT and 
 			    PROMPTS mixed if mixed of  course). This will
-			    return a list of answers given from prompt in
-			    order of appearance.
+			    return a list of answers read next. When prompt is
+			    printed it waits for an answer. If several
+			    prompt are met during printing hence the anwsers
+			    given will be stored in a list and, that list will
+			    be returned when stack completed.
 			    ERRORS:
 			       - If Stack is empty, an error is thrown s.a
 				 "Error stack is empty" (s.a means such as).
