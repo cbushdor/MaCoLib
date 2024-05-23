@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-05-24 00:46:16
+" Last Modified : 2024-05-24 01:19:00
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1729
+" Version : 0.0.0.1730
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -349,25 +349,6 @@ function! MaCoLib#new(...)
          endif
       endfunction
 
-      " W only check how many print are and, how many prompt are ... declared
-      function! obj.checks_prints_and_prompts() dict abort
-         if self.len < 0
-            throw "Error stack is empty"
-         else
-            let l:cMACOLIB_PRINT = 0
-            let l:cMACOLIB_PROMPT = 0
-            for [m,c,r] in self.MyArray
-               if r == g:func_print_col.MACOLIB_PRINT
-                  let l:cMACOLIB_PRINT += 1
-               elseif r == g:func_print_col.MACOLIB_PROMPT
-                  let l:cMACOLIB_PROMPT += 1
-               endif
-            endfor
-         endif
-         return {"PRINT": l:cMACOLIB_PRINT,"PROMPT": l:cMACOLIB_PROMPT}
-      endfunction
-
-
       function! obj.say() dict abort
          if self.len > 0
             let l:cpt = 0
@@ -426,6 +407,26 @@ function! MaCoLib#new(...)
          endif
          return l:MyRes
       endfunction
+
+      " W only check how many print are and, how many prompt are ... declared
+      function! obj.checks_prints_and_prompts() dict abort
+         if self.len < 0
+            throw "Error stack is empty"
+         else
+            let l:cMACOLIB_PRINT = 0
+            let l:cMACOLIB_PROMPT = 0
+            for [m,c,r] in self.MyArray
+               if r == g:func_print_col.MACOLIB_PRINT
+                  let l:cMACOLIB_PRINT += 1
+               elseif r == g:func_print_col.MACOLIB_PROMPT
+                  let l:cMACOLIB_PROMPT += 1
+               endif
+            endfor
+         endif
+         return {"PRINT": l:cMACOLIB_PRINT,"PROMPT": l:cMACOLIB_PROMPT}
+      endfunction
+
+
 
       " We erase the string list/stack
       function! obj.clearStringColor() dict abort
