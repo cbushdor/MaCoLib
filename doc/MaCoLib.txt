@@ -1,8 +1,8 @@
 *MaCoLib.txt*       my MAnager for COlor LIBrary and some more stuff
 
 		Creation Date :2024-02-15 23:11:52
-		Last Modified : 2024-05-21 20:49:08
-		Version : 0.0.0.386
+		Last Modified : 2024-05-24 01:00:51
+		Version : 0.0.0.391
 
 ==============================================================================
 CONTENTS                                                *MaCoLib* *help_MaCoLib*
@@ -233,11 +233,13 @@ obj.prints_and_prompts()    This is a gathering of say() and prompt()
 			    functions) in order of declarations (no PROMPT 
 			    list and, then PRINT list but only PRINT and 
 			    PROMPTS mixed if mixed of  course). This will
-			    return a dictionary with the count of print(s)
-			    and, prompt(s) met in the stack.
+			    return a list of answers given from prompt in
+			    order of appearance.
 			    ERRORS:
 			       - If Stack is empty, an error is thrown s.a
 				 "Error stack is empty" (s.a means such as).
+			       - If third field in array has a bad value 
+				 then a message error is thrown "Bad value ".
 
 obj.say()   We print message(s) at the specific color strings if 
 	    g:func_print_col.MACOLIB_PRINT is met in the stack.
