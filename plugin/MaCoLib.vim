@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-05-24 01:19:00
+" Last Modified : 2024-05-24 23:27:10
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1730
+" Version : 0.0.0.1733
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -426,9 +426,6 @@ function! MaCoLib#new(...)
          return {"PRINT": l:cMACOLIB_PRINT,"PROMPT": l:cMACOLIB_PROMPT}
       endfunction
 
-
-
-      " We erase the string list/stack
       function! obj.clearStringColor() dict abort
          if len(self.MyArray) > 0
             let l:i = 0

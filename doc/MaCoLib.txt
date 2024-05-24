@@ -1,8 +1,8 @@
 *MaCoLib.txt*       my MAnager for COlor LIBrary and some more stuff
 
 		Creation Date :2024-02-15 23:11:52
-		Last Modified : 2024-05-24 01:12:09
-		Version : 0.0.0.398
+		Last Modified : 2024-05-24 23:27:16
+		Version : 0.0.0.404
 
 ==============================================================================
 CONTENTS                                                *MaCoLib* *help_MaCoLib*
@@ -266,28 +266,25 @@ obj.prompt()    We prompt message(s) if g:func_print_col.MACOLIB_PROMPT met in
 		   - An error message is thrown s.a "Nothing to prompt "...
 		     when obj.prompt() is invoqued and, the stack is empty.
 
-obj.checks_prints_and_prompts() Check if, last field value of list of array(s)
-				is well defined in dictionary 
-				g:func_print_col.
-				It returns a dictionary where there is number
-				of PRINT met and number of PROMPT metin the
-				stack.
+obj.checks_prints_and_prompts() Checks if, last field value of array(s), 
+                                within list of array(s) is well defined.
+				It returns a new dictionary where there is
+				number of PRINT met and number of PROMPT met
+				in the stack.
 				ERRORS:
 				   - If Stack is empty an error message is 
 				     thrown s.a "Error stack is empty".
-				   - If field has a bad value in the list of array 
-				     at the third field accepted in the
-				     stack a message error is 
-				     thrown "Bad value ".
+				   - If, the third field in the array has a 
+				     bad value a message error is thrown 
+				     "Bad value ".
 
-obj.clearStringColor() 	We erase the whole full list or stack or heap of 
-                        strings declared! This function returns v:true if 
-			length of stack, heap, is zero otherwise v:false.
+obj.clearStringColor() 	We erase the whole full list of string colors
+                        declared! This function returns v:true if 
+			length is zero otherwise v:false.
 			ERRORS:
-				- Error is thrown when list, stack or stack or
-				  heap is empty. If there is nothing to
-				  clean the following error is thrown 
-				  "Nothing to clean "...
+				- Error is thrown when list is empty. If there
+				  is nothing to clean the following error is
+				  thrown "Nothing to clean "...
 
 obj.removeStackStringColor() We remove last element entered in the stack.
 			     ERRORS:
