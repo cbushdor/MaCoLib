@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-05-24 23:27:10
+" Last Modified : 2024-05-26 00:03:35
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1733
+" Version : 0.0.0.1737
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -437,6 +437,7 @@ function! MaCoLib#new(...)
             let self.len = len(self.MyArray)
             return (self.len == 0) ? v:true : v:false
          else
+            self.len = -1
             throw "Nothing to clean "..OutsideTesting(expand('<script>'),expand('<sfile>'))
          endif
       endfunction
@@ -470,8 +471,10 @@ function! MaCoLib#new(...)
             call reverse(self.MyArray)
             let l:rem =  self.removeStackStringColor()
             call reverse(self.MyArray)
+            self.len = len(self.MyArray)
             return l:rem
          else
+            self.len = -1
             throw "Heap is empty "..OutsideTesting(expand('<script>'),expand('<sfile>'))
          endif
       endfunction

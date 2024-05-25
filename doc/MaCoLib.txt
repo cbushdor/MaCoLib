@@ -1,8 +1,8 @@
 *MaCoLib.txt*       my MAnager for COlor LIBrary and some more stuff
 
 		Creation Date :2024-02-15 23:11:52
-		Last Modified : 2024-05-24 23:47:17
-		Version : 0.0.0.407
+		Last Modified : 2024-05-26 00:00:37
+		Version : 0.0.0.410
 
 ==============================================================================
 CONTENTS                                                *MaCoLib* *help_MaCoLib*
@@ -306,8 +306,8 @@ obj.addHeapStringColor(tuple)  The function is to add tuple to the heap
 obj.removeHeapStringColor()  We remove last element entered from heap (last in 
                              last out).
 			     ERRORS:
-			     	- Error thrown "Heap is empty "... when stack 
-				  is empty. (temporary solution)
+			     	- Error thrown "Heap is empty " when heap 
+				  is empty.
 
 ==============================================================================
 EXAMPLE                                                   *help_MaCoLib_Example*
