@@ -1,8 +1,8 @@
 *MaCoLib.txt*       my MAnager for COlor LIBrary and some more stuff
 
 		Creation Date :2024-02-15 23:11:52
-		Last Modified : 2024-05-26 00:00:37
-		Version : 0.0.0.410
+		Last Modified : 2024-05-26 00:31:03
+		Version : 0.0.0.413
 
 ==============================================================================
 CONTENTS                                                *MaCoLib* *help_MaCoLib*
@@ -309,6 +309,10 @@ obj.removeHeapStringColor()  We remove last element entered from heap (last in
 			     	- Error thrown "Heap is empty " when heap 
 				  is empty.
 
+obj.isEqualTo(obj)	Compares current object to objects given as an 
+                        argument. If, they are equal hence, v:true
+			is returned otherwise, v:false.
+			ERRORS
 ==============================================================================
 EXAMPLE                                                   *help_MaCoLib_Example*
 In $MYVIMRC you should have something like this.
