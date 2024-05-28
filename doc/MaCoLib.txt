@@ -1,8 +1,8 @@
 *MaCoLib.txt*       my MAnager for COlor LIBrary and some more stuff
 
 		Creation Date :2024-02-15 23:11:52
-		Last Modified : 2024-05-26 01:52:51
-		Version : 0.0.0.414
+		Last Modified : 2024-05-28 23:51:03
+		Version : 0.0.0.422
 
 ==============================================================================
 CONTENTS                                                *MaCoLib* *help_MaCoLib*
@@ -222,8 +222,8 @@ obj.addStackStringColor(nuplet)Adds a nuplet to the stack within object obj.
 				  g:MACOLIB_PRINT or g:MACOLIB_PROMPT. The 
 				  current list can be viewed as a stack.
 			       ERRORS:
-				  - If stack size reached an error is thrown 
-				    s.a "Max size reached " 
+				  - If stack maximum size is reached an error 
+				    is thrown s.a "Max size reached ".
 				  - If the format of nuplet not respected then
 				    an error is thrown s.a "Error detected in 
 				    the nuplet format."
@@ -295,16 +295,44 @@ obj.removeStackStringColor() We remove last element entered in the list.
 
 obj.isEmptyStackStringColor() Returns v:true if stack is empty else v:false.
 
-obj.addHeapStringColor(tuple)  The function is to add tuple to the heap 
-			       in object.
-			       tuple = ["String",':highlight ...',method].
-			       check :help highlight when in vim for help.
-			       The method for printing can be one of these: 
-			       g:MACOLIB_PRINT or g:MACOLIB_PROMPT.
-			       The current list can be viewed as a heap.
+obj.addHeapStringColor(nuplet) Adds a nuplet to the heap within object obj.
+                               The format of the nuplet is the following: 
 
-obj.removeHeapStringColor()  We remove last element entered from heap (last in 
-                             last out).
+			         nuplet = ["String",':highlight ...',method].
+
+		               The array has a specific format. Now, we talk 
+			       about this specific format:
+			       	- First is a string to be printed or prompted
+				  in color.
+				- Second gives the color to print or to prompt
+				  the string (read :help highlight for
+				  specific format).
+				- Third and, last, has a dictionary. This, has
+				  two possible values. To declare just prefix 
+				  "g:func_print_col.<value>". The <value> can 
+				  be one of the two s.a MACOLIB_PRINT or
+				  MACOLIB_PROMPT but not both at the same 
+				  time. The MACOLIB_PRINT is used to print the 
+				  string in color specified by the two 
+				  previous fields in the current array fields.
+				  The MACOLIB_PROMPT is used to prompt the 
+				  string in color specified by the two 
+				  previous fields in the current array fields.
+				  It is necessary to check 
+				  ":help highlight" in vim for the right 
+				  format. The methods can be one of these: 
+				  g:MACOLIB_PRINT or g:MACOLIB_PROMPT. The 
+				  current list can be viewed as a stack.
+			       ERRORS:
+				  - If heap maximum size is reached an error 
+				    is thrown s.a "Max size reached ".
+				  - If the format of nuplet not respected then
+				    an error is thrown s.a "Error detected in 
+				    the nuplet format."
+
+
+obj.removeHeapStringColor()  We remove last element entered from heap (last
+			     in last out).
 			     ERRORS:
 			     	- Error thrown "Heap is empty " when heap 
 				  is empty.
