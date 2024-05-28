@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-05-26 14:54:23
+" Last Modified : 2024-05-28 23:34:28
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1745
+" Version : 0.0.0.1764
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -462,11 +462,26 @@ function! MaCoLib#new(...)
          return (self.len <= 0) ? v:true : v:false
       endfunction
 
-      function! obj.addHeapStringColor(tuple) dict abort
-         call reverse(self.MyArray)
-         call add(self.MyArray , a:tuple)
-         call reverse(self.MyArray)
-         let self.len = len(self.MyArray)
+      function! obj.addHeapStringColor(nuplet) dict abort
+         " nuplet is an array with specific format
+         " to check the format we need to get array of array!
+
+         if s:is_spec_col_str([ a:nuplet ]) == v:true " Array of array
+            if self.len+1 < s:MAX_STACK 
+               if len(self.MyArray) == 0
+                  let self.MyArray = [ a:nuplet ]
+               else
+                  call reverse(self.MyArray)
+                  call add(self.MyArray , a:nuplet)
+                  call reverse(self.MyArray)
+               endif
+               let self.len = len(self.MyArray)
+            else
+               throw "Max size reached "..s:MAX_STACK
+            endif
+         else
+            throw "Error detected in the nuplet format: "..string(a:nuplet)
+         endif
       endfunction
 
       function! obj.removeHeapStringColor() dict abort
