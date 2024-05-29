@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-05-28 23:34:28
+" Last Modified : 2024-05-29 23:59:21
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1764
+" Version : 0.0.0.1769
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -303,7 +303,11 @@ function! MaCoLib#new(...)
          "echo (type(a:nuplet) == v:t_list) ? "is type v:t_list" : "is not type v:t_list"
          if s:is_spec_col_str([ a:nuplet ]) == v:true " Array of array
             if self.len+1 < s:MAX_STACK 
-               call add(self.MyArray,a:nuplet)
+               if len(self.MyArray) == 0
+                  let self.MyArray = [ a:nuplet ]
+               else
+                  call add(self.MyArray,a:nuplet)
+               endif
                let self.len = len(self.MyArray)
             else
                throw "Max size reached "..s:MAX_STACK
