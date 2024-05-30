@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-05-30 23:01:22
+" Last Modified : 2024-05-31 00:12:51
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1771
+" Version : 0.0.0.1772
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -493,7 +493,7 @@ function! MaCoLib#new(...)
             call reverse(self.MyArray)
             let l:rem =  self.removeStackStringColor()
             call reverse(self.MyArray)
-            self.len = len(self.MyArray)
+            let self.len = len(self.MyArray)
             return l:rem
          else
             let self.len = -1

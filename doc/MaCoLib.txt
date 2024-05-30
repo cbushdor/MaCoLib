@@ -1,8 +1,8 @@
 *MaCoLib.txt*       my MAnager for COlor LIBrary and some more stuff
 
 		Creation Date :2024-02-15 23:11:52
-		Last Modified : 2024-05-28 23:53:02
-		Version : 0.0.0.423
+		Last Modified : 2024-05-31 00:07:21
+		Version : 0.0.0.424
 
 ==============================================================================
 CONTENTS                                                *MaCoLib* *help_MaCoLib*
@@ -332,7 +332,7 @@ obj.addHeapStringColor(nuplet) Adds a nuplet to the heap within object obj.
 
 
 obj.removeHeapStringColor()  We remove last element entered from heap (last
-			     in last out).
+			     in last out). We return the element removed.
 			     ERRORS:
 			     	- Error thrown "Heap is empty " when heap 
 				  is empty.
