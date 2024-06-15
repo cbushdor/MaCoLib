@@ -1,0 +1,302 @@
+*MaCoLib.txt*       my MAnager for COlor LIBrary and some more stuff
+
+		Creation Date :2024-02-15 23:11:52
+		Last Modified : 2024-04-21 00:17:03
+		Version : 0.0.0.152
+
+==============================================================================
+CONTENTS                                                *MaCoLib* *help_MaCoLib*
+
+How to Install Plugin                                   |help_MaCoLib_install|
+Intro                                                     |help_MaCoLib_intro|
+Variables                                             |help_MaCoLib_Variables|
+Functions                                             |help_MaCoLib_Functions|
+Object                                                   |help_MaCoLib_Object|
+Example                                                 |help_MaCoLib_Example|
+Warning						          |help_MaCoLib_notes|
+Helps                                                     |help_MaCoLib_extra|
+Credits                                                 |help_MaCoLib_credits|
+Licence                                                 |help_MaCoLib_licence|
+
+==============================================================================
+How to Install Plugin                                     *help_MaCoLib_install*
+
+Technical requirements
+
+    * Vim (text editor): Version 9.0.1050.
+    * System macOS: Version 13.2.1 (22D68).
+    * System Fedora: Version 38beta (Should work on other linux distros too).
+    * Scripts: Markdown, Vim Script, shell sh.
+    * Vim plugin: Vim-plug.
+
+    Note
+      Should be ok as long as Vim Script is supported by the editor (since
+      version 8.0).
+
+
+How to start
+  We admit that Vim-plugin is already installed. If not so, go to
+  https://github.com/junegunn/vim-plug and follow instructions.
+
+  We configure ~/.vimrc below (~ means home directory):
+
+>
+     call plug#begin('~/.vim/plugged')
+     Plug 'cbushdor/MaCoLib'
+     call plug#end()
+<
+
+  and plugin will be installed in ~/.vim/plugged if everything is well
+  configured.  Then type ':wq' to save and, quit. Edit ~/.vimrc to 
+  relaunch. Then, type ':PlugInstall' and, look if plugin is installing 
+  itself. A prompt will ask not to forget to set 'g:myEmail' in $MYVIMRC if
+  not found.
+
+==============================================================================
+INTRO                                                       *help_MaCoLib_intro*
+
+Sometimes it is hard to read and, to UNDERSTAND!
+
+==============================================================================
+VARIABLES                                               *help_MaCoLib_Variables*
+
+g:current_script_path 	We get the source path and script name of MaCoLib.vim.
+
+g:current_path	 	We get current path.
+g:local_path_homedir	Path to vimrc that contains files.
+g:module_name		We get module name from homedir path.
+g:file_ext_ref 		This file ref for extension comp
+g:local_path_vimrc	Path to vimrc that contains files
+g:local_path_mylibrary 	Path to mylibrary that contains files
+g:pathConf 		File that contains local configuration
+
+==============================================================================
+FUNCTIONS                                               *help_MaCoLib_Functions*
+
+MyChomp(s) 		Remove last cariage return withing string s.
+
+
+GetsFileNameFromPath(pfn)	We get file name from path.
+
+GetsScript(sf)		We return Script.
+
+GetsVarString(var)	Creates the string for the global variable name value.
+			The 'var' is given and we return variable name 
+			prefixed of 'g:' as a string. Nothing set in memory
+			yet.
+
+IsVarDefined(var)	This is used to check if 'var' the variable name does 
+			exist in memory and, returns g:true. 
+
+CreatesGlobalVar(var)	We set a global variable in memory with var.
+			The 'var' parameter is the variable name to set in
+			memory. HEnce, g:true is returned if no error met
+			otherwise g:false.
+
+LoadSource(file)	Loads source
+
+GetsCurrentFileName()	Gets current file nale
+
+CreatesEnvVar(en) 	We create a envarionment variable string
+
+LoadGlobVar(...)	Load global extension that start with suf(ix)
+
+Rand()			Calculates random number
+
+MyExec(p)		Executes shell script input entered should be 
+			returned! p as  ':!read momo;echo $momo'.
+
+MyExecOut(p)		Executes shell script no input expected so no result 
+			returned!p as  ':!read momo;echo $momo'
+
+GetsPid() 		Gets PID
+
+GetsMyExecScript(str)	We create the script line to be executed with execute
+			command to get expand(...) value  s.a 
+			GetsMyExecScript("<script>"). Read :help expand() for 
+			more information.
+
+obj.clearStringColor() 	We erase the whole / full list/stack/heap of strings 
+                        declared!
+			Error is thrown when there is nothing to clean
+			or, there is nothing in the stack
+			and, we want to clean with extra info.
+
+obj.addStackStringColor(tuple) The function is to add a tuple to the 
+			       stack in object. The obj in current list in object
+			       list tuple (read below)
+			         tuple = ["String",':highlight ...',method].
+			       check :help highlight when in vim for help.
+			       The method for printing can be one of these: 
+			       g:MACOLIB_PRINT or g:MACOLIB_PROMPT.
+			       The current list can be viewed as a stack.
+
+obj.removeStackStringColor() We remove last element entered from stack (last in 
+                             first out).
+			     Error thrown "Stack is empty "... when stack is 
+			     empty. (temporary solution)
+
+obj.addHeapStringColor(tuple)  The function is to add tuple to the heap 
+			       in object.
+			       tuple = ["String",':highlight ...',method].
+			       check :help highlight when in vim for help.
+			       The method for printing can be one of these: 
+			       g:MACOLIB_PRINT or g:MACOLIB_PROMPT.
+			       The current list can be viewed as a heap.
+
+obj.removeHeapStringColor()  We remove last element entered from heap (last in 
+                             last out).
+			     Error thrown "Heap is empty "... when stack is 
+			     empty. (temporary solution)
+
+==============================================================================
+OBJECT                                                     *help_MaCoLib_Object*
+
+To create an object or dictionary we need new() function.
+To Summup we will call <obj> the object declared with MaCoLib#new().
+
+>
+      let obj = MaCoLib#new(  
+	\           [
+	\               [
+	\			"Hello test",
+	\			":hi comment ctermfg=grey ctermbg=darkblue",
+	\			g:MACOLIB_PRINT
+	\               ]
+	\           ]
+	\)		 
+<
+
+MaCoLib#new(...) We create a new object/dictionary. As arguments it takes an 
+		 array of array. The array of array is a list of array(s). 
+		 The first array is a list of Array.
+		 The second array as a specific format:
+			- First is a string,
+			- Second gives the color to print the string
+			  (read :help highlight)
+			- Third and last has two possible values s.a 
+			  [g:MACOLIB_PRINT,g:MACOLIB_PROMPT].
+			  The g:MACOLIB_PRINT says print that string 
+			  whereas g:MACOLIB_PROMPT is used for prompt.
+		check for ERRORS:
+			- Argument type should be v:t_list.
+
+obj .say()  We print all strings if v:false is met. If no carriage return 
+	    met, or if not specified and severel message with different colors 
+	    are specified when prompt, a string in deffierent color will be 
+	    printed with not carriage return. In case of carriage return meet, 
+	    it will be printed.
+	    Error is thrown when there is nothing to print with extra info. To 
+	    summup no v:false met will become g:MACOLIB_PRINT.
+
+obj.prompt()    We prompt message if v:true met. The prompt() within object, 
+		will return results of prompt as it appears in the stack 
+		order. For instance, fisrt prompt result in 0, second prompt 
+		result in 1,...
+		If no prompt met, but asked an error is thrown when there is 
+		nothing to prompt. To summup no v:true met. To summup no 
+		v:true will become g:MACOLIB_PROMPT.
+
+obj.checks_prints_and_prompt()    We only check how many print(s) are and,
+				  how many prompt are ... declared.
+				  We return a dictionary where values are 
+				  stored s.a {'PRINT': 1, 'PROMPT': 4}.
+				  Error thrown if value not in 
+				  g:MACOLIB_PROMPT or g:MACOLIB_PRINT s.a 
+				  "Bad value "...  where ... is extra local 
+				  values.
+
+obj.prints_and_prompts()    and this is a gathering of say() and prompt() 
+                            functions.
+			    Error thrown if value not in g:MACOLIB_PROMPT or 
+			    g:MACOLIB_PRINT s.a "Bad value "... where ... 
+			    is extra local values.
+
+==============================================================================
+EXAMPLE                                                   *help_MaCoLib_Example*
+In $MYVIMRC you should have something like this.
+
+>
+  call plug#begin('~/.vim/plugged')
+
+    " ------------------------------------------------------------------------
+    " We put on line our library that MAnage the COlor LIBrary and other stuff
+    Plug 'cbushdor/MaCoLib'
+
+
+    " Add this line for tests purpose
+    " The following line will let vim know that you have a plugin locally
+    " follow next instructions to create it locally!
+    Plug 'cbushdor/MyNewPlugin'
+    " ------------------------------------------------------------------------
+
+  call plug#end()
+<
+
+Create '~/.vim/plugged/MyNewPlugin/plugin/' directories:
+
+>
+  cd ~/.vim/plugged/
+  mkdir -p MyNewPlugin/plugin/
+  cd MyNewPlugin/plugin/
+<
+
+Create 'MyNewVimPlugin.vim' file in ~/.vim/plugged/MyNewPlugin/plugin/:
+
+>
+  " We call function MyStartErrorMyHeadersFill_file() when BufNewFile.
+  autocmd BufNewFile * execute ":call MyStartErrorMyHeadersFill_file()"
+
+  function! MyStartErrorMyHeadersFill_file(...)
+    let MyArray = [
+        \ [
+        \   "Hello one ",
+        \   ':hi MyColor  term=bold ctermfg=Blue guifg=#80a0ff gui=bold'
+        \ ] ,
+        \ [
+        \   "Hello two ",
+        \   ':hi MyColor  term=bold ctermfg=Cyan guifg=#80a0ff gui=bold'
+        \ ]
+        \]
+
+    call AddToPrintColorString(MyArray,
+    \     "Hello three",
+    \     ':hi MyColor  term=bold ctermfg=Red guifg=#80a0ff gui=bold')
+    call PrintsColoredString(MyArray)
+  endfunction
+<
+
+If you open a file in ~/Downloads s.a:
+
+>
+	cd ~/Downloads
+	vi file.txt
+<
+
+you should have something on the screen!
+
+==============================================================================
+WARNING                                                     *help_MaCoLib_notes*
+	Plugin under construction. It is unstable.
+
+==============================================================================
+HELP						   	    *help_MaCoLib_extra*
+	:help highlight or :help hi
+
+==============================================================================
+CREDITS                                                   *help_MaCoLib_credits*
+
+	https://www.vim.org/
+
+==============================================================================
+LICENSE 						  *help_MaCoLib_licence*
+
+	Permission is granted to copy, distribute, and/or modify this document 
+	under the terms of the Creative Commons Attribution-NonCommercial 3.0
+	Unported License, which is available at 
+	http://creativecommons.org/licenses/by-nc/3.0/.
+
+
+Address : cbushdor at laposte dot net
+
+vim:tw=78:ts=8:noet:ft=help:norl:

@@ -1,0 +1,147 @@
+*VarEnv.txt*       my MAnager for Var Env old path...
+
+		Creation Date : 2024-06-15 22:59:52
+		Last Modified : 2024-06-15 23:05:05
+		Version : 0.0.0.5
+
+==============================================================================
+CONTENTS                                                *VarEnv* *help_VarEnv*
+
+How to Install Plugin                                   |help_VarEnv_install|
+Intro                                                     |help_VarEnv_intro|
+Variables                                             |help_VarEnv_Variables|
+Functions                                             |help_VarEnv_Functions|
+Object                                                   |help_VarEnv_Object|
+Example                                                 |help_VarEnv_Example|
+Warning						          |help_VarEnv_notes|
+Helps                                                     |help_VarEnv_extra|
+Credits                                                 |help_VarEnv_credits|
+Licence                                                 |help_VarEnv_licence|
+
+==============================================================================
+How to Install Plugin                                     *help_VarEnv_install*
+
+Technical requirements
+
+    * Vim (text editor): Version 9.0.1050.
+    * System macOS: Version 13.2.1 (22D68).
+    * System Fedora: Version 38beta (Should work on other linux distros too).
+    * Scripts: Markdown, Vim Script, shell sh.
+    * Vim plugin: Vim-plug.
+
+    Note
+      Should be ok as long as Vim Script is supported by the editor (since
+      version 8.0).
+
+
+How to start
+  We admit that Vim-plugin is already installed. If not so, go to
+  https://github.com/junegunn/vim-plug and follow instructions.
+
+  We configure ~/.vimrc below (~ means home directory):
+
+>
+     call plug#begin('~/.vim/plugged')
+     Plug 'cbushdor/VarEnv'
+     call plug#end()
+<
+
+  and plugin will be installed in ~/.vim/plugged if everything is well
+  configured.  Then type ':wq' to save and, quit. Edit ~/.vimrc to 
+  relaunch. Then, type ':PlugInstall' and, look if plugin is installing 
+  itself. A prompt will ask not to forget to set 'g:myEmail' in $MYVIMRC if
+  not found.
+
+==============================================================================
+INTRO                                                       *help_VarEnv_intro*
+
+Sometimes it is hard to read and, to UNDERSTAND!
+
+==============================================================================
+VARIABLES                                               *help_VarEnv_Variables*
+
+g:current_script_path 	We get the source path and script name of VarEnv.vim.
+
+g:current_path	 	We get current path.
+g:local_path_homedir	Path to vimrc that contains files.
+g:module_name		We get module name from homedir path.
+g:file_ext_ref 		This file ref for extension comp
+g:local_path_vimrc	Path to vimrc that contains files
+g:local_path_mylibrary 	Path to mylibrary that contains files
+g:pathConf 		File that contains local configuration
+
+==============================================================================
+FUNCTIONS                                               *help_VarEnv_Functions*
+
+MyChomp(s) 		Remove last cariage return withing string s.
+
+
+GetsFileNameFromPath(pfn)	We get file name from path.
+
+GetsScript(sf)		We return Script.
+
+GetsVarString(var)	Creates the string for the global variable name value.
+			The 'var' is given and we return variable name 
+			prefixed of 'g:' as a string. Nothing set in memory
+			yet.
+
+IsVarDefined(var)	This is used to check if 'var' the variable name does 
+			exist in memory and, returns g:true. 
+
+CreatesGlobalVar(var)	We set a global variable in memory with var.
+			The 'var' parameter is the variable name to set in
+			memory. HEnce, g:true is returned if no error met
+			otherwise g:false.
+
+LoadSource(file)	Loads source
+
+GetsCurrentFileName()	Gets current file nale
+
+CreatesEnvVar(en) 	We create a envarionment variable string
+
+LoadGlobVar(...)	Load global extension that start with suf(ix)
+
+Rand()			Calculates random number
+
+MyExec(p)		Executes shell script input entered should be 
+			returned! p as  ':!read momo;echo $momo'.
+
+MyExecOut(p)		Executes shell script no input expected so no result 
+			returned!p as  ':!read momo;echo $momo'
+
+
+Stop() 			We kill process with the kill command. We need to
+                        improve algoprithm.
+
+GetsPid() 		Gets PID
+
+GetsMyExecScript(str)	We create the script line to be executed with execute
+			command to get expand(...) value  s.a 
+			GetsMyExecScript("<script>"). Read :help expand() for 
+			more information.
+
+==============================================================================
+WARNING                                                     *help_VarEnv_notes*
+	Plugin under construction. It is unstable.
+
+==============================================================================
+HELP						   	    *help_VarEnv_extra*
+	:help highlight or :help hi
+
+==============================================================================
+CREDITS                                                   *help_VarEnv_credits*
+
+	https://www.vim.org/
+
+==============================================================================
+LICENSE 						  *help_VarEnv_licence*
+
+	Permission is granted to copy, distribute, and/or modify this document 
+	under the terms of the Creative Commons Attribution-NonCommercial 3.0
+	Unported License, which is available at 
+	http://creativecommons.org/licenses/by-nc/3.0/.
+
+
+Address : cbushdor at laposte dot net
+
+vim:tw=78:ts=8:noet:ft=help:norl:

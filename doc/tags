@@ -1,5 +1,7 @@
 MaCoLib	MaCoLib.txt	/*MaCoLib*
 MaCoLib.txt	MaCoLib.txt	/*MaCoLib.txt*
+VarEnv	VarEnv.txt	/*VarEnv*
+VarEnv.txt	VarEnv.txt	/*VarEnv.txt*
 help_MaCoLib	MaCoLib.txt	/*help_MaCoLib*
 help_MaCoLib_Example	MaCoLib.txt	/*help_MaCoLib_Example*
 help_MaCoLib_Functions	MaCoLib.txt	/*help_MaCoLib_Functions*
@@ -11,3 +13,12 @@ help_MaCoLib_install	MaCoLib.txt	/*help_MaCoLib_install*
 help_MaCoLib_intro	MaCoLib.txt	/*help_MaCoLib_intro*
 help_MaCoLib_licence	MaCoLib.txt	/*help_MaCoLib_licence*
 help_MaCoLib_notes	MaCoLib.txt	/*help_MaCoLib_notes*
+help_VarEnv	VarEnv.txt	/*help_VarEnv*
+help_VarEnv_Functions	VarEnv.txt	/*help_VarEnv_Functions*
+help_VarEnv_Variables	VarEnv.txt	/*help_VarEnv_Variables*
+help_VarEnv_credits	VarEnv.txt	/*help_VarEnv_credits*
+help_VarEnv_extra	VarEnv.txt	/*help_VarEnv_extra*
+help_VarEnv_install	VarEnv.txt	/*help_VarEnv_install*
+help_VarEnv_intro	VarEnv.txt	/*help_VarEnv_intro*
+help_VarEnv_licence	VarEnv.txt	/*help_VarEnv_licence*
+help_VarEnv_notes	VarEnv.txt	/*help_VarEnv_notes*
