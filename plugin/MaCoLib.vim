@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-05-31 00:12:51
+" Last Modified : 2024-06-16 22:07:57
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1772
+" Version : 0.0.0.1784
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -19,18 +19,9 @@ else
    finish
 endif
 
-" Object for color printing
-
-const s:DEFAULT_MAX_STACK = 14
-const g:func_print_col = {"MACOLIB_PRINT": "MACOLIB_PRINT","MACOLIB_PROMPT": "MACOLIB_PROMPT"}
-
-" expand('<script>'),expand('<sfile>'    )
-function! OutsideTesting(sc,sf)
-   return split(a:sc,'/')[len(split(a:sc,'/'))-1]..substitute(substitute(substitute(a:sf,'^.*function *','#',''),'[\[\]0-9]','','g'),'\.\+','#','')
-endfunction
-
-function! g:HiClear() abort
-   hi clear
+" Remove last cariage return
+function! MyChomp(s)
+   return substitute(a:s,'\n$','',"g")
 endfunction
 
 " We get path of the current file
@@ -39,14 +30,6 @@ function! GetsMyExecScript(str)
    return l:apth
 endfunction
 
-" Check bellow MyDefine("MaCoLib") for sanitary fence
-
-" Remove last cariage return
-function! MyChomp(s)
-   return substitute(a:s,'\n$','',"g")
-endfunction
-
-
 " We get current script path source
 let g:current_script_path = MyChomp(execute(GetsMyExecScript("<script>")))
 
@@ -54,54 +37,22 @@ let g:current_script_path = MyChomp(execute(GetsMyExecScript("<script>")))
 let g:current_path=expand('<sfile>:p:h')
 
 " Path to vimrc that contains files
-let g:local_path_homedir = substitute(g:current_path,'\v(\/[^\/]+){1}$','',"")..'/' 
+let g:local_path_homedir = substitute(g:current_path,'\v(\/[^\/]+){1}$','',"")..'/'
 
 " Split by separator g:local_path_homedir
 let s:mydirs=split(g:local_path_homedir,'/')
 
-" We get module name from homedir path
-let g:module_name=substitute(s:mydirs[len(s:mydirs)-1],'-','',"")
-
-" We get file name from path
-function! GetsFileNameFromPath(pfn)
-   " We split path
-   let dirs=split(a:pfn,'/')
-   " We get file name from homedir path
-   return substitute(dirs[len(dirs)-1],'-','',"") 
+" Loads source
+function! LoadSource(file)
+   execute "source "..a:file
 endfunction
 
-" We return Script
-function! GetsScript(sf)
-   return ">>>>"..expand("<script>").."<<<<<<<<<|"..a:sf.."|****"
-endfunction
+call LoadSource(g:current_path.."/MaVaEnv.vim")
 
-" We return string for global variable not set in memory
-function! GetsVarString(var)
-   return "g:"..a:var
-endfunction
+" Object for color printing
 
-" We check if variable is defined and return v:true if so
-function! IsVarDefined(var)
-   return exists(a:var)
-endfunction
-
-" We return string for global variable set in memory and return v:true if
-" created.
-function! CreatesGlobalVar(var)
-   try
-      " Variable created
-      exe "let "..a:var.."=1"
-      " Variable created return
-      return v:true
-   catch
-      return v:false
-   endtry
-endfunction
-
-" Frome file name returns only file name with not extension if, has one.
-function! GetsFileWithNoExtension(fi)
-   return substitute(a:fi,'\.[^\.]*$',"","g")
-endfunction
+const s:DEFAULT_MAX_STACK = 14
+const g:func_print_col = {"MACOLIB_PRINT": "MACOLIB_PRINT","MACOLIB_PROMPT": "MACOLIB_PROMPT"}
 
 " Sanitary fence
 if !IsVarDefined(GetsFileWithNoExtension(expand("%")))
@@ -128,10 +79,6 @@ let g:local_path_mylibrary =  g:local_path_homedir.."MaCoLib/"
 let g:pathConf = 'MYVIMRC'
 " echo "g:pathConf: "..g:pathConf
 
-" Loads source
-function! LoadSource(file)
-   execute "source "..a:file
-endfunction
 
 " Gets current file nale
 function! GetsCurrentFileName()
