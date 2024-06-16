@@ -1,25 +1,25 @@
-*VarEnv.txt*       my MAnager for Var Env old path...
+*MaVaEnv.txt*       my MAnager for Variable Environment old path...
 
 		Creation Date : 2024-06-15 22:59:52
-		Last Modified : 2024-06-15 23:05:05
-		Version : 0.0.0.5
+		Last Modified : 2024-06-16 15:45:28
+		Version : 0.0.0.11
 
 ==============================================================================
-CONTENTS                                                *VarEnv* *help_VarEnv*
+CONTENTS                                                *MaVaEnv* *help_MaVaEnv*
 
-How to Install Plugin                                   |help_VarEnv_install|
-Intro                                                     |help_VarEnv_intro|
-Variables                                             |help_VarEnv_Variables|
-Functions                                             |help_VarEnv_Functions|
-Object                                                   |help_VarEnv_Object|
-Example                                                 |help_VarEnv_Example|
-Warning						          |help_VarEnv_notes|
-Helps                                                     |help_VarEnv_extra|
-Credits                                                 |help_VarEnv_credits|
-Licence                                                 |help_VarEnv_licence|
+How to Install Plugin                                   |help_MaVaEnv_install|
+Intro                                                     |help_MaVaEnv_intro|
+Variables                                             |help_MaVaEnv_Variables|
+Functions                                             |help_MaVaEnv_Functions|
+Object                                                   |help_MaVaEnv_Object|
+Example                                                 |help_MaVaEnv_Example|
+Warning						          |help_MaVaEnv_notes|
+Helps                                                     |help_MaVaEnv_extra|
+Credits                                                 |help_MaVaEnv_credits|
+Licence                                                 |help_MaVaEnv_licence|
 
 ==============================================================================
-How to Install Plugin                                     *help_VarEnv_install*
+How to Install Plugin                                     *help_MaVaEnv_install*
 
 Technical requirements
 
@@ -42,7 +42,7 @@ How to start
 
 >
      call plug#begin('~/.vim/plugged')
-     Plug 'cbushdor/VarEnv'
+     Plug 'cbushdor/MaVaEnv'
      call plug#end()
 <
 
@@ -53,14 +53,14 @@ How to start
   not found.
 
 ==============================================================================
-INTRO                                                       *help_VarEnv_intro*
+INTRO                                                       *help_MaVaEnv_intro*
 
 Sometimes it is hard to read and, to UNDERSTAND!
 
 ==============================================================================
-VARIABLES                                               *help_VarEnv_Variables*
+VARIABLES                                               *help_MaVaEnv_Variables*
 
-g:current_script_path 	We get the source path and script name of VarEnv.vim.
+g:current_script_path 	We get the source path and script name of MaVaEnv.vim.
 
 g:current_path	 	We get current path.
 g:local_path_homedir	Path to vimrc that contains files.
@@ -71,7 +71,7 @@ g:local_path_mylibrary 	Path to mylibrary that contains files
 g:pathConf 		File that contains local configuration
 
 ==============================================================================
-FUNCTIONS                                               *help_VarEnv_Functions*
+FUNCTIONS                                               *help_MaVaEnv_Functions*
 
 MyChomp(s) 		Remove last cariage return withing string s.
 
@@ -121,20 +121,20 @@ GetsMyExecScript(str)	We create the script line to be executed with execute
 			more information.
 
 ==============================================================================
-WARNING                                                     *help_VarEnv_notes*
+WARNING                                                     *help_MaVaEnv_notes*
 	Plugin under construction. It is unstable.
 
 ==============================================================================
-HELP						   	    *help_VarEnv_extra*
+HELP						   	    *help_MaVaEnv_extra*
 	:help highlight or :help hi
 
 ==============================================================================
-CREDITS                                                   *help_VarEnv_credits*
+CREDITS                                                   *help_MaVaEnv_credits*
 
 	https://www.vim.org/
 
 ==============================================================================
-LICENSE 						  *help_VarEnv_licence*
+LICENSE 						  *help_MaVaEnv_licence*
 
 	Permission is granted to copy, distribute, and/or modify this document 
 	under the terms of the Creative Commons Attribution-NonCommercial 3.0
