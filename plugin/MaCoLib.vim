@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-06-16 22:07:57
+" Last Modified : 2024-06-18 22:38:29
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1784
+" Version : 0.0.0.1785
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -177,7 +177,8 @@ function! MaCoLib#new(...)
          " To check if first element of the array is a list 
          " we store first element in a local memory l:po
          " then, we check if, that element is a list itself.
-         " Hence, if it is not we throw an error.
+         " Hence, if it is we return v:true
+         " Hence, if it is not we return v:false
 
          let l:po = l:p[0]
 
