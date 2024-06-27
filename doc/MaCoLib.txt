@@ -1,8 +1,8 @@
 *MaCoLib.txt*       my MAnager for COlor LIBrary and some more stuff
 
 		Creation Date :2024-02-15 23:11:52
-		Last Modified : 2024-05-31 00:07:21
-		Version : 0.0.0.424
+		Last Modified : 2024-06-27 22:48:03
+		Version : 0.0.0.426
 
 ==============================================================================
 CONTENTS                                                *MaCoLib* *help_MaCoLib*
@@ -278,9 +278,11 @@ obj.checks_prints_and_prompts() Checks if, last field value of array(s),
 				     bad value a message error is thrown 
 				     "Bad value ".
 
-obj.clearStringColor() 	We erase the whole full list of string colors
+obj.clearStringColor(...) 	We erase the whole full list of string colors
                         declared! This function returns v:true if 
 			length is zero otherwise v:false.
+			Parameter in this function optional. It should be 
+			a value s.a expand('<script>') for error message.
 			ERRORS:
 				- Error is thrown when list is empty. If there
 				  is nothing to clean the following error is

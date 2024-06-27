@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-06-18 22:38:29
+" Last Modified : 2024-06-27 22:20:47
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1785
+" Version : 0.0.0.1794
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -227,10 +227,10 @@ function! MaCoLib#new(...)
                   throw "Max size reached "..s:MAX_STACK
                endif
             else
-               throw "Stack max (".. s:MAX_STACK .. ") already specified "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+               throw "+-----> Stack max (".. s:MAX_STACK .. ") already specified "..OutsideTesting(expand('<script>'),expand('<sfile>'))
             endif
          else
-            throw "Argument type should be v:t_list. "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+            throw "x-----> Argument type should be v:t_list. "..OutsideTesting(expand('<script>'),expand('<sfile>'))
          endif
       endwhile " End while index < a:0
 
@@ -295,7 +295,7 @@ function! MaCoLib#new(...)
                   echohl None
                   echo "\n"
                else
-                  throw "Bad value "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+                  throw "M------> Bad value "..OutsideTesting(expand('<script>'),expand('<sfile>'))
                endif
             endfor
             return MyRes
@@ -321,10 +321,10 @@ function! MaCoLib#new(...)
                endif
             endfor
             if l:cpt == 0
-               throw "Nothing to print "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+               throw "oooooo> Nothing to print "..OutsideTesting(expand('<script>'),expand('<sfile>'))
             endif
          else
-            throw "Nothing to print "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+            throw "uuuuuu> Nothing to print "..OutsideTesting(expand('<script>'),expand('<sfile>'))
          endif
       endfunction
 
@@ -353,10 +353,10 @@ function! MaCoLib#new(...)
                endif
             endfor
             if l:cpt <= 0
-               throw "Nothing to prompt "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+               throw "uuuuuu> Nothing to prompt "..OutsideTesting(expand('<script>'),expand('<sfile>'))
             endif
          else
-            throw "Nothing to prompt "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+            throw "ooooov> Nothing to prompt "..OutsideTesting(expand('<script>'),expand('<sfile>'))
          endif
          return l:MyRes
       endfunction
@@ -380,7 +380,8 @@ function! MaCoLib#new(...)
          return {"PRINT": l:cMACOLIB_PRINT,"PROMPT": l:cMACOLIB_PROMPT}
       endfunction
 
-      function! obj.clearStringColor() dict abort
+      function! obj.clearStringColor(...) dict abort
+         let l:par = a:0 == 1 ? a:1 : ""
          if len(self.MyArray) > 0
             let l:i = 0
             while l:i < len(self.MyArray)
@@ -392,7 +393,7 @@ function! MaCoLib#new(...)
             return (self.len == 0) ? v:true : v:false
          else
             let self.len = -1
-            throw "Nothing to clean "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+            throw "-----qqq> Nothing to clean "..OutsideTesting(expand('<script>'),expand('<sfile>'),l:par)
          endif
       endfunction
 
@@ -406,7 +407,7 @@ function! MaCoLib#new(...)
             return l:elem
          else
             let self.len = -1
-            throw "Stack is empty "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+            throw "-------wwww> Stack is empty "..OutsideTesting(expand('<script>'),expand('<sfile>'))
          endif
       endfunction
 
@@ -445,7 +446,7 @@ function! MaCoLib#new(...)
             return l:rem
          else
             let self.len = -1
-            throw "Heap is empty "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+            throw "uuuuuuuu> Heap is empty "..OutsideTesting(expand('<script>'),expand('<sfile>'))
          endif
       endfunction
 
