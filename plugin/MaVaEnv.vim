@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaVaEnv.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-06-29 03:01:36
+" Last Modified : 2024-06-29 04:05:03
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1831
+" Version : 0.0.0.1844
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -22,9 +22,12 @@ endif
 " expand('<script>'),expand('<sfile>'    )
 function! OutsideTesting(sc,sf, ...)
    let l:par = a:0 == 1 ? a:1 : ""
-   return   l:par ..
-            \    substitute(substitute(substitute(a:sf,'^.*function *','#',''),'[\[\]0-9]','','g'),'\.\+','#','') ..
-            \   " <=== " .. split(a:sc,'/')[len(split(a:sc,'/'))-1]
+   let l:inherit= substitute(substitute(substitute(a:sf,'^.*function *','#',''),'[\[\]0-9]','','g'),'\.\+','#','')
+   let l:inherit= substitute(l:inherit,'\..*$'," \u2192 ",'')
+
+   return   l:par  ..
+            \  l:inherit ..
+            \  split(a:sc,'/')[len(split(a:sc,'/'))-1]
 endfunction
 
 function! g:HiClear() abort
