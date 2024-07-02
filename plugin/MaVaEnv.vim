@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaVaEnv.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-06-29 04:05:03
+" Last Modified : 2024-07-03 00:30:45
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1844
+" Version : 0.0.0.1852
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -20,13 +20,13 @@ else
 endif
 
 " expand('<script>'),expand('<sfile>'    )
-function! OutsideTesting(sc,sf, ...)
-   let l:par = a:0 == 1 ? a:1 : ""
+function! OutsideTesting(sc,sf)
+   "let l:par = a:0 == 1 ? a:1 : ""
    let l:inherit= substitute(substitute(substitute(a:sf,'^.*function *','#',''),'[\[\]0-9]','','g'),'\.\+','#','')
-   let l:inherit= substitute(l:inherit,'\..*$'," \u2192 ",'')
+    let l:inherit= substitute(l:inherit,'\..*$'," > ",'')
+   "let l:inherit= substitute(l:inherit,'\..*$',"",'')
 
-   return   l:par  ..
-            \  l:inherit ..
+   return   l:inherit ..
             \  split(a:sc,'/')[len(split(a:sc,'/'))-1]
 endfunction
 

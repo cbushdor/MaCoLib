@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-06-29 04:08:00
+" Last Modified : 2024-07-03 00:29:33
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1803
+" Version : 0.0.0.1809
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -380,8 +380,7 @@ function! MaCoLib#new(...)
          return {"PRINT": l:cMACOLIB_PRINT,"PROMPT": l:cMACOLIB_PROMPT}
       endfunction
 
-      function! obj.clearStringColor(...) dict abort
-         let l:par = a:0 == 1 ? a:1 : ""
+      function! obj.clearStringColor() dict abort
          if len(self.MyArray) > 0
             let l:i = 0
             while l:i < len(self.MyArray)
@@ -393,7 +392,7 @@ function! MaCoLib#new(...)
             return (self.len == 0) ? v:true : v:false
          else
             let self.len = -1
-            throw "Nothing to clean "..OutsideTesting(expand('<script>'),expand('<sfile>'),l:par)
+            throw "Nothing to clean "..OutsideTesting(expand('<script>'),expand('<sfile>'))
          endif
       endfunction
 
