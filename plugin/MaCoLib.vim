@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-07-03 00:29:33
+" Last Modified : 2024-07-03 01:07:54
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1809
+" Version : 0.0.0.1813
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -227,10 +227,10 @@ function! MaCoLib#new(...)
                   throw "Max size reached "..s:MAX_STACK
                endif
             else
-               throw "Stack max (".. s:MAX_STACK .. ") already specified "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+               throw "Stack max (".. s:MAX_STACK .. ") already specified. Check"..OutsideTesting(expand('<script>'),expand('<sfile>'))
             endif
          else
-            throw "Argument type should be v:t_list. "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+            throw "Argument type should be v:t_list. Check "..OutsideTesting(expand('<script>'),expand('<sfile>'))
          endif
       endwhile " End while index < a:0
 
@@ -295,7 +295,7 @@ function! MaCoLib#new(...)
                   echohl None
                   echo "\n"
                else
-                  throw "Bad value "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+                  throw "Bad value. Check "..OutsideTesting(expand('<script>'),expand('<sfile>'))
                endif
             endfor
             return MyRes
@@ -321,10 +321,10 @@ function! MaCoLib#new(...)
                endif
             endfor
             if l:cpt == 0
-               throw "Nothing to print "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+               throw "Nothing to print. Check "..OutsideTesting(expand('<script>'),expand('<sfile>'))
             endif
          else
-            throw "Nothing to print "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+            throw "Nothing to print. Check "..OutsideTesting(expand('<script>'),expand('<sfile>'))
          endif
       endfunction
 
@@ -353,10 +353,10 @@ function! MaCoLib#new(...)
                endif
             endfor
             if l:cpt <= 0
-               throw "Nothing to prompt "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+               throw "Nothing to prompt. Check "..OutsideTesting(expand('<script>'),expand('<sfile>'))
             endif
          else
-            throw "Nothing to prompt "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+            throw "Nothing to prompt. Check "..OutsideTesting(expand('<script>'),expand('<sfile>'))
          endif
          return l:MyRes
       endfunction
@@ -392,7 +392,7 @@ function! MaCoLib#new(...)
             return (self.len == 0) ? v:true : v:false
          else
             let self.len = -1
-            throw "Nothing to clean "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+            throw "Nothing to clean. Check "..OutsideTesting(expand('<script>'),expand('<sfile>'))
          endif
       endfunction
 
@@ -406,7 +406,7 @@ function! MaCoLib#new(...)
             return l:elem
          else
             let self.len = -1
-            throw "Stack is empty "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+            throw "Stack is empty. Check "..OutsideTesting(expand('<script>'),expand('<sfile>'))
          endif
       endfunction
 
@@ -445,7 +445,7 @@ function! MaCoLib#new(...)
             return l:rem
          else
             let self.len = -1
-            throw "Heap is empty "..OutsideTesting(expand('<script>'),expand('<sfile>'))
+            throw "Heap is empty. Check "..OutsideTesting(expand('<script>'),expand('<sfile>'))
          endif
       endfunction
 
