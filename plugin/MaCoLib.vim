@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-07-03 01:07:54
+" Last Modified : 2024-07-04 00:47:07
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1813
+" Version : 0.0.0.1837
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -147,12 +147,17 @@ function! MaCoLib#new(...)
 
    " Ths function checks if the array is valid
    function! s:is_valid_col_arr(s)
+      "echo "\nBEGIN We are testing\n"
+      "echo a:s[2] .. "\n"
       if (type(a:s) != v:t_list )
          return v:false
       else
          if match(a:s[0],'^[.\t\n]*$') 
             if match(a:s[1],'^:(hi|highlight) ') 
                for l:mkey in keys(g:func_print_col) " We parse all values from dictionary to check that 3rd field within dictionary
+                  "                 echo "\n[" .. l:mkey .. "] " .. g:func_print_col[l:mkey].. " == "
+                  "                          \ .. a:s[2] .. "\n"
+                  " We check that value is in dictionary
                   if g:func_print_col[l:mkey] == a:s[2] " We check that value is in dictionary
                      return v:true " Value found and, return true
                   endif
@@ -248,7 +253,8 @@ function! MaCoLib#new(...)
          " nuplet is an array with specific format
          " to check the format we need to get array of array!
 
-         "echo (type(a:nuplet) == v:t_list) ? "is type v:t_list" : "is not type v:t_list"
+         echo (type(a:nuplet) == v:t_list) ? "is type v:t_list" : "is not type v:t_list"
+         echo "\nnuplet to add "..string(a:nuplet).."\n"
          if s:is_spec_col_str([ a:nuplet ]) == v:true " Array of array
             if self.len < s:MAX_STACK 
                if len(self.MyArray) == 0
