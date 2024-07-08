@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaCoLib.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-07-04 00:47:07
+" Last Modified : 2024-07-09 01:26:00
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1837
+" Version : 0.0.0.1840
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -253,8 +253,6 @@ function! MaCoLib#new(...)
          " nuplet is an array with specific format
          " to check the format we need to get array of array!
 
-         echo (type(a:nuplet) == v:t_list) ? "is type v:t_list" : "is not type v:t_list"
-         echo "\nnuplet to add "..string(a:nuplet).."\n"
          if s:is_spec_col_str([ a:nuplet ]) == v:true " Array of array
             if self.len < s:MAX_STACK 
                if len(self.MyArray) == 0
