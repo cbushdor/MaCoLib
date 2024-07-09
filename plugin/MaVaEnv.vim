@@ -2,9 +2,9 @@
 " Created By : sdo
 " File Name : MaVaEnv.vim
 " Creation Date :2023-07-05 15:03:48
-" Last Modified : 2024-07-10 01:27:31
+" Last Modified : 2024-07-10 01:43:52
 " Email Address : cbushdor@laposte.net
-" Version : 0.0.0.1868
+" Version : 0.0.0.1874
 " License : 
 " 	Permission is granted to copy, distribute, and/or modify this document under the terms of the Creative Commons Attribution-NonCommercial 3.0
 " 	Unported License, which is available at http://creativecommons.org/licenses/by-nc/3.0/.
@@ -34,9 +34,9 @@ endfunction
 let s:current_path=expand('<sfile>:p:h')
 
 " Path to vimrc that contains files
-let s:local_path_homedir = substitute(g:current_path,'\v(\/[^\/]+){1}$','',"")..'/'
+let s:local_path_homedir = substitute(s:current_path,'\v(\/[^\/]+){1}$','',"")..'/'
 
-" Split by separator g:local_path_homedir
+" Split by separator s:local_path_homedir
 let s:mydirs=split(s:local_path_homedir,'/')
 
 
@@ -91,20 +91,20 @@ else
 endif
 
 " This file ref for extension comp
-let g:file_ext_ref = "."..expand("%:e") 
-" echo "g:file_ext_ref: "..g:file_ext_ref
+let s:file_ext_ref = "."..expand("%:e") 
+" echo "s:file_ext_ref: "..s:file_ext_ref
 
 " Path to vimrc that contains files
-let g:local_path_vimrc = g:local_path_homedir.."vimrc/" 
-" echo "g:local_path_vimrc: "..g:local_path_vimrc
+let s:local_path_vimrc = s:local_path_homedir.."vimrc/" 
+" echo "s:local_path_vimrc: "..s:local_path_vimrc
 
 " path to MaCoLib that contains files
-let g:local_path_mylibrary =  g:local_path_homedir.."MaCoLib/" 
-" echo "g:local_path_mylibrary:"..g:local_path_mylibrary
+let s:local_path_mylibrary =  s:local_path_homedir.."MaCoLib/" 
+" echo "s:local_path_mylibrary:"..s:local_path_mylibrary
 
 " File that contains local configuration
-let g:pathConf = 'MYVIMRC'
-" echo "g:pathConf: "..g:pathConf
+let s:pathConf = 'MYVIMRC'
+" echo "s:pathConf: "..s:pathConf
 
 " Gets current file nale
 function! GetsCurrentFileName()

@@ -1,8 +1,8 @@
 *MaVaEnv.txt*       my MAnager for Variable Environment old path...
 
 		Creation Date : 2024-06-15 22:59:52
-		Last Modified : 2024-06-16 15:45:28
-		Version : 0.0.0.11
+		Last Modified : 2024-07-10 01:44:11
+		Version : 0.0.0.17
 
 ==============================================================================
 CONTENTS                                                *MaVaEnv* *help_MaVaEnv*
@@ -60,15 +60,12 @@ Sometimes it is hard to read and, to UNDERSTAND!
 ==============================================================================
 VARIABLES                                               *help_MaVaEnv_Variables*
 
-g:current_script_path 	We get the source path and script name of MaVaEnv.vim.
-
-g:current_path	 	We get current path.
-g:local_path_homedir	Path to vimrc that contains files.
-g:module_name		We get module name from homedir path.
+s:current_path	 	We get current path.
+s:local_path_homedir	Path to vimrc that contains files.
 g:file_ext_ref 		This file ref for extension comp
-g:local_path_vimrc	Path to vimrc that contains files
-g:local_path_mylibrary 	Path to mylibrary that contains files
-g:pathConf 		File that contains local configuration
+s:local_path_vimrc	Path to vimrc that contains files
+s:local_path_mylibrary 	Path to mylibrary that contains files
+s:pathConf 		File that contains local configuration
 
 ==============================================================================
 FUNCTIONS                                               *help_MaVaEnv_Functions*
